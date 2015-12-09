@@ -1,17 +1,44 @@
-body, img {
+body, img, ul {
     border: none;
     margin: 0;
     padding: 0
 }
 
-#header {
-    background: blue;
-}
-
-#body {
-    background: darkgrey;
-}
-
-#footer {
+#container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background: #000;
+    /*background: #DDD no-repeat;*/
+    /*-webkit-background-size: 150%;*/
+    /*background-size: 150%;*/
+    overflow: hidden;
+}
+#container .bg{
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(15px); /* Chrome, Opera */
+    -moz-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+}
+#container .bg li {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: 150%;
+    background-size: 150%;
+    position: absolute;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -ms-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+li.a{
+    background-image: url(../images/flying_elephant.jpg);
+}
+li.b{
+    background-image: url(../images/kitty_with_rose.jpg);
 }
