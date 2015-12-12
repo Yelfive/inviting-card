@@ -17,7 +17,7 @@ fk = function (selector) {
     var doms;
     if (selector.indexOf('#') === 0) {
         var id = selector.substr(1);
-        doms = [document.getElementById(id)];
+        doms = document.getElementById(id);
     } else if (selector.indexOf('.') === 0) {
         var className = selector.substr(1);
         doms = document.getElementsByClassName(className);

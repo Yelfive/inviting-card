@@ -1,20 +1,14 @@
 /**
- * @author Felix Huang <yelfivehuang@gmail.com>
+ * Created by Administrator on 2015/12/12.
  */
 
-var index = 0;
-function getImage() {
-    var images = ['flying_elephant', 'kitty_with_rose'];
-    if (++index >=images.length) {
-        index = 0;
-    }
-    return images[index];
-}
 
-var op = 0;
-function toggleImages() {
-    op = op ? 0 : 1;
-    fk('.b').css('opacity', op);
-    setTimeout(toggleImages, 5000);
-}
-toggleImages();
+setTimeout(function () {
+    var loading = document.querySelector('#loading');
+    var style = loading.style;
+    loading.style.opacity = 0;
+    loading.style.width = '150%';
+    loading.style.height = '150%';
+    style.left = '-100px';
+    style.top = '-100px';
+},1000);
