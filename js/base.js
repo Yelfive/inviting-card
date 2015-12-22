@@ -2,6 +2,13 @@
  * Created by Administrator on 2015/12/12.
  */
 
+$loading = document.getElementById('loading');
+document.body.addEventListener('touchstart', function () {
+    //$('#loading').css({'background-size': 500, 'opacity': 0});
+    $loading.style.backgroundSize = '500px';
+    $loading.style.opacity = 0;
+});
+
 //var loadingImg = [500, 324];
 //window.getOffsetTop = function (h) {
 //    h = !h ? document.getElementById('loading').getElementsByTagName('img').item(0).clientHeight : h;
@@ -13,27 +20,26 @@
 //    //$('#loading img').css({top: window.getOffsetTop(), opacity: 1}).addClass('loading-animate');
 //
 //}());
-$.fn.touch = function (callback) {
-    this.get(0).addEventListener('touchstart', callback, false);
-}
-$('#menu').touch(function () {
-    alert('Clicked!');
-});
+//$.fn.touch = function (callback) {
+//    this.get(0).addEventListener('touchstart', callback, false);
+//}
+//$('#loading').touch(function () {
+//    alert('touch!');
+//});
 //(function () {
-    //alert(3)
-    $(document).touch(function () {
-        $('#loading').css({'background-size': 500, 'opacity': 0});
-    });
-    document.onclick = function () {
+
+
+//    document.body.onclick = function () {
+//        alert('click');
         //var h = window.innerWidth / loadingImg[0] * loadingImg[1];
         //$('#loading').css({'background-size': 500, 'opacity': 0});
         //$('#loading').css({opacity: 0})
         //    .children('img')
-            //.css({height: h, 'top': getOffsetTop(h)});
+        //    .css({height: h, 'top': getOffsetTop(h)});
         //setTimeout(function () {
         //    $('#loading').remove();
         //}, 500);
-    };
+    //};
 //}());
 //
 //require.config({
