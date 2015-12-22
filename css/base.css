@@ -113,22 +113,47 @@ body{
     -webkit-background-size: 250px;
     background-size: 250px;
 
-    -webkit-transition: background-size 0.5s, opacity 0.5s;
-    -moz-transition: background-size 0.5s, opacity 0.5s;
-    -ms-transition: background-size 0.5s, opacity 0.5s;
-    -o-transition: background-size 0.5s, opacity 0.5s;
-    transition: background-size 0.5s, opacity 0.5s;
-
-    /*position: absolute;*/
-    /*left: -200px;*/
-    /*-webkit-transition: left 1s;*/
-    /*-moz-transition: left 1s;*/
-    /*-ms-transition: left 1s;*/
-    /*-o-transition: left 1s;*/
-    /*transition: left 1s;*/
+    /*-webkit-transition: background-size 0.5s, opacity 0.5s;*/
+    /*-moz-transition: background-size 0.5s, opacity 0.5s;*/
+    /*-ms-transition: background-size 0.5s, opacity 0.5s;*/
+    /*-o-transition: background-size 0.5s, opacity 0.5s;*/
+    /*transition: background-size 0.5s, opacity 0.5s;*/
 }
 #loading.fade {
     opacity: 0;
     -webkit-background-size: 500px;
     background-size: 500px;
+}
+@keyframes bounceOut{
+    from {
+        -webkit-background-size: 250px;
+        background-size: 250px;
+        opacity: 1;
+    }
+    to {
+        -webkit-background-size: 500px;
+        background-size: 500px;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes bounceOut {
+    from {
+        -webkit-background-size: 250px;
+        background-size: 250px;
+        opacity: 1;
+    }
+    to {
+        -webkit-background-size: 500px;
+        background-size: 500px;
+        opacity: 0;
+    }
+
+}
+#loading.bounce-out{
+    -webkit-animation: bounceOut 0.5s;
+    -o-animation: bounceOut 0.5s;
+    animation: bounceOut 0.5s;
+    -webkit-background-size: 500px;
+    background-size: 500px;
+    opacity: 0;
 }
