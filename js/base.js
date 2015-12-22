@@ -5,8 +5,9 @@
 $loading = document.getElementById('loading');
 document.body.addEventListener('touchstart', function () {
     //$('#loading').css({'background-size': 500, 'opacity': 0});
-    $loading.style.backgroundSize = '500px';
-    $loading.style.opacity = 0;
+    //$loading.style.backgroundSize = '500px';
+    //$loading.style.opacity = 0;
+    $loading.className = 'fade';
 });
 
 //var loadingImg = [500, 324];

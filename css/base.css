@@ -109,7 +109,8 @@ body{
     height: 100%;
 }
 #loading {
-    background: #FF8C8C url(../images/best_wishes.png) no-repeat center;
+    background: #FF8C8C url(../images/best_wishes_tiny.png) no-repeat center;
+    -webkit-background-size: 250px;
     background-size: 250px;
 
     -webkit-transition: background-size 0.5s, opacity 0.5s;
@@ -125,4 +126,9 @@ body{
     /*-ms-transition: left 1s;*/
     /*-o-transition: left 1s;*/
     /*transition: left 1s;*/
+}
+#loading.fade {
+    opacity: 0;
+    -webkit-background-size: 500px;
+    background-size: 500px;
 }
