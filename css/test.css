@@ -1,0 +1,35 @@
+
+body{margin: 0px;}
+
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #FF8C8C url(../images/best_wishes_tiny.png) center no-repeat;
+    /*-webkit-background-size: 250px;*/
+    /*background-size: 50%;*/
+    /*opacity: 1;*/
+    /*-webkit-animation-name: bounceOut;*/
+    /*-moz-animation-name: bounceOut;*/
+    /*-o-animation-name: bounceOut;*/
+    animation-name: bounceOut;
+    animation-delay: 1s;
+    /*-webkit-animation-duration: 1s;*/
+    /*-moz-animation-duration: 1s;*/
+    /*-o-animation-duration: 1s;*/
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceOut {
+    from {
+        /*-webkit-background-size: 50%;*/
+        background-size: 50%;
+        opacity: 1;
+    }
+    to {
+        /*-webkit-background-size: 500px;*/
+        background-size: 100%;
+        opacity: 0;
+    }
+}

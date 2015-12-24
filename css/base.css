@@ -21,14 +21,9 @@ body, img, ul {
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
-    -webkit-background-size: 150%;
-    background-size: 150%;
+    -webkit-background-size: 100%;
+    background-size: 100%;
     position: absolute;
-    /*-webkit-transition: opacity 2s;*/
-    /*-moz-transition: opacity 2s;*/
-    /*-ms-transition: opacity 2s;*/
-    /*-o-transition: opacity 2s;*/
-    /*transition: opacity 2s;*/
 }
 
 /* TODO delete when finished */
@@ -49,111 +44,60 @@ li.b {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.5) url(../images/best_wishes.png) no-repeat 1px 8px;
+    background: rgba(255, 255, 255, 0.5) url(../images/best_wishes_tiny.png) no-repeat 1px 8px;
     background-size: 50px;
 }
 
-.mask {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    width: 100%;
-    height: 100%;
-}
-
 .blur {
-    -webkit-filter: blur(15px); /* Chrome, Opera */
-    -moz-filter: blur(15px);
-    -ms-filter: blur(15px);
+    /*-webkit-filter: blur(15px); /!* Chrome, Opera *!/*/
+    /*-moz-filter: blur(15px);*/
+    /*-ms-filter: blur(15px);*/
     /*filter: blur(15px);*/
-    filter: url(../images/blur.svg#blur);
+    /*filter: url(../images/blur.svg#blur);*/
 }
 
 .hide {
     display: none;
 }
 
-#loading {
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.loading {
     position: absolute;
     width: 100%;
     height: 100%;
     z-index: 10;
-    background-color: #FF8C8C;
-    overflow: hidden;
-
-    /*-webkit-transition: opacity 0.5s;*/
-    /*-moz-transition: opacity 0.5s;*/
-    /*-ms-transition: opacity 0.5s;*/
-    /*-o-transition: opacity 0.5s;*/
-    /*transition: opacity 0.5s;*/
-}
-
-#loading > img {
-    height: 162px;
-    display: block;
-    margin: 0 auto;
-    opacity: 0;
-    position: relative;
-}
-
-img.loading-animate {
-    -webkit-transition: height 0.5s, top 0.5s;
-    -moz-transition: height 0.5s, top 0.5s;
-    -ms-transition: height 0.5s, top 0.5s;
-    -o-transition: height 0.5s, top 0.5s;
-    transition: height 0.5s, top 0.5s;
-}
-body{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-#loading {
     background: #FF8C8C url(../images/best_wishes_tiny.png) no-repeat center;
-    -webkit-background-size: 250px;
-    background-size: 250px;
+    animation: bounceOut 0.5s ease 1s;
+    -webkit-animation: bounceOut 0.5s ease 1s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
 
-    /*-webkit-transition: background-size 0.5s, opacity 0.5s;*/
-    /*-moz-transition: background-size 0.5s, opacity 0.5s;*/
-    /*-ms-transition: background-size 0.5s, opacity 0.5s;*/
-    /*-o-transition: background-size 0.5s, opacity 0.5s;*/
-    /*transition: background-size 0.5s, opacity 0.5s;*/
+    background-size: 50%;
+    /*will-change: background-size, opacity;*/
+    /*-webkit-will-change: background-size, opacity;*/
 }
-#loading.fade {
-    opacity: 0;
-    -webkit-background-size: 500px;
-    background-size: 500px;
+.loading.running {
+    animation-play-state: running;
+    -webkit-animation-play-state: running;
 }
-@keyframes bounceOut{
-    from {
-        -webkit-background-size: 250px;
-        background-size: 250px;
-        opacity: 1;
-    }
+
+@keyframes bounceOut {
     to {
-        -webkit-background-size: 500px;
-        background-size: 500px;
+        background-size: 100%;
         opacity: 0;
     }
 }
+
 @-webkit-keyframes bounceOut {
-    from {
-        -webkit-background-size: 250px;
-        background-size: 250px;
-        opacity: 1;
-    }
     to {
-        -webkit-background-size: 500px;
-        background-size: 500px;
+        background-size: 100%;
         opacity: 0;
     }
-
-}
-#loading.bounce-out{
-    -webkit-animation: bounceOut 0.5s;
-    -o-animation: bounceOut 0.5s;
-    animation: bounceOut 0.5s;
-    -webkit-background-size: 500px;
-    background-size: 500px;
-    opacity: 0;
 }
