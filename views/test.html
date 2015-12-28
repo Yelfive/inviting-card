@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="stylesheet" href="../css/test.css">
+    <style>
+        body,div{margin: 0;}
+        html,body {height: 100%;}
+        body{background-color: grey;}
+    </style>
 </head>
 <body>
-    <div id="container"></div>
+    <canvas></canvas>
+    <script>
+        window.onload = function () {
+            var canvas = document.querySelector('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = document.documentElement.clientWidth;
+            canvas.height = document.documentElement.clientHeight;
+            ctx.moveTo(0, 0);
+            ctx.lineTo(100,100);
+            ctx.stroke();
+        }
+    </script>
 </body>
 </html>
