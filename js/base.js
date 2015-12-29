@@ -49,8 +49,6 @@
     function downloadImage(draw) {
         var img = new Image();
         img.src = '../images/' + images.shift() + '.jpg';
-        imageContainer.appendChild(img);
-        img.async = false;
         img.onload = function () {
             fk.setImage(img);
             if (images.length) {

@@ -27,7 +27,7 @@
     </style>
     <script type="text/javascript">
         var arr = [];//保存所有的XY坐标，只为验证。实际程序中可删除。  
-        var r = 10;
+        var radius = 10;
         var radian;//弧度  
         var i;
         var radianDecrement;//弧度增量  
@@ -68,7 +68,8 @@
             var d_y = getY(radian);
 //            ctx.lineJoin="round";
             ctx.lineTo(d_x, d_y);//在旧点和新点之间连线
-            ctx.arcTo(s_x, s_y, d_x, d_y, 5);//在旧点和新点之间连线
+            console.log(d_x, d_y)
+//            ctx.arcTo(s_x, s_y, d_x, d_y, 5);//在旧点和新点之间连线
 //            console.log(getX(radian), getY(radian));
             //arr.push("X:" + getX(radian) + "<br/>Y:" + getY(radian) + "<br/>");  
             i++;
@@ -80,11 +81,11 @@
             }
         }
         function getX(t) {//由弧度得到 X 坐标  
-            return originX + r * (16 * Math.pow(Math.sin(t), 3));
+            return originX + radius * (16 * Math.pow(Math.sin(t), 3));
         }
 
         function getY(t) {//由弧度得到 Y 坐标  
-            return originY - r * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+            return originY - radius * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
         }
     </script>
 </head>

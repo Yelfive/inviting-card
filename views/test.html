@@ -5,23 +5,100 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
-        body,div{margin: 0;}
-        html,body {height: 100%;}
-        body{background-color: grey;}
+        body, div {
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #FFFCD2;
+        }
     </style>
 </head>
 <body>
-    <canvas></canvas>
-    <script>
-        window.onload = function () {
-            var canvas = document.querySelector('canvas');
-            var ctx = canvas.getContext('2d');
-            canvas.width = document.documentElement.clientWidth;
-            canvas.height = document.documentElement.clientHeight;
-            ctx.moveTo(0, 0);
-            ctx.lineTo(100,100);
-            ctx.stroke();
-        }
-    </script>
+<canvas></canvas>
+<script>
+
+
+    var myHeart = {
+        tick: {},
+        tickTime: {
+            draw: 200
+        },
+        radius: 10,
+        zero: {},
+        currentXY: {},
+        coordinate: function () {
+            var radian = this.radian;
+            var x = this.zero.x + this.radius * (16 * Math.pow(Math.sin(radian), 3));
+            var y = this.zero.y - this.radius * (13 * Math.cos(radian) - 5 * Math.cos(2 * radian) - 2 * Math.cos(3 * radian) - Math.cos(4 * radian));
+
+            x = parseInt(x);
+            y = parseInt(y);
+
+            this.radian += this.radianIncrement;
+
+//            if (this.getDistance(x, y) < this.minDistance) {
+//                return this.coordinate();
+//            }
+//
+            this.currentXY = {x: x, y: y}
+            return this.currentXY;
+        },
+        minDistance: 35,
+        getDistance: function (x, y) {
+            $powed = Math.pow(x - this.currentXY.x,2) + Math.pow(y - this.currentXY.y,2);
+            return Math.sqrt($powed);
+        },
+        radian: Math.PI,
+        radianIncrement: Math.PI / 30 * 2,
+        context: null,
+        strokeStyle: function () {
+            return 'red';
+        },
+        draw: function (canvas) {
+            this.context = canvas.getContext('2d');
+            this.context.beginPath();
+            this.context.strokeStyle = '#FF7272';
+            this.context.lineWidth = 2;
+
+            var w = document.documentElement.clientWidth;
+            var h = document.documentElement.clientHeight
+            canvas.width = w;
+            canvas.height = h;
+            this.zero = {x: w / 2, y: h / 2};
+            console.log(this.zero)
+
+            var initCoordinate = this.coordinate();
+            this.context.moveTo(initCoordinate.x, initCoordinate.y);
+
+            var $this = this;
+            this.tick.draw = setInterval(function () {
+                var c = $this.coordinate();
+                var img = new Image();
+                var flowerNo = ((Math.random() * 2) + 1).toFixed();
+                img.src = '../images/flowers/' + flowerNo + '.png';
+                var scale = 0.2;
+                img.onload = function () {
+                    $this.context.drawImage(img, 0, 0, img.width, img.height, c.x, c.y, img.width * scale, img.height * scale);
+                };
+//                $this.context.lineTo(c.x, c.y);
+//                $this.context.stroke();
+                if ($this.radian >= 3 * Math.PI) {
+                    clearInterval($this.tick.draw);
+                }
+
+            }, this.tickTime.draw);
+        },
+
+    };
+
+    window.onload = function () {
+        myHeart.draw(document.querySelector('canvas'));
+    }
+</script>
 </body>
 </html>
