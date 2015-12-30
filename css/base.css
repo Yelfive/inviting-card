@@ -126,7 +126,7 @@ body {
     -moz-border-radius: 50%;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5) url(../images/best_wishes_tiny.png) no-repeat center center;
-    background-size: 50px;
+    background-size: 100%;
 }
 
 /* Wrapper */
@@ -144,5 +144,26 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+.wrapper>div{
+    height: 100%;
+    overflow: hidden;
+}
 
-.bg-c
+.wrapper .heart{
+    height: 50%;
+    width: 100%;
+    position: relative;
+    background: url(../images/flowers_ring.png) center no-repeat;
+    background-size: 100%;
+}
+
+.wrapper .words{
+    height: 50%;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+    /*background:black;*/
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+

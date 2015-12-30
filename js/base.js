@@ -62,7 +62,7 @@
         }
     }
 
-    downloadImage(true);
+    //downloadImage(true);
     $body.onload = function () {
         var $loading = document.getElementsByClassName('loading')[0];
         $loading.className = 'loading running';
