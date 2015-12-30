@@ -47,7 +47,7 @@
 //                return this.coordinate();
 //            }
 //
-            this.currentXY = {x: x, y: y}
+//            this.currentXY = {x: x, y: y}
             return this.currentXY;
         },
         minDistance: 35,
@@ -80,14 +80,36 @@
 //            this.context.moveTo(initCoordinate.x, initCoordinate.y);
 
             var $this = this;
-            this.tick.draw = setInterval(function () {
-                $this.bloom();
-//                $this.registerLine();
-                if ($this.radian >= $this.maxRadian) {
-                    clearInterval($this.tick.draw);
-                }
-
-            }, this.tickTime.draw);
+            var img = new Image();
+            img.src = '../images/flowers/1.png';
+            img.onload = function () {
+//                $this.context.save();
+//                var grd = $this.context.createRadialGradient(img.width/2, img.height/2, 0, img.width/2, img.height/2, img.width);
+                var i = 0;
+                var ctx = $this.context;
+                var imgDrew = false;
+                ctx.drawImage(img, 0, 0, 300, 300);
+return ;
+                var a = setInterval(function () {
+//                    if (!imgDrew) {
+////                        $this.context.drawImage(img, 0, 0, img.width, img.height);
+//                    }
+//                    if (i > 1) {
+//                        return clearInterval(a);
+//                    }
+                    ctx.drawImage(img, 0, 0, 10, 10)//, img.width * (1 - i), img.height * (1 - i), img.width * i, img.height * i);
+//                    ctx.drawImage(img, 0, 0, img.width * i, img.height * i)//, img.width * (1 - i), img.height * (1 - i), img.width * i, img.height * i);
+//                    ctx.drawImage(img, 0, 0, img.width * i, img.height * i, img.width * (1 - i), img.height * (1 - i), img.width * i, img.height * i);
+//                    grd = $this.context.createRadialGradient(img.width/2, img.height/2, 0, img.width/2, img.height/2, img.width);
+//                    grd.addColorStop(0, 'rgba(0,0,0,0)');
+//                    grd.addColorStop(i, 'rgba(0,0,0,1)');
+//                    ctx.arc(img.width/2, img.height/2, img.width/2, 0, Math.PI * 2, true);
+//                    ctx.fillStyle = grd;
+//                    ctx.fill();
+                    i += 0.1;
+//                    return clearInterval(a);
+                }, 100);
+            }
         },
         registerLine: function () {
             var c = this.coordinate();
@@ -107,7 +129,7 @@
             var dy = c.y - dh / 2;
 
             img.onload = function () {
-                dw
+//                dw
                 setInterval(function () {
                     $this.context.drawImage(img, 0, 0, img.width, img.height, dx, dy, dw, dh);
                 }, 100);
