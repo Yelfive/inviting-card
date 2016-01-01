@@ -75,7 +75,7 @@
             total: len,
             randomPosition: true
         };
-        $circle.style.height = cw;
+        $circle.style.height = cw + 'px';
         var i = 0;
         fk.tick.flowers = setInterval(function () {
             var child = children[i++];
@@ -88,7 +88,7 @@
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
             child.className += ' bloom';
-        }, 500);
+        }, 250);
     }());
 
     typeIn(document.getElementById('votes'));
@@ -105,6 +105,7 @@
         dom.style.display = 'block';
 
         var progress = 0;
+        var args = arguments;
         var tick = setInterval(function () {
             var current = html.substr(progress, 1);
             if (current == '<') {
@@ -113,14 +114,38 @@
                 progress++;
             }
             // innerHTML creates end tag
-            dom.innerHTML = html.substring(0, progress) + (progress & 1 && progress < html.length? '_' : '');
+            dom.innerHTML = html.substring(0, progress) + (progress & 1 && progress < html.length ? '_' : '');
             if (progress >= html.length) {
                 clearInterval(tick);
-                if (arguments[1] instanceof Function) {
-                    arguments[1](dom);
+                if (args[1] instanceof Function) {
+                    args[1](dom);
                 }
             }
         }, 75);
     }
 
+    var PageBase = function () {
+        this.currentDom = document.querySelector('.wrapper>div');
+        this.firstPage = this.currentDom;
+    }
+
+    var page = new PageBase();
+    page.prev = function () {
+        //
+    };
+    page.next = function () {
+        var current = this.currentDom;
+        this.currentDom = this.currentDom.nextSibling;
+        if (this.currentDom) {
+            this.currentDom = this.firstPage;
+        }
+        current.className += ' flip-0-90';
+        var cls = this.currentDom.className;
+        if (cls.indexOf('next-page') !== -1) {
+
+        }
+        this.currentDom.className = '';
+        this.currentDom.className
+    };
+    window.page = page;
 }());
