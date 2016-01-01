@@ -161,13 +161,16 @@ body {
     background-image: url(../images/f/f22.png);
 }
 
-.words * {
+.font-it > * {
     font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
 }
 
 .wrapper .welcome .words {
     height: 50%;
     margin-top: 100px;
+}
+.hide {
+    display: none;
 }
 
 div.bloom {
@@ -188,4 +191,28 @@ div.bloom {
         background-size: 0;
     }
 
+}
+#timing-being-together {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+#timing-being-together .value {
+    font-size: 1.5rem;
+}
+#timing-being-together .unit:after {
+    font-size: 0.8rem;
+}
+#timing-being-together .unit.day:after {
+    content: '天';
+}
+#timing-being-together .unit.hour:after {
+    content: '小时'
+}
+#timing-being-together .unit.minute:after {
+    content: '分'
+}
+#timing-being-together .unit.second:after {
+    content: '秒'
 }

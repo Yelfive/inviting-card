@@ -7,12 +7,14 @@
  */
 +(function () {
     function isHorizon() {
-        return window.orientation!== undefined && window.orientation !== 0;
+        return window.orientation !== undefined && window.orientation !== 0;
     }
+
     if (isHorizon()) {
         return alert('Please place your phone vertically.');
     }
     var $body = document.body;
+    var $timing = document.getElementById('timing-being-together');
     var fk = {
         addEvent: function (elem, event, callback) {
             if (elem.addEventListener) {
@@ -38,7 +40,7 @@
     var coordinate = {
         config: {
             radius: 0,
-            zero: {x:0, y: 0},
+            zero: {x: 0, y: 0},
             total: 0,
             randomPosition: true
         },
@@ -57,11 +59,14 @@
             }
         }
     };
-    (function() {
+    (function () {
         var $circle = document.getElementById('circle-flowers');
         var children = $circle.children;
         var len = children.length;
         var cw = $circle.clientWidth;
+
+        // set timing position
+        $timing.style.top = cw / 2 * 0.8 + 'px';
 
         radius = 0.4 * cw;
         coordinate.config = {
@@ -72,11 +77,11 @@
         };
         $circle.style.height = cw;
         var i = 0;
-        //return ;
         fk.tick.flowers = setInterval(function () {
             var child = children[i++];
             if (!child) {
                 clearInterval(fk.tick.flowers);
+                typeIn($timing);
                 return fk.tick.flowers = null;
             }
             var c = coordinate.circle(i);
@@ -86,14 +91,36 @@
         }, 500);
     }());
 
+    typeIn(document.getElementById('votes'));
+    /**
+     * @param {HTMLElement} dom
+     * @param {Function} $afterType
+     */
     function typeIn(dom) {
         if (!(dom instanceof HTMLElement)) {
-            return ;
+            return;
         }
-        var html = dom.innerHTML;
+        var html = dom.innerHTML.replace(/ {2,}/g, ' ');
+        dom.innerHTML = '';
+        dom.style.display = 'block';
 
-        
-
+        var progress = 0;
+        var tick = setInterval(function () {
+            var current = html.substr(progress, 1);
+            if (current == '<') {
+                progress = html.indexOf('>', progress) + 1;
+            } else {
+                progress++;
+            }
+            // innerHTML creates end tag
+            dom.innerHTML = html.substring(0, progress) + (progress & 1 && progress < html.length? '_' : '');
+            if (progress >= html.length) {
+                clearInterval(tick);
+                if (arguments[1] instanceof Function) {
+                    arguments[1](dom);
+                }
+            }
+        }, 75);
     }
 
 }());
