@@ -133,47 +133,72 @@
         this.currentDom = document.querySelector('.wrapper>div');
         this.firstPage = this.currentDom;
     }
+    PageBase.prototype = {
+        hasClass: function (elem, className) {
+            var cls = elem.className;
+            var pattern = new RegExp('\\b' + className + '\\b');
+            return pattern.test(cls);
+        },
+        next: function () {
+            var next = this.currentDom.nextElementSibling;
+            if (!next) {
+                return;
+            }
 
+            var current = this.currentDom;
+            fk.addEvent(current, 'animationend', function () {
+                next.className += ' flip-90-0';
+            });
+            current.className += ' flip-0-90';
+
+            this.currentDom = next;
+        }
+    }
     var page = new PageBase();
-    page.prev = function () {
-        //
-    };
-    page.next = function () {
-        var next = this.currentDom.nextElementSibling;
-        if (!next) {
-            return;
-        }
-        var current = this.currentDom;
-        current.className += ' flip-0-90';
-        next.className += ' flip-90-0 rotateY-90';
-        this.currentDom = next;
-    };
+    page.hasClass(page.firstPage, 'welcome')
+    //page.prev = function () {
+    //    //
+    //};
+    //page.next = function () {
+    //    var next = this.currentDom.nextElementSibling;
+    //    if (!next) {
+    //        return;
+    //    }
+    //
+    //    var current = this.currentDom;
+    //    fk.addEvent(current, 'animationend', function () {
+    //        next.className += ' flip-90-0';
+    //    });
+    //    current.className += ' flip-0-90';
+    //
+    //    this.currentDom = next;
+    //};
 
-    fk.addEvent($body.querySelector('.wrapper').children, 'animationend', function () {
-        var cls = this.className;
-        if (cls.indexOf('flip-')) {
-            var classes = cls.split(' ');
-            var filtered = [];
-            var visible = true;
-            for (var i = 0; i < classes.length; i++) {
-                if (classes[i] != false && classes[i].indexOf('flip-') === -1) {
-                    if (classes[i].indexOf('rotateY-90') && visible == true) {
-                        visible = false;
-                    }
-                    filtered.push(classes[i]);
-                }
-            }
-
-            //page.currentDom != this &&
-            if ( visible) {
-                filtered.push('rotateY-90');
-            }
-
-            if (filtered.length) {
-                this.className = filtered.join(' ');
-            }
-        }
-    });
+    //fk.addEvent($body.querySelector('.wrapper').children, 'animationend', function () {
+    //    var cls = this.className;
+    //    if (cls.indexOf('flip-')) {
+    //        var classes = cls.split(' ');
+    //        var filtered = [];
+    //        var visible = true;
+    //        for (var i = 0; i < classes.length; i++) {
+    //            if (classes[i] != false && classes[i].indexOf('flip-') === -1) {
+    //                if (classes[i].indexOf('rotateY-90') && visible == true) {
+    //                    visible = false;
+    //                }
+    //                filtered.push(classes[i]);
+    //            }
+    //        }
+    //
+    //        //page.currentDom != this &&
+    //        if ( visible) {
+    //            filtered.push('rotateY-90');
+    //        }
+    //
+    //        if (filtered.length) {
+    //            this.className = filtered.join(' ');
+    //        }
+    //    }
+    //});
 
     window.page = page;
 }());
