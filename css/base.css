@@ -233,14 +233,18 @@ div.bloom {
     content: '秒'
 }
 
-.flip-0-90 {
+.wrapper .flip-0-90 {
     transform: rotateY(90deg);
     animation: flip-0-90 0.5s linear;
 }
 
-.flip-90-0 {
+.wrapper .flip-90-0 {
     transform: rotateX(0deg);
     animation: flip-90-0 0.5s linear;
+}
+
+.rotateY-90 {
+    transform: rotateY(-90deg);
 }
 
 @keyframes flip-0-90 {

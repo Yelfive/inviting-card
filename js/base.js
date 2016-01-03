@@ -17,7 +17,12 @@
     var $timing = document.getElementById('timing-being-together');
     var fk = {
         addEvent: function (elem, event, callback) {
-            if (elem.addEventListener) {
+            if (elem instanceof HTMLCollection) {
+                var len = elem.length;
+                for (var i = 0; i < len; i++) {
+                    this.addEvent(elem[i], event, callback);
+                }
+            } else if (elem.addEventListener) {
                 elem.addEventListener(event, callback, true);
             } else {
                 alert('Failed to add event');
@@ -134,18 +139,41 @@
         //
     };
     page.next = function () {
+        var next = this.currentDom.nextElementSibling;
+        if (!next) {
+            return;
+        }
         var current = this.currentDom;
-        this.currentDom = this.currentDom.nextSibling;
-        if (this.currentDom) {
-            this.currentDom = this.firstPage;
-        }
         current.className += ' flip-0-90';
-        var cls = this.currentDom.className;
-        if (cls.indexOf('next-page') !== -1) {
-
-        }
-        this.currentDom.className = '';
-        this.currentDom.className
+        next.className += ' flip-90-0 rotateY-90';
+        this.currentDom = next;
     };
+
+    fk.addEvent($body.querySelector('.wrapper').children, 'animationend', function () {
+        var cls = this.className;
+        if (cls.indexOf('flip-')) {
+            var classes = cls.split(' ');
+            var filtered = [];
+            var visible = true;
+            for (var i = 0; i < classes.length; i++) {
+                if (classes[i] != false && classes[i].indexOf('flip-') === -1) {
+                    if (classes[i].indexOf('rotateY-90') && visible == true) {
+                        visible = false;
+                    }
+                    filtered.push(classes[i]);
+                }
+            }
+
+            //page.currentDom != this &&
+            if ( visible) {
+                filtered.push('rotateY-90');
+            }
+
+            if (filtered.length) {
+                this.className = filtered.join(' ');
+            }
+        }
+    });
+
     window.page = page;
 }());
