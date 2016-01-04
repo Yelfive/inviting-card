@@ -9,6 +9,7 @@ html, body {
 
 body {
     background-color: #ffe;
+    overflow: hidden;
 }
 
 .loading {
@@ -175,8 +176,10 @@ body {
 }
 
 .wrapper .welcome .words {
-    height: 50%;
     padding: 0 2rem;
+
+    text-align: center;
+    line-height: 50px;
 }
 
 .hide {
@@ -222,15 +225,15 @@ div.bloom {
 }
 
 #timing-being-together .unit.hour:after {
-    content: '小时'
+    content: '小时';
 }
 
 #timing-being-together .unit.minute:after {
-    content: '分'
+    content: '分';
 }
 
 #timing-being-together .unit.second:after {
-    content: '秒'
+    content: '秒';
 }
 
 .wrapper .flip-0-90 {

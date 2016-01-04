@@ -13,34 +13,24 @@
     if (isHorizon()) {
         return alert('Please place your phone vertically.');
     }
-    var $body = document.body;
+
     var $timing = document.getElementById('timing-being-together');
-    var fk = {
-        addEvent: function (elem, event, callback) {
-            if (elem instanceof HTMLCollection) {
-                var len = elem.length;
-                for (var i = 0; i < len; i++) {
-                    this.addEvent(elem[i], event, callback);
-                }
-            } else if (elem.addEventListener) {
-                elem.addEventListener(event, callback, true);
-            } else {
-                alert('Failed to add event');
-            }
-        },
-        tick: {}
-    };
+
+    var $body = document.body;
     $body.onload = function () {
-        var $loading = document.getElementsByClassName('loading')[0];
+        var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
-        fk.addEvent($loading, 'animationend', function () {
-            afterLoadingRemoved();
-        });
+        setTimeout(afterLoadingRemoved, 550);
     }
 
     function afterLoadingRemoved() {
         document.body.removeChild(document.querySelector('.loading'));
+        drawCircle();
     }
+
+    var $circle = document.getElementById('circle-flowers');
+    var cw = $circle.clientWidth;
+    $circle.style.height = cw + 'px';
 
     var coordinate = {
         config: {
@@ -64,11 +54,9 @@
             }
         }
     };
-    (function () {
-        var $circle = document.getElementById('circle-flowers');
+    var drawCircle = function () {
         var children = $circle.children;
         var len = children.length;
-        var cw = $circle.clientWidth;
 
         // set timing position
         $timing.style.top = cw / 2 * 0.8 + 'px';
@@ -80,21 +68,20 @@
             total: len,
             randomPosition: true
         };
-        $circle.style.height = cw + 'px';
         var i = 0;
-        fk.tick.flowers = setInterval(function () {
+        var tickFlowers = setInterval(function () {
             var child = children[i++];
             if (!child) {
-                clearInterval(fk.tick.flowers);
+                clearInterval(tickFlowers);
                 typeIn($timing);
-                return fk.tick.flowers = null;
+                return tickFlowers = null;
             }
             var c = coordinate.circle(i);
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
             child.className += ' bloom';
         }, 250);
-    }());
+    };
 
     typeIn(document.getElementById('votes'));
     /**
@@ -139,66 +126,57 @@
             var pattern = new RegExp('\\b' + className + '\\b');
             return pattern.test(cls);
         },
+        removeClass: function (elem, className) {
+            var cls = elem.className;
+            var pattern = new RegExp('\\b' + className + '\\b');
+            elem.className = cls.replace(pattern, '').replace(/ {2,}/, ' ');
+            return this;
+        },
+        addClass: function (elem, className) {
+            if (this.hasClass(elem, className)) {
+                return ;
+            }
+            var cls = elem.className;
+            cls = !cls ? className : cls + ' ' + className;
+            elem.className = cls.replace(/ {2,}/, ' ');
+            return this;
+        },
+        prev: function () {
+            var current = this.currentDom;
+            var prev = current.previousElementSibling;
+            if (!prev) {
+                return;
+            }
+
+            this._flipTo(prev);
+        },
         next: function () {
-            var next = this.currentDom.nextElementSibling;
+            var current = this.currentDom;
+            var next = current.nextElementSibling;
             if (!next) {
                 return;
             }
 
-            var current = this.currentDom;
-            fk.addEvent(current, 'animationend', function () {
-                next.className += ' flip-90-0';
-            });
-            current.className += ' flip-0-90';
+            this._flipTo(next);
+        },
+        _flipTo: function (to) {
+            var $this = this;
+            var current = $this.currentDom;
+            //current.className += ' flip-0-90';
 
-            this.currentDom = next;
+            $this.addClass(current, 'flip-0-90')
+            setTimeout(function () {
+                $this.removeClass(current, 'flip-0-90')
+                    .addClass(current, 'rotateY-90')
+                    .addClass(to, 'flip-90-0');
+
+                setTimeout(function () {
+                    $this.removeClass(to, 'rotateY-90').removeClass(to, 'flip-90-0');
+                }, 550);
+            }, 550);
+            this.currentDom = to;
         }
     }
     var page = new PageBase();
-    page.hasClass(page.firstPage, 'welcome')
-    //page.prev = function () {
-    //    //
-    //};
-    //page.next = function () {
-    //    var next = this.currentDom.nextElementSibling;
-    //    if (!next) {
-    //        return;
-    //    }
-    //
-    //    var current = this.currentDom;
-    //    fk.addEvent(current, 'animationend', function () {
-    //        next.className += ' flip-90-0';
-    //    });
-    //    current.className += ' flip-0-90';
-    //
-    //    this.currentDom = next;
-    //};
-
-    //fk.addEvent($body.querySelector('.wrapper').children, 'animationend', function () {
-    //    var cls = this.className;
-    //    if (cls.indexOf('flip-')) {
-    //        var classes = cls.split(' ');
-    //        var filtered = [];
-    //        var visible = true;
-    //        for (var i = 0; i < classes.length; i++) {
-    //            if (classes[i] != false && classes[i].indexOf('flip-') === -1) {
-    //                if (classes[i].indexOf('rotateY-90') && visible == true) {
-    //                    visible = false;
-    //                }
-    //                filtered.push(classes[i]);
-    //            }
-    //        }
-    //
-    //        //page.currentDom != this &&
-    //        if ( visible) {
-    //            filtered.push('rotateY-90');
-    //        }
-    //
-    //        if (filtered.length) {
-    //            this.className = filtered.join(' ');
-    //        }
-    //    }
-    //});
-
     window.page = page;
 }());
