@@ -1,4 +1,4 @@
-html, body, div {
+html, body, div, ul {
     padding: 0;
     margin: 0;
 }
@@ -7,9 +7,8 @@ html, body {
     height: 100%;
 }
 
-body {
+body,.wrapper {
     background-color: #ffe;
-    overflow: hidden;
 }
 
 .loading {
@@ -48,11 +47,12 @@ body {
 }
 
 .wrapper {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .wrapper, .wrapper > div {
     height: 100%;
+    overflow: hidden;
 }
 
 .wrapper > div {
@@ -266,4 +266,27 @@ div.bloom {
     to {
         transform: rotateY(0deg);
     }
+}
+
+.wrapper .love-story {
+    word-wrap: break-word;
+}
+.wrapper .album ul {
+    list-style: none;
+}
+
+.wrapper .album li {
+    position: relative;
+    width: 90%;
+}
+.wrapper .album li img {
+    width: 100%;
+}
+.wrapper .album li p{
+    width: 100%;
+    position: absolute;
+    bottom: 1rem;
+    text-align: center;
+    background-color: #FFF;
+    font-family: "MicroSoft YaHei", serif;
 }

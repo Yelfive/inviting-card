@@ -115,10 +115,13 @@
             }
         }, 75);
     }
-
+    var initializer = {
+        typeIn: typeIn,
+    };
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
         this.firstPage = this.currentDom;
+        this.timeout = 500;
     }
     PageBase.prototype = {
         hasClass: function (elem, className) {
@@ -171,11 +174,16 @@
 
                 setTimeout(function () {
                     $this.removeClass(to, 'rotateY-90').removeClass(to, 'flip-90-0');
-                }, 550);
-            }, 550);
+                    if (initializer[to.dataset.init] instanceof Function) {
+                        initializer[to.dataset.init](to);
+                        to.dataset.init = null;
+                    }
+                }, $this.timeout);
+            }, $this.timeout);
             this.currentDom = to;
         }
     }
     var page = new PageBase();
+
     window.page = page;
 }());
