@@ -162,7 +162,6 @@
         _flipTo: function (to) {
             var $this = this;
             var current = $this.currentDom;
-            //current.className += ' flip-0-90';
 
             $this.addClass(current, 'flip-0-90')
             setTimeout(function () {
