@@ -1,4 +1,4 @@
-html, body, div, ul {
+html, body, div, ul, p {
     padding: 0;
     margin: 0;
 }
@@ -273,20 +273,30 @@ div.bloom {
 }
 .wrapper .album ul {
     list-style: none;
+    position: relative;
+    padding-top: 3rem;
 }
 
 .wrapper .album li {
-    position: relative;
     width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 1rem solid #FFF;
+    border-radius: 1rem;
+    background-color: #FFF;
+    text-align: center;
 }
 .wrapper .album li img {
     width: 100%;
+    border-radius: 4px;
 }
 .wrapper .album li p{
     width: 100%;
-    position: absolute;
-    bottom: 1rem;
     text-align: center;
     background-color: #FFF;
     font-family: "MicroSoft YaHei", serif;
+    padding-top: 1rem;
+}
+.bg-pink {
+    background-color: #FFB6C1;
 }
