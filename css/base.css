@@ -275,7 +275,6 @@ div.bloom {
 .wrapper .album ul {
     list-style: none;
     position: relative;
-    padding-top: 3rem;
     height: 100%;
 }
 
@@ -287,21 +286,41 @@ div.bloom {
     box-shadow: 0 0 1px #BBBBBB;
     position: absolute;
     left: 2%;
+    height: 90%;
+    top: 2rem;
 }
 
 .wrapper .album li img {
-    margin-top: 1rem;
-    width: 90%;
+    /*margin-top: 1rem;*/
+    /*width: 90%;*/
+    /*border-radius: 4px;*/
+
+    margin-top: 5%;
     border-radius: 4px;
+    max-height: 80%;
+    max-width: 95%;
+}
+@media screen and (max-height: 400px) {
+    body {
+        /*display: none !important;*/
+    }
 }
 
 .wrapper .album li p {
+    /*width: 100%;*/
+    /*text-align: center;*/
+    /*background-color: #FFF;*/
+    /*font-family: "MicroSoft YaHei", serif;*/
+    /*padding-top: 1rem;*/
+    /*margin-bottom: 1rem;*/
+
     width: 100%;
     text-align: center;
     background-color: #FFF;
     font-family: "MicroSoft YaHei", serif;
-    padding-top: 1rem;
-    margin-bottom: 1rem;
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem 0;
+    font-size: 100%;
 }
 
 .bg-pink {
@@ -323,3 +342,23 @@ div.bloom {
     -o-transform: rotateZ(-5deg);
     transform: rotateZ(-5deg);
 }
+
+.flow-out {
+    -webkit-animation: flowOut 1s ease-in-out;
+    animation: flowOut 1s ease-in-out;
+}
+
+@keyframes flowOut {
+    to {
+        left: -1000px;
+        top: -1000px;
+    }
+}
+
+@-webkit-keyframes flowOut {
+    to {
+        left: -1000px;
+        top: -1000px;
+    }
+}
+

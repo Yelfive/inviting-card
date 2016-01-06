@@ -184,6 +184,37 @@
         }
     }
     var page = new PageBase();
-
     window.page = page;
+//return;
+    var album = {
+        next: function () {
+            //alert(1)
+            var $this = this;
+            //$this.className = 'flow-out';
+            //setTimeout(function () {
+                $this.className = 'hide';
+                //page.removeClass($this, 'flow-out');
+            //}, 1000);
+        }
+    };
+    var doms = document.querySelector('.album').getElementsByTagName('li');
+    var len = doms.length;
+    for (var i = 0; i < len; i++) {
+        //doms[i].onclick = album.next;
+        //document.querySelector('li:nth-child(2)').addEventListener('touchstart', function () {
+        //    this.className = 'flow-out';
+            //this.style.top = 0;
+            //this.className = 'hide';
+            //alert(1);
+        doms[i].onclick = function () {
+            this.className = 'flow-out';
+            var $this = this;
+            setTimeout(function () {
+                $this.className = 'hide';
+            }, 500);
+        }
+        //return ;
+        //});
+    }
+
 }());
