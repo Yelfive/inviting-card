@@ -76,13 +76,22 @@ In exchange for mine
     <div class="album">
         <ul class="bg-pink">
             <li>
-                <img src="../images/photos/flying_elephant.jpg" alt="">
+                <img src="../images/photos/1.jpg" alt="">
                 <p>Flying Elephant</p>
             </li>
             <li>
-                <img src="../images/photos/kitty_with_rose.jpg" alt="">
+                <img src="../images/photos/2.jpg" alt="">
                 <p>Kitty Kissing Rose</p>
             </li>
+            <script>
+                for (var i =0 ; i<40; i++) {
+                    document.write('<li style="transform:rotateZ(' + i * 0.2 + 'deg);">\
+                            <img src="../images/photos/' + (i|1 ? 1 : 2) + '.jpg">\
+                            <p>Kitty Kissing Rose</p>\
+                    </li>')
+                }
+
+            </script>
         </ul>
     </div>
 </div>

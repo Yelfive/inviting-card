@@ -7,7 +7,7 @@ html, body {
     height: 100%;
 }
 
-body,.wrapper {
+body, .wrapper {
     background-color: #ffe;
 }
 
@@ -271,32 +271,55 @@ div.bloom {
 .wrapper .love-story {
     word-wrap: break-word;
 }
+
 .wrapper .album ul {
     list-style: none;
     position: relative;
     padding-top: 3rem;
+    height: 100%;
 }
 
 .wrapper .album li {
-    width: 90%;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    border: 1rem solid #FFF;
+    width: 96%;
     border-radius: 1rem;
     background-color: #FFF;
     text-align: center;
+    box-shadow: 0 0 1px #BBBBBB;
+    position: absolute;
+    left: 2%;
 }
+
 .wrapper .album li img {
-    width: 100%;
+    margin-top: 1rem;
+    width: 90%;
     border-radius: 4px;
 }
-.wrapper .album li p{
+
+.wrapper .album li p {
     width: 100%;
     text-align: center;
     background-color: #FFF;
     font-family: "MicroSoft YaHei", serif;
     padding-top: 1rem;
+    margin-bottom: 1rem;
 }
+
 .bg-pink {
     background-color: #FFB6C1;
+}
+
+.rotateZ5 {
+    -webkit-transform: rotateZ(5deg);
+    -moz-transform: rotateZ(5deg);
+    -ms-transform: rotateZ(5deg);
+    -o-transform: rotateZ(5deg);
+    transform: rotateZ(5deg);
+}
+
+.rotateZ-5 {
+    -webkit-transform: rotateZ(-5deg);
+    -moz-transform: rotateZ(-5deg);
+    -ms-transform: rotateZ(-5deg);
+    -o-transform: rotateZ(-5deg);
+    transform: rotateZ(-5deg);
 }
