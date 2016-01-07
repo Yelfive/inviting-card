@@ -10,6 +10,10 @@
         return window.orientation !== undefined && window.orientation !== 0;
     }
 
+    window.onresize = function () {
+        location.reload();
+    };
+
     if (isHorizon()) {
         return alert('Please place your phone vertically.');
     }
@@ -194,37 +198,27 @@
     BaseAlbum.prototype = {
         $: document.querySelector('#album-ul'),
         next: function () {
-            //alert(1)
-            var $this = this;
-            //$this.className = 'flow-out';
-            //setTimeout(function () {
-            $this.className = 'hide';
-            //page.removeClass($this, 'flow-out');
-            //}, 1000);
         },
         prev: function () {
 
         },
         initialized: false,
         show: function () {
-            for (var i = 0, len = elems.length; i < len; i++) {
-                if (!this.initialized) {
-                    this.imgs[i].querySelector('img').src = '../images/photos/' + i + '.jpg';
-                }
-            }
-            this.initialized = true;
+
         },
         downloadInterval: 1500,
         img: new Image(),
         init: function () {
-            var i = 1, $this = this;
+            var i = 17, $this = this;
 
             function download() {
                 $this.img.src = '../images/photos/' + i + '.jpg';
             }
 
             this.img.onload = function () {
-                if (++i <= 17) {
+                $this.imgs[i -1].querySelector('img').src = '../images/photos/' + i + '.jpg';
+                return ;
+                if (--i > 0) {
                     setTimeout(download, $this.downloadInterval);
                 } else {
                     this.onload = null;
@@ -232,10 +226,14 @@
                 }
             };
             download();
+            return this;
         }
     };
     var Album = new BaseAlbum();
     window.Album = Album;
-    Album.init();
-
+    Album.init().show();
+    document.querySelector('#album-ul').addEventListener('touchstart', function () {
+        console.log(1)
+        Album.imgs[16].className = 'photo-out';
+    });
 }());
