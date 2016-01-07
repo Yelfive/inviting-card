@@ -115,6 +115,7 @@
             }
         }, 75);
     }
+
     var initializer = {
         typeIn: typeIn,
     };
@@ -137,7 +138,7 @@
         },
         addClass: function (elem, className) {
             if (this.hasClass(elem, className)) {
-                return ;
+                return;
             }
             var cls = elem.className;
             cls = !cls ? className : cls + ' ' + className;
@@ -186,35 +187,55 @@
     var page = new PageBase();
     window.page = page;
 //return;
-    var album = {
+    function BaseAlbum() {
+        this.imgs = document.querySelectorAll('#album-ul li');
+        this.imgCount = this.imgs.length;
+    }
+    BaseAlbum.prototype = {
+        $: document.querySelector('#album-ul'),
         next: function () {
             //alert(1)
             var $this = this;
             //$this.className = 'flow-out';
             //setTimeout(function () {
-                $this.className = 'hide';
-                //page.removeClass($this, 'flow-out');
+            $this.className = 'hide';
+            //page.removeClass($this, 'flow-out');
             //}, 1000);
+        },
+        prev: function () {
+
+        },
+        initialized: false,
+        show: function () {
+            for (var i = 0, len = elems.length; i < len; i++) {
+                if (!this.initialized) {
+                    this.imgs[i].querySelector('img').src = '../images/photos/' + i + '.jpg';
+                }
+            }
+            this.initialized = true;
+        },
+        downloadInterval: 1500,
+        img: new Image(),
+        init: function () {
+            var i = 1, $this = this;
+
+            function download() {
+                $this.img.src = '../images/photos/' + i + '.jpg';
+            }
+
+            this.img.onload = function () {
+                if (++i <= 17) {
+                    setTimeout(download, $this.downloadInterval);
+                } else {
+                    this.onload = null;
+                    $this.img = null;
+                }
+            };
+            download();
         }
     };
-    var doms = document.querySelector('.album').getElementsByTagName('li');
-    var len = doms.length;
-    for (var i = 0; i < len; i++) {
-        //doms[i].onclick = album.next;
-        //document.querySelector('li:nth-child(2)').addEventListener('touchstart', function () {
-        //    this.className = 'flow-out';
-            //this.style.top = 0;
-            //this.className = 'hide';
-            //alert(1);
-        doms[i].onclick = function () {
-            this.className = 'flow-out';
-            var $this = this;
-            setTimeout(function () {
-                $this.className = 'hide';
-            }, 500);
-        }
-        //return ;
-        //});
-    }
+    var Album = new BaseAlbum();
+    window.Album = Album;
+    Album.init();
 
 }());
