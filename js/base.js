@@ -29,7 +29,7 @@
 
     function afterLoadingRemoved() {
         document.body.removeChild(document.querySelector('.loading'));
-        drawCircle();
+        //drawCircle();
     }
 
     var $circle = document.getElementById('circle-flowers');
@@ -119,6 +119,21 @@
             }
         }, 75);
     }
+    var animation = {
+        stoped: false,
+        stop: function () {
+            if (this.stoped) {
+                return ;
+            }
+            // stop statement
+        },
+        start: function () {
+            if (!this.stoped) {
+                return ;
+            }
+            // start statement
+        }
+    };
 
     var initializer = {
         typeIn: typeIn,
@@ -192,11 +207,11 @@
     window.page = page;
 //return;
     function BaseAlbum() {
-        this.imgs = document.querySelectorAll('#album-ul li');
-        this.imgCount = this.imgs.length;
+        this.album = document.querySelector('#album-ul');
+        this.lis = this.album.querySelectorAll('li');
+        this.imgCount = this.lis.length;
     }
     BaseAlbum.prototype = {
-        $: document.querySelector('#album-ul'),
         next: function () {
         },
         prev: function () {
@@ -204,9 +219,12 @@
         },
         initialized: false,
         show: function () {
-
+            if (page.hasClass(this.album, 'photo-in')) {
+                return ;
+            }
+            this.album.className += ' photo-in';
         },
-        downloadInterval: 1500,
+        downloadInterval: 100,
         img: new Image(),
         init: function () {
             var i = 17, $this = this;
@@ -216,8 +234,7 @@
             }
 
             this.img.onload = function () {
-                $this.imgs[i -1].querySelector('img').src = '../images/photos/' + i + '.jpg';
-                return ;
+                $this.lis[i -1].querySelector('img').src = '../images/photos/' + i + '.jpg';
                 if (--i > 0) {
                     setTimeout(download, $this.downloadInterval);
                 } else {
@@ -232,8 +249,11 @@
     var Album = new BaseAlbum();
     window.Album = Album;
     Album.init().show();
-    document.querySelector('#album-ul').addEventListener('touchstart', function () {
-        console.log(1)
-        Album.imgs[16].className = 'photo-out';
-    });
+    ///
+    for (var i = 0; i < Album.imgCount; i++) {
+        Album.lis[i].addEventListener('touchstart', function () {
+           this.className += ' photo-out';
+        });
+    }
+
 }());

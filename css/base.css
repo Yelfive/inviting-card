@@ -272,24 +272,6 @@ div.bloom {
     word-wrap: break-word;
 }
 
-.wrapper .album ul {
-    list-style: none;
-    position: relative;
-    height: 100%;
-}
-
-.wrapper .album li {
-    border-radius: 1rem;
-    background-color: #FFF;
-    text-align: center;
-    box-shadow: 0 0 1px #BBBBBB;
-    position: absolute;
-    left: 2%;
-    right: 2%;
-    top: 2rem;
-    display: none;
-}
-
 .wrapper .album li:nth-child(1) {
     -webkit-transform: rotateZ(-1.5deg);
     transform: rotateZ(-1.5deg);
@@ -375,6 +357,29 @@ div.bloom {
     transform: rotateZ(6.5deg);
 }
 
+/* album animation */
+
+.wrapper .album ul {
+    list-style: none;
+    position: relative;
+    height: 100%;
+}
+
+.wrapper .album li {
+    border-radius: 1rem;
+    background-color: #FFF;
+    text-align: center;
+    box-shadow: 0 0 1px #BBBBBB;
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    top: 2rem;
+}
+
+.wrapper .album li {
+    opacity: 1;
+}
+
 .wrapper .album li img {
     margin-top: 5%;
     border-radius: 4px;
@@ -382,16 +387,18 @@ div.bloom {
     user-select: none;
     -webkit-user-select: none;
 }
-.photo-out {
-    display: block !important;
-    -webkit-animation: photoOut 0.5s ease-in-out;
-    animation: photoOut 0.5s ease-in-out;
+
+ul#album-ul {
+    display: none;
 }
-@keyframes photoOut {
+
+ul#album-ul.photo-in {
+    display: block;
+}
+
+@keyframes photoIn {
     from {
-        top: -500%;
-        left: -500%;
-        transform: scale(0.1);
+        transform: scale(0.001);
     }
 }
 
@@ -438,22 +445,24 @@ div.bloom {
     transform: rotateZ(-5deg);
 }
 
-.flow-out {
-    -webkit-animation: flowOut 1s ease-in-out;
-    animation: flowOut 1s ease-in-out;
+#album-ul.photo-in.bg-pink li.photo-out {
+    -webkit-animation: photoOut 1s ease-in-out;
+    animation: photoOut 1s ease-in-out;
+    /*animation-fill-mode: backwards;*/
+    /*-webkit-animation-fill-mode: backwards;*/
 }
 
-@keyframes flowOut {
+@keyframes photoOut {
     to {
-        left: -1000px;
-        top: -1000px;
+        transform: scale(2);
+        opacity: 0;
     }
 }
 
-@-webkit-keyframes flowOut {
+@-webkit-keyframes photoOut {
     to {
-        left: -1000px;
-        top: -1000px;
+        transform: scale(2);
+        opacity: 0;
     }
 }
 
