@@ -208,7 +208,8 @@
             }, $this.timeout);
             this.currentDom = to;
         }
-    }
+    };
+
     var page = new PageBase();
     /* Album */
     function BaseAlbum() {
@@ -273,6 +274,32 @@
         }
     };
 
+    function timing (elem) {
+        var diff = 0;
+        var start = (new Date).getTime() / 1000;
+        var valElem = elem.querySelectorAll('.value');
+
+        var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
+
+        function f (num) {
+            return num < 10 ? '0' + num : num;
+        }
+
+        var ts, d, h, m, s;
+        setInterval(function () {
+            ts = ((new Date) - diff) / 1000 - start;
+            d = parseInt(ts / 86400);
+            h = parseInt(ts / 3600 % 24);
+            m = parseInt(ts / 60 % 60);
+            s = parseInt(ts % 60);
+            de.innerText = f(d);
+            he.innerText = f(h);
+            me.innerText = f(m);
+            se.innerText = f(s);
+        }, 1000);
+    }
+    //timing(document.querySelector('#timing-being-together'));
     window.page = page;
 
+    window.timing = timing;
 }());
