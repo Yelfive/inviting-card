@@ -396,7 +396,7 @@ ul#album-ul.photo-in {
     display: block;
 }
 
-@keyframes photoIn {
+@keyframes photosIn {
     from {
         transform: scale(0.001);
     }
@@ -448,8 +448,6 @@ ul#album-ul.photo-in {
 #album-ul.photo-in.bg-pink li.photo-out {
     -webkit-animation: photoOut 1s ease-in-out;
     animation: photoOut 1s ease-in-out;
-    /*animation-fill-mode: backwards;*/
-    /*-webkit-animation-fill-mode: backwards;*/
 }
 
 @keyframes photoOut {
@@ -466,3 +464,118 @@ ul#album-ul.photo-in {
     }
 }
 
+@keyframes photoIn {
+    from {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes photoIn {
+    from {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+#album-ul.photo-in li:nth-child(1) {
+    animation: photosIn 0.5s ease-in-out 0.0s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.0s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(2) {
+    animation: photosIn 0.5s ease-in-out 0.1s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.1s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(3) {
+    animation: photosIn 0.5s ease-in-out 0.1s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.1s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(4) {
+    animation: photosIn 0.5s ease-in-out 0.2s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.2s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(5) {
+    animation: photosIn 0.5s ease-in-out 0.2s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.2s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(6) {
+    animation: photosIn 0.5s ease-in-out 0.3s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.3s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(7) {
+    animation: photosIn 0.5s ease-in-out 0.3s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.3s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(8) {
+    animation: photosIn 0.5s ease-in-out 0.4s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.4s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(9) {
+    animation: photosIn 0.5s ease-in-out 0.4s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.4s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(10) {
+    animation: photosIn 0.5s ease-in-out 0.5s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.5s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(11) {
+    animation: photosIn 0.5s ease-in-out 0.5s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.5s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(12) {
+    animation: photosIn 0.5s ease-in-out 0.6s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.6s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(13) {
+    animation: photosIn 0.5s ease-in-out 0.6s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.6s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(14) {
+    animation: photosIn 0.5s ease-in-out 0.7s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.7s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(15) {
+    animation: photosIn 0.5s ease-in-out 0.7s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.7s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(16) {
+    animation: photosIn 0.5s ease-in-out 0.8s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.8s;
+    animation-fill-mode: backwards;
+}
+
+#album-ul.photo-in li:nth-child(17) {
+    animation: photosIn 0.5s ease-in-out 0.8s;
+    -webkit-animation: photosIn 0.5s ease-in-out 0.8s;
+    animation-fill-mode: backwards;
+}

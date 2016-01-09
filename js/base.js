@@ -18,6 +18,10 @@
         return alert('Please place your phone vertically.');
     }
 
+    function addEvent(elem, eventName, callback) {
+        elem['on' + eventName] = callback;
+    }
+
     var $timing = document.getElementById('timing-being-together');
 
     var $body = document.body;
@@ -29,7 +33,7 @@
 
     function afterLoadingRemoved() {
         document.body.removeChild(document.querySelector('.loading'));
-        //drawCircle();
+        drawCircle();
     }
 
     var $circle = document.getElementById('circle-flowers');
@@ -77,8 +81,11 @@
             var child = children[i++];
             if (!child) {
                 clearInterval(tickFlowers);
-                typeIn($timing);
-                return tickFlowers = null;
+                tickFlowers = null;
+                typeIn($timing, function () {
+                    Album.init();
+                });
+                return;
             }
             var c = coordinate.circle(i);
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
@@ -88,6 +95,7 @@
     };
 
     typeIn(document.getElementById('votes'));
+
     /**
      * @param {HTMLElement} dom
      * @param {Function} $afterType
@@ -119,28 +127,26 @@
             }
         }, 75);
     }
+
     var animation = {
         stoped: false,
         stop: function () {
             if (this.stoped) {
-                return ;
+                return;
             }
             // stop statement
         },
         start: function () {
             if (!this.stoped) {
-                return ;
+                return;
             }
             // start statement
         }
     };
 
-    var initializer = {
-        typeIn: typeIn,
-    };
+    /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
-        this.firstPage = this.currentDom;
         this.timeout = 500;
     }
     PageBase.prototype = {
@@ -204,13 +210,14 @@
         }
     }
     var page = new PageBase();
-    window.page = page;
-//return;
+    /* Album */
     function BaseAlbum() {
         this.album = document.querySelector('#album-ul');
         this.lis = this.album.querySelectorAll('li');
         this.imgCount = this.lis.length;
+        this.timeout = 1000;
     }
+
     BaseAlbum.prototype = {
         next: function () {
         },
@@ -220,7 +227,7 @@
         initialized: false,
         show: function () {
             if (page.hasClass(this.album, 'photo-in')) {
-                return ;
+                return;
             }
             this.album.className += ' photo-in';
         },
@@ -234,7 +241,7 @@
             }
 
             this.img.onload = function () {
-                $this.lis[i -1].querySelector('img').src = '../images/photos/' + i + '.jpg';
+                $this.lis[i - 1].querySelector('img').src = '../images/photos/' + i + '.jpg';
                 if (--i > 0) {
                     setTimeout(download, $this.downloadInterval);
                 } else {
@@ -243,17 +250,29 @@
                 }
             };
             download();
+
+            // Bind event
+            for (i = 0; i < $this.imgCount; i++) {
+                addEvent($this.lis[i], 'touchstart', function () {
+                    var elem = this;
+                    elem.className = 'photo-out';
+                    setTimeout(function () {
+                        elem.className = 'hide';
+                    }, Album.timeout);
+                });
+            }
             return this;
         }
     };
     var Album = new BaseAlbum();
-    window.Album = Album;
-    Album.init().show();
-    ///
-    for (var i = 0; i < Album.imgCount; i++) {
-        Album.lis[i].addEventListener('touchstart', function () {
-           this.className += ' photo-out';
-        });
-    }
+
+    var initializer = {
+        typeIn: typeIn,
+        albumShow: function () {
+            Album.show();
+        }
+    };
+
+    window.page = page;
 
 }());

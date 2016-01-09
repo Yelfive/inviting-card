@@ -73,7 +73,7 @@ Just your heart
 In exchange for mine
         </pre>
     </div>
-    <div class="album 1rotateY-90">
+    <div class="album rotateY-90" data-init="albumShow">
         <ul class="bg-pink" id="album-ul">
             <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
             <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
@@ -95,19 +95,19 @@ In exchange for mine
         </ul>
     </div>
     <script>
-        document.write('<style>');
-
-        function delay(i) {
-            return (0.05 * (i - 1)).toFixed(1);
-        }
-        for (var i = 1; i<=17 ; i++) {
-            document.write('\n#album-ul.photo-in li:nth-child('+i+') {\n\
-            animation: photoIn 0.5s ease-in-out '+delay(i)+'s;\n\
-            -webkit-animation: photoIn 0.5s ease-in-out '+delay(i)+'s;\n\
-            animation-fill-mode: backwards;\n\
-            }');
-        }
-        document.write('</style>');
+//        document.write('<style>');
+//
+//        function delay(i) {
+//            return (0.05 * (i - 1)).toFixed(1);
+//        }
+//        for (var i = 1; i<=17 ; i++) {
+//            document.write('\n#album-ul.photo-in li:nth-child('+i+') {\n\
+//            animation: photosIn 0.5s ease-in-out '+delay(i)+'s;\n\
+//            -webkit-animation: photosIn 0.5s ease-in-out '+delay(i)+'s;\n\
+//            animation-fill-mode: backwards;\n\
+//            }');
+//        }
+//        document.write('</style>');
     </script>
 </div>
 </body>
