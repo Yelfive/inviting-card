@@ -29,10 +29,11 @@
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
         setTimeout(afterLoadingRemoved, 550);
-    }
+    };
 
     function afterLoadingRemoved() {
         document.body.removeChild(document.querySelector('.loading'));
+        typeIn(document.getElementById('votes'));
         drawCircle();
     }
 
@@ -94,8 +95,6 @@
             child.className += ' bloom';
         }, 250);
     };
-
-    typeIn(document.getElementById('votes'));
 
     /**
      * @param {HTMLElement} dom

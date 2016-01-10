@@ -195,6 +195,7 @@ div.bloom {
 @keyframes bloom {
     from {
         background-size: 0;
+        transform: rotateZ(30deg);
     }
 
 }
@@ -202,6 +203,7 @@ div.bloom {
 @-webkit-keyframes bloom {
     from {
         background-size: 0;
+        transform: rotateZ(30deg);
     }
 
 }
@@ -216,6 +218,7 @@ div.bloom {
 #timing-being-together .value {
     font-size: 1.5rem;
 }
+
 #timing-love-story .unit:after,
 #timing-being-together .unit:after {
     font-size: 0.8rem;
@@ -390,12 +393,15 @@ div.bloom {
     opacity: 1;
 }
 
+img, .bloom {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 .wrapper .album li img {
     margin-top: 5%;
     border-radius: 4px;
     width: 90%;
-    user-select: none;
-    -webkit-user-select: none;
 }
 
 ul#album-ul {
@@ -459,27 +465,7 @@ ul#album-ul.photo-in {
     -webkit-animation: photoOut 1s ease-in-out;
     animation: photoOut 1s ease-in-out;
 }
-textarea[name="words"] {
-    position: relative;
-    background-color: transparent;
-    color: #999999;
-    display: block;
-    width: 100%;
-    margin: 10px 0;
-    font-size: 16px;
-    padding: 10px;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: auto;
-    -webkit-appearance: none;
-    border: 1px solid #e7e7e7;
-    -webkit-box-shadow: 0 0 3px 0 #eeeeee inset;
-    -moz-box-shadow: 0 0 3px 0 #eeeeee inset;
-    box-shadow: 0 0 3px 0 #eeeeee inset;
-    border-radius: 3px;
-    -webkit-box-sizing: border-box;
-    resize: none;
-    outline: none;
-}
+
 @keyframes photoOut {
     to {
         transform: scale(2);
@@ -609,3 +595,50 @@ textarea[name="words"] {
     -webkit-animation: photosIn 0.5s ease-in-out 0.8s;
     animation-fill-mode: backwards;
 }
+
+#touch {
+    background-color: rgba(97, 97, 97, 0.95);
+    height: 4rem;
+    width: 4rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+#touch div {
+    display: inline-block;
+}
+
+#touch > div {
+    background-color: #7B7B7B;
+    width: 66.7%;
+    height: 66.7%;
+    border-radius: 50%;
+    margin-top: 16.7%;
+}
+
+#touch > div > div {
+    background-color: #C3C3C3;
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    margin-top: 5%;
+}
+
+#touch > div > div > div {
+    background-color: white;
+    width: 77.8%;
+    height: 77.8%;
+    border-radius: 50%;
+    margin-top: 11.1%;
+}
+
+/*#touch > div > div > div > div {*/
+/*background: white;*/
+/*width: 1.4rem;*/
+/*height: 1.4rem;*/
+/*border-radius: 0.7rem;*/
+/*margin-top: 0.1rem;*/
+/*}*/
