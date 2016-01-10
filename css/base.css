@@ -459,7 +459,27 @@ ul#album-ul.photo-in {
     -webkit-animation: photoOut 1s ease-in-out;
     animation: photoOut 1s ease-in-out;
 }
-
+textarea[name="words"] {
+    position: relative;
+    background-color: transparent;
+    color: #999999;
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 16px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: auto;
+    -webkit-appearance: none;
+    border: 1px solid #e7e7e7;
+    -webkit-box-shadow: 0 0 3px 0 #eeeeee inset;
+    -moz-box-shadow: 0 0 3px 0 #eeeeee inset;
+    box-shadow: 0 0 3px 0 #eeeeee inset;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    resize: none;
+    outline: none;
+}
 @keyframes photoOut {
     to {
         transform: scale(2);

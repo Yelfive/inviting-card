@@ -11,10 +11,10 @@
         var diff = '';
     </script>
 </head>
-<body>
+<body ondragstart="return false;">
 <div class="loading"></div>
 <div id="container"></div>
-<div class="wrapper">
+<div class="wrapper" style="z-index: 9999;">
     <div class="welcome">
         <div class="circle" id="circle-flowers">
             <div class="img-1"></div>
@@ -108,7 +108,7 @@ In exchange for mine
     <!--</div>-->
     <div class="invitation">
         It would be an honor to have you with us to witness the sacred bounding of our wedding
-        <textarea name="words" id="" cols="30" rows="10"></textarea>
+        <textarea name="words"></textarea>
     </div>
     <script>
         //        document.write('<style>');
