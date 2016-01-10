@@ -83,6 +83,7 @@
                 clearInterval(tickFlowers);
                 tickFlowers = null;
                 typeIn($timing, function () {
+                    timing.together();
                     Album.init();
                 });
                 return;
@@ -268,37 +269,64 @@
     var Album = new BaseAlbum();
 
     var initializer = {
-        typeIn: typeIn,
+        typeIn: function (elem) {
+            typeIn(elem, function () {
+                timing.story();
+            });
+        },
         albumShow: function () {
             Album.show();
         }
     };
 
-    function timing (elem) {
-        var diff = 0;
-        var start = (new Date).getTime() / 1000;
-        var valElem = elem.querySelectorAll('.value');
-
-        var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
-
-        function f (num) {
+    var timing = {
+        diff: 0, // milliseconds
+        format: function (num) {
             return num < 10 ? '0' + num : num;
-        }
+        },
+        together: function () {
+            var start = 1400000000;
+            var valElem = document.querySelector('#timing-being-together').querySelectorAll('.value');
+            var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
+            var ts, d, h, m, s;
+            var self = this;
+            this.register(function () {
+                ts = ((new Date) - self.diff) / 1000 - start;
+                d = parseInt(ts / 86400);
+                h = parseInt(ts / 3600 % 24);
+                m = parseInt(ts / 60 % 60);
+                s = parseInt(ts % 60);
+                de.innerText = self.format(d);
+                he.innerText = self.format(h);
+                me.innerText = self.format(m);
+                se.innerText = self.format(s);
+            });
+        },
+        story: function () {
+            // TODO: set day with php, if not active counting
+            var start = 1030809600;
+            var valElem = document.querySelector('#timing-love-story').querySelectorAll('.value');
+            var ye = valElem[0], me = valElem[1], de = valElem[2];
+            var ts, y, m, d;
+            var self = this;
 
-        var ts, d, h, m, s;
-        setInterval(function () {
-            ts = ((new Date) - diff) / 1000 - start;
-            d = parseInt(ts / 86400);
-            h = parseInt(ts / 3600 % 24);
-            m = parseInt(ts / 60 % 60);
-            s = parseInt(ts % 60);
-            de.innerText = f(d);
-            he.innerText = f(h);
-            me.innerText = f(m);
-            se.innerText = f(s);
-        }, 1000);
-    }
-    //timing(document.querySelector('#timing-being-together'));
+            var time = function () {
+                ts = ((new Date) - self.diff) / 1000 -start;
+                y = parseInt(ts / 86400 / 365);
+                m = parseInt(ts / 86400 % 365 / 30);
+                d = parseInt(ts / 86400 % 365 % 30);
+                ye.innerText = self.format(y);
+                me.innerText = self.format(m);
+                de.innerText = self.format(d);
+            };
+            time();// && setInterval(time, 1000);
+        },
+        register: function (handler) {
+            handler();
+            setInterval(handler, 1000);
+        }
+    };
+
     window.page = page;
 
     window.timing = timing;

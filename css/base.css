@@ -212,14 +212,24 @@ div.bloom {
     width: 100%;
 }
 
+#timing-love-story .value,
 #timing-being-together .value {
     font-size: 1.5rem;
 }
-
+#timing-love-story .unit:after,
 #timing-being-together .unit:after {
     font-size: 0.8rem;
 }
 
+#timing-love-story .unit.year:after {
+    content: '年';
+}
+
+#timing-love-story .unit.month:after {
+    content: '月';
+}
+
+#timing-love-story .unit.day:after,
 #timing-being-together .unit.day:after {
     content: '天';
 }
