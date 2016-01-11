@@ -326,6 +326,28 @@
         }
     };
 
+    var BaseMenu = function () {
+        this.button = document.querySelector('#menu');
+        this.touch = this.button.querySelector('#touch-us');
+    };
+
+    BaseMenu.prototype = {
+        show: function () {
+            if (page.hasClass(this.touch, 'kiss')) {
+                return ;
+            }
+            this.touch.className = 'kiss';
+        }
+    };
+
+    var Menu = new BaseMenu();
+
+    addEvent(Menu.touch, 'touchstart', function () {
+        Menu.show();
+    });
+
+    window.Menu = Menu;
+
     window.page = page;
 
     window.timing = timing;

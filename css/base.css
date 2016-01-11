@@ -635,10 +635,100 @@ ul#album-ul.photo-in {
     margin-top: 11.1%;
 }
 
-/*#touch > div > div > div > div {*/
-/*background: white;*/
-/*width: 1.4rem;*/
-/*height: 1.4rem;*/
-/*border-radius: 0.7rem;*/
-/*margin-top: 0.1rem;*/
-/*}*/
+#touch-us {
+    height: 4rem;
+    width: 4rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 0 10px black;
+    overflow: hidden;
+}
+
+
+#touch-us > div {
+    width: 100%;
+    height: 100%;
+    animation-fill-mode: forwards !important;
+    position: relative;
+    border-radius: 50%;
+}
+
+#touch-us > div > div {
+    position: relative;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 95%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    background-position-y: bottom;
+    animation-fill-mode: forwards !important;
+}
+
+#touch-us .her {
+    background-image: url(../images/her.png);
+}
+
+#touch-us .me {
+    width: 50%;
+    background-image: url(../images/me.png);
+}
+
+#touch-us.kiss .her {
+    -webkit-animation: herKiss 0.5s ease-out;
+    animation: herKiss 0.5s ease-out;
+}
+
+#touch-us.kiss .me {
+    -webkit-animation: meKiss 0.5s ease-out;
+    animation: meKiss 0.5s ease-out;
+}
+
+#touch-us.kiss > div {
+    -webkit-animation: zoomOut 0.5s ease-out;
+    animation: zoomOut 0.5s ease-out;
+}
+
+@keyframes herKiss {
+    to {
+        transform: rotateZ(-10deg);
+        right: -2px;
+        top: 2px;
+    }
+}
+
+@-webkit-keyframes herKiss {
+    to {
+        transform: rotateZ(-5deg);
+        right: -5px;
+    }
+}
+
+@keyframes meKiss {
+    to {
+        transform: rotateZ(-10deg);
+        right: 5px;
+    }
+}
+
+@-webkit-keyframes meKiss {
+    to {
+        transform: rotateZ(-10deg);
+        right: 5px;
+    }
+}
+
+@keyframes zoomOut {
+    to {
+        transform: scale(1.3);
+    }
+}
+
+@-webkit-keyframes zoomOut {
+    to {
+        -webkit-transform: scale(1.3);
+    }
+}
