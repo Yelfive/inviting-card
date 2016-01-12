@@ -169,17 +169,13 @@ STYLE;
     <div id="touch" class="hide">
         <div><div><div></div></div></div>
     </div>
-    <div id="touch-us">
-        <div>
-            <div class="her"></div><div class="me"></div>
-        </div>
-    </div>
+    <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
     <div id="cover"></div>
     <div id="bubble"></div>
     <div id="items" class="font-it">
-        <div class="item-1">时间de证明</div>
-        <div class="item-2">我们de故事</div>
-        <div class="item-3">幸福de刻印</div>
+        <div class="item-1" data-class="welcome">时间de证明</div>
+        <div class="item-2" data-class="love-story">我们de故事</div>
+        <div class="item-3" data-class="album">幸福de刻印</div>
         <div class="item-4">想不出名字</div>
     </div>
 </div>

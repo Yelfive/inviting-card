@@ -4,7 +4,9 @@ html, body, div, ul, p {
 }
 
 html, body {
+    width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 body, .wrapper {
@@ -695,7 +697,7 @@ ul#album-ul.photo-in {
 
 @keyframes herKiss {
     to {
-        transform: rotateZ(-10deg);
+        transform: rotateZ(-10deg) translateZ(0);
         right: -2px;
         top: 2px;
     }
@@ -703,21 +705,21 @@ ul#album-ul.photo-in {
 
 @-webkit-keyframes herKiss {
     to {
-        transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg) translateZ(0);
         right: -5px;
     }
 }
 
 @keyframes meKiss {
     to {
-        transform: rotateZ(-10deg);
+        transform: rotateZ(-10deg) translateZ(0);
         right: 5px;
     }
 }
 
 @-webkit-keyframes meKiss {
     to {
-        transform: rotateZ(-10deg);
+        transform: rotateZ(-10deg) translateZ(0);
         right: 5px;
     }
 }
@@ -809,17 +811,18 @@ ul#album-ul.photo-in {
     }
 }
 
-/*.kiss .bubble:nth-child(2) > canvas:nth-child(1) {*/
-/*-webkit-animation: bubbleOut 1s ease-in-out 1s;*/
-/*animation: bubbleOut 1s ease-in-out 1s;*/
-/*animation-fill-mode: both;*/
-/*}*/
 #menu {
     width: 100%;
     height: 100%;
-    position: absolute;
-    left: 0;
     top: 0;
+}
+
+#menu.kiss {
+    position: absolute;
+}
+
+#menu #bubble {
+    display: none;
 }
 
 #menu #bubble canvas {
@@ -830,6 +833,10 @@ ul#album-ul.photo-in {
     -webkit-animation-fill-mode: both !important;
     margin-top: -8.5rem;
     margin-left: -5.1rem;
+}
+
+#menu.kiss #bubble {
+    display: block;
 }
 
 @keyframes bubbleIn {
@@ -876,4 +883,57 @@ ul#album-ul.photo-in {
 
 #items > div:nth-child(even) {
     top: 3rem;
+}
+
+#menu.kiss.fade {
+    -webkit-animation: menuFade 0.25s linear;
+    animation: menuFade 0.25s linear;
+    animation-fill-mode: both;
+}
+
+@keyframes menuFade {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@-webkit-keyframes menuFade {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+#touch-us.touch-in {
+    -webkit-animation: touchIn 0.5s ease-in-out;
+    animation: touchIn 0.5s ease-in-out;
+}
+
+@keyframes touchIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes touchIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
 }

@@ -35,6 +35,7 @@
         document.body.removeChild(document.querySelector('.loading'));
         typeIn(document.getElementById('votes'));
         drawCircle();
+        Menu.init();
     }
 
     var $circle = document.getElementById('circle-flowers');
@@ -177,7 +178,7 @@
                 return;
             }
 
-            this._flipTo(prev);
+            this.flipTo(prev);
         },
         next: function () {
             var current = this.currentDom;
@@ -186,9 +187,9 @@
                 return;
             }
 
-            this._flipTo(next);
+            this.flipTo(next);
         },
-        _flipTo: function (to) {
+        flipTo: function (to) {
             var $this = this;
             var current = $this.currentDom;
 
@@ -334,12 +335,41 @@
     };
 
     BaseMenu.prototype = {
+        currentIndex: null, // current page
+        init: function () {
+            this.bubble();
+            this.registerJs();
+        },
+        registerJs: function () {
+            var $items = this.items.children;
+            var length = $items.length;
+            var $wrapper = document.querySelector('.wrapper');
+            var self = this;
+            for (var i = 0; i < length; i++) {
+                addEvent($items[i], 'touchstart', function () {
+                    var dest = $wrapper.querySelector('.' + this.dataset.class);
+                    if (dest) {
+                        self.currentIndex = dest.index();
+                        page.flipTo(dest);
+                        self.hide();
+                    }
+                });
+            }
+        },
+        hide: function () {
+            var self = this;
+            self.menu.className += ' fade';
+            setTimeout(function () {
+                self.menu.className = '';
+                self.touch.className = 'touch-in';
+            }, 550);
+        },
         show: function () {
             if (page.hasClass(this.menu, 'kiss')) {
                 return;
             }
+            this.touch.className = '';
             this.menu.className = 'kiss';
-            this.bubble();
         },
         bubble: function () {
             for (var i = 0; i < 10 ; i++) {
