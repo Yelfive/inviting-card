@@ -19,7 +19,8 @@
     }
 
     function addEvent(elem, eventName, callback) {
-        elem['on' + eventName] = callback;
+        //elem['on' + eventName] = callback;
+        elem['onclick'] = callback;
     }
 
     var $timing = document.getElementById('timing-being-together');
@@ -221,12 +222,6 @@
     }
 
     BaseAlbum.prototype = {
-        next: function () {
-        },
-        prev: function () {
-
-        },
-        initialized: false,
         show: function () {
             if (page.hasClass(this.album, 'photo-in')) {
                 return;
@@ -255,12 +250,23 @@
 
             // Bind event
             for (i = 0; i < $this.imgCount; i++) {
+                $this.lis[i].index = i;
                 addEvent($this.lis[i], 'touchstart', function () {
                     var elem = this;
                     elem.className = 'photo-out';
                     setTimeout(function () {
                         elem.className = 'hide';
                     }, Album.timeout);
+
+                    if (this.index == 0) {
+                        setTimeout(function () {
+                            page.removeClass($this.album, 'photo-in');
+                            for (var j = 0; j < $this.imgCount; j++) {
+                                $this.lis[j].className = '';
+                            }
+                            $this.show();
+                        }, Album.timeout);
+                    }
                 });
             }
             return this;
@@ -335,7 +341,7 @@
     };
 
     BaseMenu.prototype = {
-        currentIndex: null, // current page
+        currentIndex: 0, // current page
         init: function () {
             this.bubble();
             this.registerJs();
@@ -346,13 +352,18 @@
             var $wrapper = document.querySelector('.wrapper');
             var self = this;
             for (var i = 0; i < length; i++) {
+                $items[i].index = i;
                 addEvent($items[i], 'touchstart', function () {
-                    var dest = $wrapper.querySelector('.' + this.dataset.class);
-                    if (dest) {
-                        self.currentIndex = dest.index();
-                        page.flipTo(dest);
-                        self.hide();
+                    if (self.currentIndex == this.index) {
+                        return self.hide();
                     }
+                    var dest = $wrapper.querySelector('.' + this.dataset.class);
+                    if (!dest) {
+                        return ;
+                    }
+                    self.currentIndex = this.index;
+                    page.flipTo(dest);
+                    self.hide();
                 });
             }
         },
@@ -380,7 +391,7 @@
 
     var Menu = new BaseMenu();
     addEvent(Menu.touch, 'touchstart', function () {
-        Menu.show();
+        page.hasClass(Menu.menu, 'kiss') ? Menu.hide() : Menu.show();
     });
 
     window.Menu = Menu;

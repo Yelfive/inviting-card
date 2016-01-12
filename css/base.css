@@ -282,90 +282,90 @@ div.bloom {
     word-wrap: break-word;
 }
 
-.wrapper .album li:nth-child(1) {
-    -webkit-transform: rotateZ(-1.5deg);
-    transform: rotateZ(-1.5deg);
-}
+/*.wrapper .album li:nth-child(1) {*/
+    /*-webkit-transform: rotateZ(-1.5deg);*/
+    /*transform: rotateZ(-1.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(2) {
-    -webkit-transform: rotateZ(-1deg);
-    transform: rotateZ(-1deg);
-}
+/*.wrapper .album li:nth-child(2) {*/
+    /*-webkit-transform: rotateZ(-1deg);*/
+    /*transform: rotateZ(-1deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(3) {
-    -webkit-transform: rotateZ(-0.5deg);
-    transform: rotateZ(-0.5deg);
-}
+/*.wrapper .album li:nth-child(3) {*/
+    /*-webkit-transform: rotateZ(-0.5deg);*/
+    /*transform: rotateZ(-0.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(4) {
-    -webkit-transform: rotateZ(0deg);
-    transform: rotateZ(0deg);
-}
+/*.wrapper .album li:nth-child(4) {*/
+    /*-webkit-transform: rotateZ(0deg);*/
+    /*transform: rotateZ(0deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(5) {
-    -webkit-transform: rotateZ(0.5deg);
-    transform: rotateZ(0.5deg);
-}
+/*.wrapper .album li:nth-child(5) {*/
+    /*-webkit-transform: rotateZ(0.5deg);*/
+    /*transform: rotateZ(0.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(6) {
-    -webkit-transform: rotateZ(1deg);
-    transform: rotateZ(1deg);
-}
+/*.wrapper .album li:nth-child(6) {*/
+    /*-webkit-transform: rotateZ(1deg);*/
+    /*transform: rotateZ(1deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(7) {
-    -webkit-transform: rotateZ(1.5deg);
-    transform: rotateZ(1.5deg);
-}
+/*.wrapper .album li:nth-child(7) {*/
+    /*-webkit-transform: rotateZ(1.5deg);*/
+    /*transform: rotateZ(1.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(8) {
-    -webkit-transform: rotateZ(2deg);
-    transform: rotateZ(2deg);
-}
+/*.wrapper .album li:nth-child(8) {*/
+    /*-webkit-transform: rotateZ(2deg);*/
+    /*transform: rotateZ(2deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(9) {
-    -webkit-transform: rotateZ(2.5deg);
-    transform: rotateZ(2.5deg);
-}
+/*.wrapper .album li:nth-child(9) {*/
+    /*-webkit-transform: rotateZ(2.5deg);*/
+    /*transform: rotateZ(2.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(10) {
-    -webkit-transform: rotateZ(3deg);
-    transform: rotateZ(3deg);
-}
+/*.wrapper .album li:nth-child(10) {*/
+    /*-webkit-transform: rotateZ(3deg);*/
+    /*transform: rotateZ(3deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(11) {
-    -webkit-transform: rotateZ(3.5deg);
-    transform: rotateZ(3.5deg);
-}
+/*.wrapper .album li:nth-child(11) {*/
+    /*-webkit-transform: rotateZ(3.5deg);*/
+    /*transform: rotateZ(3.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(12) {
-    -webkit-transform: rotateZ(4deg);
-    transform: rotateZ(4deg);
-}
+/*.wrapper .album li:nth-child(12) {*/
+    /*-webkit-transform: rotateZ(4deg);*/
+    /*transform: rotateZ(4deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(13) {
-    -webkit-transform: rotateZ(4.5deg);
-    transform: rotateZ(4.5deg);
-}
+/*.wrapper .album li:nth-child(13) {*/
+    /*-webkit-transform: rotateZ(4.5deg);*/
+    /*transform: rotateZ(4.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(14) {
-    -webkit-transform: rotateZ(5deg);
-    transform: rotateZ(5deg);
-}
+/*.wrapper .album li:nth-child(14) {*/
+    /*-webkit-transform: rotateZ(5deg);*/
+    /*transform: rotateZ(5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(15) {
-    -webkit-transform: rotateZ(5.5deg);
-    transform: rotateZ(5.5deg);
-}
+/*.wrapper .album li:nth-child(15) {*/
+    /*-webkit-transform: rotateZ(5.5deg);*/
+    /*transform: rotateZ(5.5deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(16) {
-    -webkit-transform: rotateZ(6deg);
-    transform: rotateZ(6deg);
-}
+/*.wrapper .album li:nth-child(16) {*/
+    /*-webkit-transform: rotateZ(6deg);*/
+    /*transform: rotateZ(6deg);*/
+/*}*/
 
-.wrapper .album li:nth-child(17) {
-    -webkit-transform: rotateZ(6.5deg);
-    transform: rotateZ(6.5deg);
-}
+/*.wrapper .album li:nth-child(17) {*/
+    /*-webkit-transform: rotateZ(6.5deg);*/
+    /*transform: rotateZ(6.5deg);*/
+/*}*/
 
 /* album animation */
 
@@ -395,11 +395,6 @@ body {
     -webkit-user-select: none;
 }
 
-/*img, .bloom {*/
-/*user-select: none;*/
-/*-webkit-user-select: none;*/
-/*}*/
-
 .wrapper .album li img {
     margin-top: 5%;
     border-radius: 4px;
@@ -416,7 +411,13 @@ ul#album-ul.photo-in {
 
 @keyframes photosIn {
     from {
-        transform: scale(0.001);
+        transform: scale(0.01);
+    }
+}
+
+@-webkit-keyframes photosIn {
+    from {
+        transform: scale(0.01);
     }
 }
 
@@ -497,144 +498,92 @@ ul#album-ul.photo-in {
 }
 
 #album-ul.photo-in li:nth-child(1) {
-    animation: photosIn 0.5s ease-in-out 0.0s;
-    -webkit-animation: photosIn 0.5s ease-in-out 0.0s;
-    animation-fill-mode: backwards;
+    animation: photosIn 0.5s ease-in-out;
+    -webkit-animation: photosIn 0.5s ease-in-out;
 }
 
 #album-ul.photo-in li:nth-child(2) {
     animation: photosIn 0.5s ease-in-out 0.1s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.1s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(3) {
     animation: photosIn 0.5s ease-in-out 0.1s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.1s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(4) {
     animation: photosIn 0.5s ease-in-out 0.2s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.2s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(5) {
     animation: photosIn 0.5s ease-in-out 0.2s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.2s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(6) {
     animation: photosIn 0.5s ease-in-out 0.3s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.3s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(7) {
     animation: photosIn 0.5s ease-in-out 0.3s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.3s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(8) {
     animation: photosIn 0.5s ease-in-out 0.4s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.4s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(9) {
     animation: photosIn 0.5s ease-in-out 0.4s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.4s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(10) {
     animation: photosIn 0.5s ease-in-out 0.5s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.5s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(11) {
     animation: photosIn 0.5s ease-in-out 0.5s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.5s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(12) {
     animation: photosIn 0.5s ease-in-out 0.6s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.6s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(13) {
     animation: photosIn 0.5s ease-in-out 0.6s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.6s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(14) {
     animation: photosIn 0.5s ease-in-out 0.7s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.7s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(15) {
     animation: photosIn 0.5s ease-in-out 0.7s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.7s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(16) {
     animation: photosIn 0.5s ease-in-out 0.8s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.8s;
-    animation-fill-mode: backwards;
 }
 
 #album-ul.photo-in li:nth-child(17) {
     animation: photosIn 0.5s ease-in-out 0.8s;
     -webkit-animation: photosIn 0.5s ease-in-out 0.8s;
-    animation-fill-mode: backwards;
 }
 
-#touch {
-    background-color: rgba(97, 97, 97, 0.95);
-    height: 4rem;
-    width: 4rem;
-    position: absolute;
-    right: 2rem;
-    bottom: 2rem;
-    border-radius: 1rem;
-    text-align: center;
-}
-
-#touch div {
-    display: inline-block;
-}
-
-#touch > div {
-    background-color: #7B7B7B;
-    width: 66.7%;
-    height: 66.7%;
-    border-radius: 50%;
-    margin-top: 16.7%;
-}
-
-#touch > div > div {
-    background-color: #C3C3C3;
-    width: 90%;
-    height: 90%;
-    border-radius: 50%;
-    margin-top: 5%;
-}
-
-#touch > div > div > div {
-    background-color: white;
-    width: 77.8%;
-    height: 77.8%;
-    border-radius: 50%;
-    margin-top: 11.1%;
+#album-ul.photo-in li {
+    animation-fill-mode: both !important;
 }
 
 #touch-us {
