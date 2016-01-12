@@ -310,7 +310,7 @@
             var self = this;
 
             var time = function () {
-                ts = ((new Date) - self.diff) / 1000 -start;
+                ts = ((new Date) - self.diff) / 1000 - start;
                 y = parseInt(ts / 86400 / 365);
                 m = parseInt(ts / 86400 % 365 / 30);
                 d = parseInt(ts / 86400 % 365 % 30);
@@ -327,21 +327,28 @@
     };
 
     var BaseMenu = function () {
-        this.button = document.querySelector('#menu');
-        this.touch = this.button.querySelector('#touch-us');
+        this.menu = document.querySelector('#menu');
+        this.touch = this.menu.querySelector('#touch-us');
+        this.items = this.menu.querySelector('#items');
+        this.bubbleContainer = this.menu.querySelector('#bubble');
     };
 
     BaseMenu.prototype = {
         show: function () {
-            if (page.hasClass(this.touch, 'kiss')) {
-                return ;
+            if (page.hasClass(this.menu, 'kiss')) {
+                return;
             }
-            this.touch.className = 'kiss';
+            this.menu.className = 'kiss';
+            this.bubble();
+        },
+        bubble: function () {
+            for (var i = 0; i < 10 ; i++) {
+                this.bubbleContainer.appendChild(new Heart(document.createElement('canvas')));
+            }
         }
     };
 
     var Menu = new BaseMenu();
-
     addEvent(Menu.touch, 'touchstart', function () {
         Menu.show();
     });
@@ -351,4 +358,55 @@
     window.page = page;
 
     window.timing = timing;
+
+    var Heart = function (canvas) {
+        return this.draw(canvas);
+    };
+    Heart.prototype = {
+        radius: 0,
+        zero: {},
+        radian: Math.PI,
+        radianIncrement: Math.PI / 30 * 2,
+        context: null,
+        maxRadian: 3 * Math.PI,
+        strokeStyle: 'red',
+        size: 100,
+        coordinate: function () {
+            var radian = this.radian;
+            var x = this.zero.x + this.radius * (16 * Math.pow(Math.sin(radian), 3));
+            var y = this.zero.y - this.radius * (13 * Math.cos(radian) - 5 * Math.cos(2 * radian) - 2 * Math.cos(3 * radian) - Math.cos(4 * radian));
+
+            this.radian += this.radianIncrement;
+
+            return {x: x, y: y};
+        },
+        draw: function (canvas) {
+            this.context = canvas.getContext('2d');
+            this.context.beginPath();
+            this.context.strokeStyle = this.strokeStyle;
+            this.context.lineWidth = 2;
+
+            canvas.width = this.size;
+            canvas.height = this.size;
+            this.zero = {x: this.size / 2, y: this.size / 2};
+            this.radius = this.size / 40;
+
+            var initCoordinate = this.coordinate();
+            this.context.moveTo(initCoordinate.x, initCoordinate.y);
+
+            while (this.radian < this.maxRadian) {
+                this.registerLine();
+            }
+            this.context.fillStyle = this.strokeStyle;
+            this.context.fill();
+            return canvas;
+        },
+        registerLine: function () {
+            var c = this.coordinate();
+            this.context.lineTo(c.x, c.y);
+            this.context.strokeStyle = this.strokeStyle;
+            this.context.stroke();
+        }
+    };
+
 }());

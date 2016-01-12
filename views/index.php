@@ -8,7 +8,6 @@
     <!--<link rel="stylesheet" href="../css/base.css">-->
     <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>
     <script>
-        location.href = './index.php';
         var diff = '';
     </script>
 </head>
@@ -125,16 +124,46 @@ In exchange for mine
         //            }');
         //        }
         //        document.write('</style>');
-
-                document.write('<style>');
-        for (var i = 0; i < 10; i++) {
-            document.write('#menu #bubble canvas:nth(10) {\
-            left: 10%\
-            top: 10%\
-            }')
-        }
-                document.write('</style>');
     </script>
+    <?php
+    echo '<style>';
+    $max = 10;
+    $duration = 0.25;
+    for ($i = 1, $j = 1; $i <= $max; $i++) {
+        $t = ($max - $i) * $duration + 0.5;
+        if ($i < 5) {
+            if ($j > 4) {
+                break;
+            }
+            echo <<<STYLE
+#menu.kiss #items > div:nth-child($j) {
+    animation: fadeIn 0.5s ease-out {$t}s;
+    -webkit-animation: fadeIn 1s ease-out {$t}s;
+    animation-fill-mode: both;
+}
+
+STYLE;
+            $j++;
+        } else {
+            $pos = $i / $max * 100;
+            $left = $pos;
+            $top = $pos;
+            echo <<<STYLE
+#menu #bubble canvas:nth-child($i) {
+    left: $left%;
+    top: $top%;
+}
+#menu.kiss #bubble canvas:nth-child($i) {
+    animation: bubbleIn {$duration}s ease-out {$t}s;
+    -webkit-animation: bubbleIn {$duration}s ease-out {$t}s;
+}
+
+STYLE;
+        }
+    }
+
+    echo '</style>';
+    ?>
 </div>
 <div id="menu">
     <div id="touch" class="hide">
@@ -147,13 +176,11 @@ In exchange for mine
     </div>
     <div id="cover"></div>
     <div id="bubble"></div>
-    <div id="items">
-        <div class="item-1">时间是最好的证明</div>
-        <div class="bubble"></div>
-        <div class="item-2">故事也必不可少</div>
-        <div class="bubble"></div>
-        <div class="item-3">幸福刻在我们心上</div>
-        <div class="bubble"></div>
+    <div id="items" class="font-it">
+        <div class="item-1">时间de证明</div>
+        <div class="item-2">我们de故事</div>
+        <div class="item-3">幸福de刻印</div>
+        <div class="item-4">想不出名字</div>
     </div>
 </div>
 </body>

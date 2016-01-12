@@ -15,21 +15,16 @@ body, .wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 10;
     background: #FF6766 url(../images/running.gif) no-repeat center;
+    background-size: 50%;
+    z-index: 101;
+}
+
+.loading.running {
     animation: bounceOut 0.5s ease 1s;
     -webkit-animation: bounceOut 0.5s ease;
     animation-fill-mode: both;
     -webkit-animation-fill-mode: both;
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
-
-    background-size: 50%;
-}
-
-.loading.running {
-    animation-play-state: running;
-    -webkit-animation-play-state: running;
 }
 
 @keyframes bounceOut {
@@ -172,7 +167,7 @@ body, .wrapper {
 
 .font-it,
 .font-it > * {
-    font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+    font-family: "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
 }
 
 .wrapper .welcome .words {
@@ -393,10 +388,15 @@ div.bloom {
     opacity: 1;
 }
 
-img, .bloom {
+body {
     user-select: none;
     -webkit-user-select: none;
 }
+
+/*img, .bloom {*/
+/*user-select: none;*/
+/*-webkit-user-select: none;*/
+/*}*/
 
 .wrapper .album li img {
     margin-top: 5%;
@@ -641,7 +641,8 @@ ul#album-ul.photo-in {
     position: absolute;
     right: 2rem;
     bottom: 2rem;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
+    border-radius: 50%;
     box-shadow: 0 0 10px black;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
@@ -747,6 +748,7 @@ ul#album-ul.photo-in {
 .kiss #cover {
     display: block;
     animation: fadeIn 0.5s linear;
+    -webkit-animation: fadeIn 0.5s linear;
 }
 
 @keyframes fadeIn {
@@ -779,7 +781,8 @@ ul#album-ul.photo-in {
 
 .kiss #items {
     display: block;
-    animation: fadeSlideIn 0.5s ease-in 0.5s;
+    animation: fadeIn 0.5s ease-in 0.5s;
+    -webkit-animation: fadeIn 0.5s ease-in 0.5s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
@@ -804,4 +807,73 @@ ul#album-ul.photo-in {
         opacity: 1;
         top: 0;
     }
+}
+
+/*.kiss .bubble:nth-child(2) > canvas:nth-child(1) {*/
+/*-webkit-animation: bubbleOut 1s ease-in-out 1s;*/
+/*animation: bubbleOut 1s ease-in-out 1s;*/
+/*animation-fill-mode: both;*/
+/*}*/
+#menu {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#menu #bubble canvas {
+    position: absolute;
+    width: 10%;
+    z-index: 2;
+    animation-fill-mode: both !important;
+    -webkit-animation-fill-mode: both !important;
+    margin-top: -8.5rem;
+    margin-left: -5.1rem;
+}
+
+@keyframes bubbleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes bubbleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+#items > div {
+    width: 150px;
+    height: 100px;
+    background: url(../images/bubbles/25.png) no-repeat;
+    background-size: 100%;
+    text-align: center;
+    line-height: 100px;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+#items > div:nth-child(1) {
+    transform: rotateZ(-10deg) translateZ(0);
+}
+
+#items > div:nth-child(3) {
+    transform: rotateZ(-5deg) translateZ(0);
+}
+
+#items > div:nth-child(4) {
+    transform: rotateZ(15deg) translateZ(0);
+}
+
+#items > div:nth-child(even) {
+    top: 3rem;
 }
