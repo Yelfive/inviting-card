@@ -2,8 +2,6 @@
  * @author Felix Huang <yelfivehuang@gmail.com>
  * image size 414x736, ~130kb
  *
- * TODO: render one image before loading fades out
- *
  */
 +(function () {
     function isHorizon() {
@@ -23,7 +21,7 @@
         elem['onclick'] = callback;
     }
 
-    var $timing = document.getElementById('timing-being-together');
+    const $_TIMING = document.querySelector('#timing-being-together');
 
     var $body = document.body;
     $body.onload = function () {
@@ -72,7 +70,7 @@
         $circle.className += ' bloom';
 
         // set timing position
-        $timing.style.top = cw / 2 * 0.8 + 'px';
+        $_TIMING.style.top = cw / 2 * 0.8 + 'px';
 
         radius = 0.4 * cw;
         coordinate.config = {
@@ -84,33 +82,18 @@
         for (var i = 0, child, c; i <= len; i++) {
             child = children[i];
             if (!child) {
-                typeIn($timing, function () {
-                    timing.together();
-                    Album.init();
-                });
-                return;
+                break;
             }
             c = coordinate.circle(i);
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
         }
-        //var i = 0;
-        //var tickFlowers = setInterval(function () {
-        //    var child = children[i++];
-        //    if (!child) {
-        //        clearInterval(tickFlowers);
-        //        tickFlowers = null;
-        //        typeIn($timing, function () {
-        //            timing.together();
-        //            Album.init();
-        //        });
-        //        return;
-        //    }
-        //    var c = coordinate.circle(i);
-        //    child.style.left = (c.x - child.clientWidth / 2) + 'px';
-        //    child.style.top = (c.y - child.clientHeight / 2) + 'px';
-        //    //child.className += ' bloom';
-        //}, 250);
+        setTimeout(function () {
+            typeIn($_TIMING, function () {
+                timing.together();
+                Album.init();
+            });
+        }, 2300);
     };
 
     /**
@@ -123,9 +106,9 @@
         }
         var html = dom.innerHTML.replace(/ {2,}/g, ' ');
         dom.innerHTML = '';
-        dom.style.display = 'block';
+        dom.style.opacity = 1;
 
-        var progress = 0;
+        var progress = 1;
         var args = arguments;
         var tick = setInterval(function () {
             var current = html.substr(progress, 1);
@@ -134,10 +117,12 @@
             } else {
                 progress++;
             }
+
             // innerHTML creates end tag
             dom.innerHTML = html.substring(0, progress) + (progress & 1 && progress < html.length ? '_' : '');
             if (progress >= html.length) {
                 clearInterval(tick);
+                tick = null;
                 if (args[1] instanceof Function) {
                     args[1](dom);
                 }
@@ -237,14 +222,14 @@
     }
 
     BaseAlbum.prototype = {
+        downloadInterval: 100,
+        img: new Image(),
         show: function () {
             if (page.hasClass(this.album, 'photo-in')) {
                 return;
             }
             this.album.className += ' photo-in';
         },
-        downloadInterval: 100,
-        img: new Image(),
         init: function () {
             var i = 17, $this = this;
 
@@ -302,12 +287,12 @@
 
     var timing = {
         diff: window.diff, // milliseconds, client - server
-        format: function (num) {
+        zeroFill: function (num) {
             return num < 10 ? '0' + num : num;
         },
         together: function () {
-            var start = 1400000000;
-            var valElem = document.querySelector('#timing-being-together').querySelectorAll('.value');
+            var start = 1405785600;
+            var valElem = $_TIMING.querySelectorAll('.value');
             var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
             var ts, d, h, m, s;
             var self = this;
@@ -317,14 +302,13 @@
                 h = parseInt(ts / 3600 % 24);
                 m = parseInt(ts / 60 % 60);
                 s = parseInt(ts % 60);
-                de.innerText = self.format(d);
-                he.innerText = self.format(h);
-                me.innerText = self.format(m);
-                se.innerText = self.format(s);
+                de.innerText = self.zeroFill(d);
+                he.innerText = self.zeroFill(h);
+                me.innerText = self.zeroFill(m);
+                se.innerText = self.zeroFill(s);
             });
         },
         story: function () {
-            // TODO: set day with php, if not active counting
             var start = 1030809600;
             var valElem = document.querySelector('#timing-love-story').querySelectorAll('.value');
             var ye = valElem[0], me = valElem[1], de = valElem[2];
@@ -336,11 +320,11 @@
                 y = parseInt(ts / 86400 / 365);
                 m = parseInt(ts / 86400 % 365 / 30);
                 d = parseInt(ts / 86400 % 365 % 30);
-                ye.innerText = self.format(y);
-                me.innerText = self.format(m);
-                de.innerText = self.format(d);
+                ye.innerText = y;
+                me.innerText = self.zeroFill(m);
+                de.innerText = self.zeroFill(d);
             };
-            time();// && setInterval(time, 1000);
+            time();
         },
         register: function (handler) {
             handler();

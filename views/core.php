@@ -37,6 +37,7 @@ function keyframes ($name, $data) {
 
     return $style;
 }
+
 function style($selector, $data) {
     $style = "$selector {\n";
     foreach ($data as $property => $value) {
@@ -45,3 +46,29 @@ function style($selector, $data) {
     $style .= "}\n";
     return $style;
 }
+
+class Background
+{
+    public static function left($i)
+    {
+        return 100 * (($i % 6) - 1);
+    }
+
+    public static function top($i)
+    {
+        return 96 * floor($i / 6);
+    }
+
+    public static function scale($i)
+    {
+        return $i == 3 ? 2 : round(rand(3, 7) / 10, 2);
+    }
+}
+/**
+
+<div class="prefix">We have been <b>together</b> for</div>
+<i class="value day">00</i><i class="unit day"></i>
+<i class="value hour">00</i><i class="unit hour"></i>
+<i class="value minute">00</i><i class="unit minute"></i>
+<i class="value second">00</i><i class="unit second"></i>
+ */

@@ -74,11 +74,12 @@
             <div></div><div></div>
         </div>
         <div id="timing-being-together" class="hide font-it">
+            <?php $duration = time() - 1405785600 + 6; ?>
             <div class="prefix">We have been <b>together</b> for</div>
-            <i class="value day">00</i><i class="unit day"></i>
-            <i class="value hour">00</i><i class="unit hour"></i>
-            <i class="value minute">00</i><i class="unit minute"></i>
-            <i class="value second">00</i><i class="unit second"></i>
+            <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
+            <i class="value hour"><?= intval($duration / 3600 % 24, 0); ?></i><i class="unit hour"></i>
+            <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
+            <i class="value second"><?= intval($duration % 60); ?></i><i class="unit second"></i>
         </div>
         <div class="words hide font-it" id="votes">
             No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
@@ -145,9 +146,6 @@ In exchange for mine
     <!--</div>-->
 </div>
 <div id="menu">
-    <div id="touch" class="hide">
-        <div><div><div></div></div></div>
-    </div>
     <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
     <div id="cover"></div>
     <div id="bubble"></div>
