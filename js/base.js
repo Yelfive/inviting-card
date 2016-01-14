@@ -69,6 +69,8 @@
         var children = $circle.children;
         var len = children.length;
 
+        $circle.className += ' bloom';
+
         // set timing position
         $timing.style.top = cw / 2 * 0.8 + 'px';
 
@@ -79,23 +81,36 @@
             total: len,
             randomPosition: true
         };
-        var i = 0;
-        var tickFlowers = setInterval(function () {
-            var child = children[i++];
+        for (var i = 0, child, c; i <= len; i++) {
+            child = children[i];
             if (!child) {
-                clearInterval(tickFlowers);
-                tickFlowers = null;
                 typeIn($timing, function () {
                     timing.together();
                     Album.init();
                 });
                 return;
             }
-            var c = coordinate.circle(i);
+            c = coordinate.circle(i);
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
-            child.className += ' bloom';
-        }, 250);
+        }
+        //var i = 0;
+        //var tickFlowers = setInterval(function () {
+        //    var child = children[i++];
+        //    if (!child) {
+        //        clearInterval(tickFlowers);
+        //        tickFlowers = null;
+        //        typeIn($timing, function () {
+        //            timing.together();
+        //            Album.init();
+        //        });
+        //        return;
+        //    }
+        //    var c = coordinate.circle(i);
+        //    child.style.left = (c.x - child.clientWidth / 2) + 'px';
+        //    child.style.top = (c.y - child.clientHeight / 2) + 'px';
+        //    //child.className += ' bloom';
+        //}, 250);
     };
 
     /**
@@ -286,7 +301,7 @@
     };
 
     var timing = {
-        diff: 0, // milliseconds
+        diff: window.diff, // milliseconds, client - server
         format: function (num) {
             return num < 10 ? '0' + num : num;
         },

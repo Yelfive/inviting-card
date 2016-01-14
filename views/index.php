@@ -8,56 +8,57 @@
     <!--<link rel="stylesheet" href="../css/base.css">-->
     <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>
     <script>
-        var diff = '';
+        var diff = new Date - <?= microtime(true) * 1000; ?>;
     </script>
-
     <style>
+        <?php include __DIR__ . '/core.php'; ?>
+        <?php include __DIR__ . '/style.php'; ?>
         <?php
-            for ($i = 1; $i <= 17; $i++) {
-                $degree = 0.5 * $i - 2;
-                echo <<<STYLE
-
-.wrapper .album li:nth-child($i) {
-    -webkit-transform: rotateZ({$degree}deg);
-    transform: rotateZ({$degree}deg);
-}
-STYLE;
-            }
-
-            $max = 10;
-            $duration = 0.25;
-            for ($i = 1, $j = 1; $i <= $max; $i++) {
-                $t = ($max - $i) * $duration + 0.5;
-                if ($i < 5) {
-                    if ($j > 4) {
-                        break;
-                    }
-                    echo <<<STYLE
-#menu.kiss #items > div:nth-child($j) {
-    animation: fadeIn 0.5s ease-out {$t}s;
-    -webkit-animation: fadeIn 1s ease-out {$t}s;
-    animation-fill-mode: both;
-}
-
-STYLE;
-                    $j++;
-                } else {
-                    $pos = $i / $max * 100;
-                    $left = $pos;
-                    $top = $pos;
-                    echo <<<STYLE
-#menu #bubble canvas:nth-child($i) {
-    left: $left%;
-    top: $top%;
-}
-#menu.kiss #bubble canvas:nth-child($i) {
-    animation: bubbleIn {$duration}s ease-out {$t}s;
-    -webkit-animation: bubbleIn {$duration}s ease-out {$t}s;
-}
-
-STYLE;
-                }
-            }
+//            for ($i = 1; $i <= 17; $i++) {
+//                $degree = 0.5 * $i - 2;
+//                echo <<<STYLE
+//
+//.wrapper .album li:nth-child($i) {
+//    -webkit-transform: rotateZ({$degree}deg);
+//    transform: rotateZ({$degree}deg);
+//}
+//STYLE;
+//            }
+//
+//            $max = 10;
+//            $duration = 0.25;
+//            for ($i = 1, $j = 1; $i <= $max; $i++) {
+//                $t = ($max - $i) * $duration + 0.5;
+//                if ($i < 5) {
+//                    if ($j > 4) {
+//                        break;
+//                    }
+//                    echo <<<STYLE
+//#menu.kiss #items > div:nth-child($j) {
+//    animation: fadeIn 0.5s ease-out {$t}s;
+//    -webkit-animation: fadeIn 1s ease-out {$t}s;
+//    animation-fill-mode: both;
+//}
+//
+//STYLE;
+//                    $j++;
+//                } else {
+//                    $pos = $i / $max * 100;
+//                    $left = $pos;
+//                    $top = $pos;
+//                    echo <<<STYLE
+//#menu #bubble canvas:nth-child($i) {
+//    left: $left%;
+//    top: $top%;
+//}
+//#menu.kiss #bubble canvas:nth-child($i) {
+//    animation: bubbleIn {$duration}s ease-out {$t}s;
+//    -webkit-animation: bubbleIn {$duration}s ease-out {$t}s;
+//}
+//
+//STYLE;
+//                }
+//            }
 
             ?>
     </style>
@@ -68,28 +69,9 @@ STYLE;
 <div class="wrapper">
     <div class="welcome">
         <div class="circle" id="circle-flowers">
-            <div class="img-1"></div>
-            <div class="img-2"></div>
-            <div class="img-3"></div>
-            <div class="img-4"></div>
-            <div class="img-5"></div>
-            <div class="img-6"></div>
-            <div class="img-7"></div>
-            <div class="img-8"></div>
-            <div class="img-9"></div>
-            <div class="img-10"></div>
-            <div class="img-11"></div>
-            <div class="img-12"></div>
-            <div class="img-13"></div>
-            <div class="img-14"></div>
-            <div class="img-15"></div>
-            <div class="img-16"></div>
-            <div class="img-17"></div>
-            <div class="img-18"></div>
-            <div class="img-19"></div>
-            <div class="img-20"></div>
-            <div class="img-21"></div>
-            <div class="img-22"></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            <div></div><div></div>
         </div>
         <div id="timing-being-together" class="hide font-it">
             <div class="prefix">We have been <b>together</b> for</div>
@@ -161,21 +143,6 @@ In exchange for mine
         <!--It would be an honor to have you with us to witness the sacred bounding of our wedding-->
         <!--<textarea name="words"></textarea>-->
     <!--</div>-->
-    <script>
-        //        document.write('<style>');
-        //
-        //        function delay(i) {
-        //            return (0.05 * (i - 1)).toFixed(1);
-        //        }
-        //        for (var i = 1; i<=17 ; i++) {
-        //            document.write('\n#album-ul.photo-in li:nth-child('+i+') {\n\
-        //            animation: photosIn 0.5s ease-in-out '+delay(i)+'s;\n\
-        //            -webkit-animation: photosIn 0.5s ease-in-out '+delay(i)+'s;\n\
-        //            animation-fill-mode: backwards;\n\
-        //            }');
-        //        }
-        //        document.write('</style>');
-    </script>
 </div>
 <div id="menu">
     <div id="touch" class="hide">
