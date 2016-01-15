@@ -17,8 +17,11 @@
     }
 
     function addEvent(elem, eventName, callback) {
-        //elem['on' + eventName] = callback;
-        elem['onclick'] = callback;
+        if (navigator.userAgent == 'test') {
+            elem['onclick'] = callback;
+        } else {
+            elem['on' + eventName] = callback;
+        }
     }
 
     const $_TIMING = document.querySelector('#timing-being-together');

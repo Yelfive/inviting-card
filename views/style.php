@@ -1,9 +1,9 @@
 <?php
 
 echo "\n";
-//echo style('.hide', ['transform' => 'scale(0)']);
-echo style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
-echo style('#circle-flowers > div', [
+//Css::style('.hide', ['transform' => 'scale(0)']);
+Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
+Css::style('#circle-flowers > div', [
     'width' => '100px',
     'height' => '100px',
     'position' => 'absolute',
@@ -17,35 +17,35 @@ for ($i = 1; $i <= 22; $i++) {
     $bgLeft = Background::left($i);
     $bgTop = Background::top($i);
     $delay = $i * 0.1;
-    echo style("#circle-flowers > div:nth-child($i)", [
+    Css::style("#circle-flowers > div:nth-child($i)", [
         'background-image' => 'url(../images/flowers.png)',
         'background-position' => "-{$bgLeft}px -{$bgTop}px",
     ]);
-    echo style("#circle-flowers.bloom > div:nth-child($i)", [
+    Css::style("#circle-flowers.bloom > div:nth-child($i)", [
         'animation' => "bloom 0.5s ease-in-out {$delay}s",
     ]);
 }
 
-echo keyframes('bloom', [
+Css::keyframes('bloom', [
     'from' => ['transform' => 'scale(0) translateZ(0)', 'opacity' => '1'],
     'to' => ['transform' => "scale(0.5) translateZ(0)", 'opacity' => '1'],
 ]);
 
 /* bubble */
 
-echo style('#menu #bubble canvas', [
+Css::style('#menu #bubble canvas', [
     'animation-fill-mode' => 'forwards !important',
     'transform' => 'scale(1.5)',
     'opacity' => 0,
 ]);
 
-echo keyframes('bubbleIn', [
+Css::keyframes('bubbleIn', [
     '0%' => ['transform' => 'scale(0) translateZ(0)', 'opacity' => 1],
 //    '90%' => ['transform' => 'scale(1.2) translateZ(0)', 'opacity' => 1],
     '100%' => ['transform' => 'scale(1) translateZ(0)', 'opacity' => 1],
 ]);
 
-echo keyframes('fadeIn', ['from' => ['opacity' => 0], 'to' => ['opacity' => 1]]);
+Css::keyframes('fadeIn', ['from' => ['opacity' => 0], 'to' => ['opacity' => 1]]);
 
 $max = 10;
 $duration = 0.25;
@@ -55,8 +55,8 @@ for ($i = 1; $i <= $max; $i++) {
     if ($i < 5) {
         $i % 2 === 0 && $operand *= -1;
         $degree = $operand * rand(5, 15);
-        echo style("#items > div:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
-        echo style("#menu.kiss #items > div:nth-child($i)", [
+        Css::style("#items > div:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
+        Css::style("#menu.kiss #items > div:nth-child($i)", [
             'animation' => "fadeIn 0.5s ease-in {$delay}s",
             'animation-fill-mode' => 'forwards',
         ]);
@@ -65,27 +65,38 @@ for ($i = 1; $i <= $max; $i++) {
     $pos = $i / $max * 100;
     $left = $pos;
     $top = $pos;
-    echo style("#menu #bubble canvas:nth-child($i)", ['left' => "$left%", 'top' => "$top%"]);
-    echo style("#menu.kiss #bubble canvas:nth-child($i)", [
+    Css::style("#menu #bubble canvas:nth-child($i)", ['left' => "$left%", 'top' => "$top%"]);
+    Css::style("#menu.kiss #bubble canvas:nth-child($i)", [
         'animation' => "bubbleIn {$duration}s ease-out {$delay}s",
     ]);
 }
 
 /* bubble END */
-keyframes('photosIn', [
-   'from' => [
-       'transform' => 'scale(0)',
-   ],
-    'to' => [
-        'transform' => 'scale(1)',
-    ]
-]);
+//Css::keyframes('photoIn', [
+//   'from' => [
+//       'transform' => 'scale(0)',
+////       'opacity' => 0,
+//   ],
+//    'to' => [
+//        'opacity' => 1,
+//    ]
+//]);
 /* album */
+//Css::style('.wrapper .album li', [
+//    'opacity' => 0,
+//]);
+
+Css::keyframes('photoIn', [
+//    'from' => ['transform' => 'scale(0) translateZ(0)']
+    'from' => ['transform' => 'scale(0.01)']
+]);
 for ($i = 1; $i <= 17; $i++) {
     $degree = 0.5 * $i - 2;
-    $delay = $i / 2;
-    echo style(".wrapper .album li:nth-child($i)", ['transform' => "rotateZ({$degree}deg) scale"]);
-    echo style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photosIn 0.5s ease-in-out {$delay}s"]);
+    $delay = round(($i - 1) / 18, 1);
+    Css::style(".wrapper .album li:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
+    Css::style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photoIn 0.5s ease-in-out {$delay}s"]);
 }
 
 /* album out */
+
+Css::register();

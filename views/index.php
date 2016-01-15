@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="screen-orientation" content="landscape"/>
+    <meta name="screen-orientation" content="portrait"/>
     <title>Home</title>
     <!--<link rel="stylesheet" href="../css/base.css">-->
     <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>

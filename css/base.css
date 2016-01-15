@@ -202,8 +202,8 @@ body, .wrapper {
     text-align: center;
     box-shadow: 0 0 1px #BBBBBB;
     position: absolute;
-    left: 2%;
-    right: 2%;
+    left: 5%;
+    right: 5%;
     top: 2rem;
 }
 
@@ -280,8 +280,8 @@ ul#album-ul.photo-in {
 }
 
 #album-ul.photo-in.bg-pink li.photo-out {
-    -webkit-animation: photoOut 1s ease-in-out;
-    animation: photoOut 1s ease-in-out;
+    -webkit-animation: photoOut 1s ease-in;
+    animation: photoOut 1s ease-in;
 }
 
 @keyframes photoOut {
@@ -464,30 +464,30 @@ ul#album-ul.photo-in {
 
 @keyframes herKiss {
     to {
-        transform: rotateZ(-10deg) translateZ(0);
-        right: -2px;
-        top: 2px;
+        transform: rotateZ(-10deg) translateZ(0) translateX(3px);
+        /*right: -2px;*/
+        /*top: 2px;*/
     }
 }
 
 @-webkit-keyframes herKiss {
     to {
-        -webkit-transform: rotateZ(-5deg) translateZ(0);
-        right: -5px;
+        -webkit-transform: rotateZ(-5deg) translateZ(0) translateX(3px);
+        /*right: -5px;*/
     }
 }
 
 @keyframes meKiss {
     to {
-        transform: rotateZ(-10deg) translateZ(0);
-        right: 5px;
+        transform: rotateZ(-10deg) translateZ(0) translateX(-3px);
+        /*right: 5px;*/
     }
 }
 
 @-webkit-keyframes meKiss {
     to {
-        -webkit-transform: rotateZ(-10deg) translateZ(0);
-        right: 5px;
+        -webkit-transform: rotateZ(-10deg) translateZ(0) translateX(-3px);
+        /*right: 5px;*/
     }
 }
 
