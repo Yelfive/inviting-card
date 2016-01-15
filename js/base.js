@@ -106,7 +106,7 @@
         }
         var html = dom.innerHTML.replace(/ {2,}/g, ' ');
         dom.innerHTML = '';
-        dom.style.opacity = 1;
+        dom.style.display = 'block';
 
         var progress = 1;
         var args = arguments;

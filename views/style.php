@@ -1,6 +1,7 @@
 <?php
 
 echo "\n";
+//echo style('.hide', ['transform' => 'scale(0)']);
 echo style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
 echo style('#circle-flowers > div', [
     'width' => '100px',
@@ -71,14 +72,20 @@ for ($i = 1; $i <= $max; $i++) {
 }
 
 /* bubble END */
-
+keyframes('photosIn', [
+   'from' => [
+       'transform' => 'scale(0)',
+   ],
+    'to' => [
+        'transform' => 'scale(1)',
+    ]
+]);
+/* album */
 for ($i = 1; $i <= 17; $i++) {
     $degree = 0.5 * $i - 2;
-    echo <<<STYLE
+    $delay = $i / 2;
+    echo style(".wrapper .album li:nth-child($i)", ['transform' => "rotateZ({$degree}deg) scale"]);
+    echo style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photosIn 0.5s ease-in-out {$delay}s"]);
+}
 
-.wrapper .album li:nth-child($i) {
-    -webkit-transform: rotateZ({$degree}deg);
-    transform: rotateZ({$degree}deg);
-}
-STYLE;
-}
+/* album out */
