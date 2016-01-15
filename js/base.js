@@ -412,7 +412,7 @@
         radianIncrement: Math.PI / 30 * 2,
         context: null,
         maxRadian: 3 * Math.PI,
-        strokeStyle: 'red',
+        strokeStyle: '#FF9191',
         size: 100,
         coordinate: function () {
             var radian = this.radian;

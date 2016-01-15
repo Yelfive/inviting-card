@@ -16,7 +16,7 @@ Css::style('#circle-flowers > div', [
 for ($i = 1; $i <= 22; $i++) {
     $bgLeft = Background::left($i);
     $bgTop = Background::top($i);
-    $delay = $i * 0.1;
+    $delay = $i * 0.3;
     Css::style("#circle-flowers > div:nth-child($i)", [
         'background-image' => 'url(../images/flowers.png)',
         'background-position' => "-{$bgLeft}px -{$bgTop}px",
@@ -45,7 +45,7 @@ Css::keyframes('bubbleIn', [
     '100%' => ['transform' => 'scale(1) translateZ(0)', 'opacity' => 1],
 ]);
 
-Css::keyframes('fadeIn', ['from' => ['opacity' => 0], 'to' => ['opacity' => 1]]);
+Css::keyframes('fadeIn', ['from' => ['opacity' => 0, 'transform' => 'translate3d(0, 0, 0)'], 'to' => ['opacity' => 1]]);
 
 $max = 10;
 $duration = 0.25;
@@ -55,7 +55,7 @@ for ($i = 1; $i <= $max; $i++) {
     if ($i < 5) {
         $i % 2 === 0 && $operand *= -1;
         $degree = $operand * rand(5, 15);
-        Css::style("#items > div:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
+        Css::style("#items > div:nth-child($i)", ['transform' => "rotateZ({$degree}deg)"]);
         Css::style("#menu.kiss #items > div:nth-child($i)", [
             'animation' => "fadeIn 0.5s ease-in {$delay}s",
             'animation-fill-mode' => 'forwards',
@@ -97,6 +97,28 @@ for ($i = 1; $i <= 17; $i++) {
     Css::style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photoIn 0.5s ease-in-out {$delay}s"]);
 }
 
+Css::style('.wrapper .flip-90-0', [
+    'transform' => 'rotateX(0deg)',
+    'animation' => 'flip-90-0 0.5s linear',
+]);
+Css::style('.wrapper .flip-0-90', [
+    'transform' => 'rotateY(90deg)',
+    'animation' => 'flip-0-90 0.5s linear',
+]);
+
+Css::keyframes('flip-0-90', [
+    'from' => ['transform' => 'rotateY(0deg)'],
+    'to' => ['transform' => 'rotateY(90deg)'],
+]);
+Css::keyframes('flip-90-0', [
+    'from' => ['transform' => 'rotateY(90deg)'],
+    'to' => ['transform' => 'rotateY(0deg)'],
+]);
+Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
+Css::keyframes('touchIn', [
+    '0%' => ['transform' => 'scale(0.1)'],
+    '100%' => ['transform' => 'scale(1)'],
+]);
 /* album out */
 
 Css::register();
