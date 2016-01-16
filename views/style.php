@@ -22,13 +22,13 @@ for ($i = 1; $i <= 22; $i++) {
         'background-position' => "-{$bgLeft}px -{$bgTop}px",
     ]);
     Css::style("#circle-flowers.bloom > div:nth-child($i)", [
-        'animation' => "bloom 0.5s ease-in-out {$delay}s",
+        'animation' => "bloom 1s ease-in-out {$delay}s",
     ]);
 }
 
 Css::keyframes('bloom', [
-    'from' => ['transform' => 'scale(0) translateZ(0)', 'opacity' => '1'],
-    'to' => ['transform' => "scale(0.5) translateZ(0)", 'opacity' => '1'],
+    'from' => ['transform' => 'scale(0) translateZ(0)', 'opacity' => 1],
+    'to' => ['transform' => 'scale(0.5) translateZ(0)', 'opacity' => 1],
 ]);
 
 /* bubble */
@@ -40,8 +40,8 @@ Css::style('#menu #bubble canvas', [
 ]);
 
 Css::keyframes('bubbleIn', [
-    '0%' => ['transform' => 'scale(0)', 'opacity' => 1],
-//    '90%' => ['transform' => 'scale(1.2) translateZ(0)', 'opacity' => 1],
+    '0%' => ['transform' => 'scale(2)', 'opacity' => 0],
+    '1%' => ['transform' => 'scale(0)', 'opacity' => 1],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 
@@ -86,10 +86,7 @@ for ($i = 1; $i <= $max; $i++) {
 //    'opacity' => 0,
 //]);
 
-Css::keyframes('photoIn', [
-//    'from' => ['transform' => 'scale(0) translateZ(0)']
-    'from' => ['transform' => 'scale(0.01)']
-]);
+Css::keyframes('photoIn', ['from' => ['transform' => 'scale(0.01)']]);
 for ($i = 1; $i <= 17; $i++) {
     $degree = 0.5 * $i - 2;
     $delay = round(($i - 1) / 18, 1);
@@ -116,8 +113,11 @@ Css::keyframes('flip-90-0', [
 ]);
 Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(0.1)'],
-    '100%' => ['transform' => 'scale(1)'],
+    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
+    '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
+]);
+Css::keyframes('zoomIn', [
+    'to' => ['transform' => 'scale(1.3)'],
 ]);
 /* album out */
 

@@ -21,7 +21,6 @@ class Background
 
 class Css
 {
-
     protected static $count = 0;
     protected static $keyframes = [];
     protected static $styles = [];
