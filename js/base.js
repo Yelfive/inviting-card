@@ -375,7 +375,7 @@
             setTimeout(function () {
                 self.menu.className = '';
                 self.touch.className = 'touch-in';
-            }, 550);
+            }, 500);
         },
         show: function () {
             if (page.hasClass(this.menu, 'kiss')) {

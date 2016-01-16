@@ -40,9 +40,9 @@ Css::style('#menu #bubble canvas', [
 ]);
 
 Css::keyframes('bubbleIn', [
-    '0%' => ['transform' => 'scale(0) translateZ(0)', 'opacity' => 1],
+    '0%' => ['transform' => 'scale(0)', 'opacity' => 1],
 //    '90%' => ['transform' => 'scale(1.2) translateZ(0)', 'opacity' => 1],
-    '100%' => ['transform' => 'scale(1) translateZ(0)', 'opacity' => 1],
+    '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 
 Css::keyframes('fadeIn', ['from' => ['opacity' => 0, 'transform' => 'translate3d(0, 0, 0)'], 'to' => ['opacity' => 1]]);
