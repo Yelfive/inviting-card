@@ -7,60 +7,13 @@
     <title>Home</title>
     <!--<link rel="stylesheet" href="../css/base.css">-->
     <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
     </script>
     <style>
         <?php include __DIR__ . '/core.php'; ?>
         <?php include __DIR__ . '/style.php'; ?>
-        <?php
-//            for ($i = 1; $i <= 17; $i++) {
-//                $degree = 0.5 * $i - 2;
-//                echo <<<STYLE
-//
-//.wrapper .album li:nth-child($i) {
-//    -webkit-transform: rotateZ({$degree}deg);
-//    transform: rotateZ({$degree}deg);
-//}
-//STYLE;
-//            }
-//
-//            $max = 10;
-//            $duration = 0.25;
-//            for ($i = 1, $j = 1; $i <= $max; $i++) {
-//                $t = ($max - $i) * $duration + 0.5;
-//                if ($i < 5) {
-//                    if ($j > 4) {
-//                        break;
-//                    }
-//                    echo <<<STYLE
-//#menu.kiss #items > div:nth-child($j) {
-//    animation: fadeIn 0.5s ease-out {$t}s;
-//    -webkit-animation: fadeIn 1s ease-out {$t}s;
-//    animation-fill-mode: both;
-//}
-//
-//STYLE;
-//                    $j++;
-//                } else {
-//                    $pos = $i / $max * 100;
-//                    $left = $pos;
-//                    $top = $pos;
-//                    echo <<<STYLE
-//#menu #bubble canvas:nth-child($i) {
-//    left: $left%;
-//    top: $top%;
-//}
-//#menu.kiss #bubble canvas:nth-child($i) {
-//    animation: bubbleIn {$duration}s ease-out {$t}s;
-//    -webkit-animation: bubbleIn {$duration}s ease-out {$t}s;
-//}
-//
-//STYLE;
-//                }
-//            }
-
-            ?>
     </style>
 </head>
 <body>
@@ -158,6 +111,27 @@ In exchange for mine
 </div>
 </body>
 <script>
+    wx.config({
+        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '', // 必填，公众号的唯一标识
+        timestamp: 12345, // 必填，生成签名的时间戳
+        nonceStr: '', // 必填，生成签名的随机串
+        signature: '',// 必填，签名，见附录1
+        jsApiList: [] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function() {
+        wx.previewImage({
+            current: '../images/photos/1.jpg', // 当前显示图片的http链接
+            urls:
+                <?php
+                $urls = [];
+                for($i = 1; $i < 18; $i++) {
+                    $urls[] = "../images/photos/$i.jpg";
+                }
+                echo json_encode($urls);
+                ?>
+        });
+    })
     document.write('<script src="../js/base.js?t=' + (new Date).getTime() + '"><\/script>');
 </script>
 </html>
