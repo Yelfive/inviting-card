@@ -38,7 +38,7 @@ class Base extends Object
 
     protected function throwError(&$response)
     {
-        if ($response && $response['errcode']) {
+        if ($response && !empty($response['errcode'])) {
             throw new Exception("Failed to fetch access token:$response[errmsg]($response[errcode])");
         }
 
