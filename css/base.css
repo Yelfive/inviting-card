@@ -45,12 +45,11 @@ body, .wrapper {
 }
 
 .wrapper {
-    /*overflow: hidden;*/
+    perspective: 500px;
 }
 
 .wrapper, .wrapper > div {
     height: 100%;
-    overflow: hidden;
 }
 
 .wrapper > div {
@@ -58,6 +57,7 @@ body, .wrapper {
     left: 0;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 0 40px #BDBDBD;
 }
 
 .wrapper .welcome .circle {
@@ -81,7 +81,6 @@ body, .wrapper {
 
 .wrapper .welcome .words {
     padding: 0 2rem;
-
     text-align: center;
     line-height: 50px;
 }

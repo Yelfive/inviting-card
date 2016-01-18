@@ -72,20 +72,6 @@ for ($i = 1; $i <= $max; $i++) {
 }
 
 /* bubble END */
-//Css::keyframes('photoIn', [
-//   'from' => [
-//       'transform' => 'scale(0)',
-////       'opacity' => 0,
-//   ],
-//    'to' => [
-//        'opacity' => 1,
-//    ]
-//]);
-/* album */
-//Css::style('.wrapper .album li', [
-//    'opacity' => 0,
-//]);
-
 Css::keyframes('photoIn', ['from' => ['transform' => 'scale(0.01)']]);
 for ($i = 1; $i <= 17; $i++) {
     $degree = 0.5 * $i - 2;
@@ -96,20 +82,20 @@ for ($i = 1; $i <= 17; $i++) {
 
 Css::style('.wrapper .flip-90-0', [
     'transform' => 'rotateX(0deg)',
-    'animation' => 'flip-90-0 0.5s linear',
+    'animation' => 'flip-90-0 0.6s linear',
 ]);
 Css::style('.wrapper .flip-0-90', [
     'transform' => 'rotateY(90deg)',
-    'animation' => 'flip-0-90 0.5s linear',
+    'animation' => 'flip-0-90 0.6s linear',
 ]);
 
 Css::keyframes('flip-0-90', [
-    'from' => ['transform' => 'rotateY(0deg)'],
-    'to' => ['transform' => 'rotateY(90deg)'],
+    '0%' => ['transform' => 'rotateY(0deg)'],
+    '100%' => ['transform' => 'rotateY(90deg)'],
 ]);
 Css::keyframes('flip-90-0', [
-    'from' => ['transform' => 'rotateY(90deg)'],
-    'to' => ['transform' => 'rotateY(0deg)'],
+    '0%' => ['transform' => 'rotateY(-90deg)'],
+    '100%' => ['transform' => 'rotateY(0deg)'],
 ]);
 Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
 Css::keyframes('touchIn', [

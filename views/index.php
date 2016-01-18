@@ -7,7 +7,6 @@
     <title>Home</title>
     <!--<link rel="stylesheet" href="../css/base.css">-->
     <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
     </script>
@@ -69,26 +68,26 @@ Just your heart
 In exchange for mine
         </pre>
     </div>
-    <div class="album rotateY-90" data-init="albumShow">
-        <ul class="bg-pink" id="album-ul">
-            <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>
-        </ul>
+    <div class="album rotateY-90" data-init="">
+<!--        <ul class="bg-pink" id="album-ul">-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>-->
+<!--            <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>-->
+<!--        </ul>-->
     </div>
     <!--<div class="movie rotateY-90" id="love-movie">-->
 
@@ -110,6 +109,7 @@ In exchange for mine
     </div>
 </div>
 </body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
 <?php
 /**
@@ -120,32 +120,23 @@ In exchange for mine
  *
  */
 ?>
-    wx.config({
-        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        appId: '<?= $appId; ?>', // 必填，公众号的唯一标识
-        timestamp: '<?= $timestamp; ?>', // 必填，生成签名的时间戳
-        nonceStr: '<?= $nonceStr; ?>', // 必填，生成签名的随机串
-        signature: '<?= $signature; ?>',// 必填，签名，见附录1
-        jsApiList: ['previewImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-    });
-
-document.querySelector('#timing-being-together').ontouchstart = function () {
-    alert('touched')
-    wx.previewImage({
-        current: 'http://inviting.mylord.cn/images/photos/1.jpg', // 当前显示图片的http链接
-        urls: <?php
+    var DATA = {
+        config: {
+            debug: false,
+            appId: '<?= $appId; ?>',
+            timestamp: '<?= $timestamp; ?>',
+            nonceStr: '<?= $nonceStr; ?>',
+            signature: '<?= $signature; ?>',
+        },
+        images: <?php
             $urls = [];
             for($i = 1; $i < 18; $i++) {
-                $urls[] = "http://inviting.mylord.cn/images/photos/$i.jpg";
+                $urls[] = "http://$_SERVER[HTTP_HOST]/images/photos/$i.jpg";
             }
             echo json_encode($urls);
         ?>
-    });
-}
+    }
 
-    wx.error(function () {
-        console.log(123)
-    });
     document.write('<script src="../js/base.js?t=' + (new Date).getTime() + '"><\/script>');
 </script>
 </html>

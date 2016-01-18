@@ -26,6 +26,21 @@
 
     const $_TIMING = document.querySelector('#timing-being-together');
 
+    var Wechat = {
+        wechat: wx,
+        init: function () {
+            DATA.config.jsApiList = ['previewImage'];
+            this.wechat.config(DATA.config);
+        },
+        previewImage: function () {
+            this.wechat.previewImage({
+                current: DATA.images[0],
+                urls: DATA.images
+            });
+        }
+    }
+    Wechat.init();
+
     var $body = document.body;
     $body.onload = function () {
         var $loading = document.querySelector('.loading');
@@ -94,7 +109,7 @@
         setTimeout(function () {
             typeIn($_TIMING, function () {
                 timing.together();
-                Album.init();
+                //Album.init();
             });
         }, 2300);
     };
@@ -133,26 +148,10 @@
         }, 75);
     }
 
-    var animation = {
-        stoped: false,
-        stop: function () {
-            if (this.stoped) {
-                return;
-            }
-            // stop statement
-        },
-        start: function () {
-            if (!this.stoped) {
-                return;
-            }
-            // start statement
-        }
-    };
-
     /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
-        this.timeout = 500;
+        this.timeout = 600;
     }
     PageBase.prototype = {
         hasClass: function (elem, className) {
@@ -219,6 +218,9 @@
     /* Album */
     function BaseAlbum() {
         this.album = document.querySelector('#album-ul');
+        if (!this.album) {
+            return;
+        }
         this.lis = this.album.querySelectorAll('li');
         this.imgCount = this.lis.length;
         this.timeout = 1000;
@@ -226,7 +228,7 @@
 
     BaseAlbum.prototype = {
         downloadInterval: 100,
-        img: new Image(),
+        img: null,
         show: function () {
             if (page.hasClass(this.album, 'photo-in')) {
                 return;
@@ -235,7 +237,7 @@
         },
         init: function () {
             var i = 17, $this = this;
-
+            this.img = new Image();
             function download() {
                 $this.img.src = '../images/photos/' + i + '.jpg';
             }
@@ -259,7 +261,7 @@
                     elem.className = 'photo-out';
                     setTimeout(function () {
                         elem.className = 'hide';
-                    }, Album.timeout);
+                    }, $this.timeout);
 
                     if (this.index == 0) {
                         setTimeout(function () {
@@ -268,7 +270,7 @@
                                 $this.lis[j].className = '';
                             }
                             $this.show();
-                        }, Album.timeout);
+                        }, $this.timeout);
                     }
                 });
             }
@@ -451,5 +453,4 @@
             this.context.stroke();
         }
     };
-
 }());
