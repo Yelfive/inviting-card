@@ -128,17 +128,21 @@ In exchange for mine
         signature: '<?= $signature; ?>',// 必填，签名，见附录1
         jsApiList: ['previewImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
+
+document.querySelector('#timing-being-together').ontouchstart = function () {
+    alert('touched')
     wx.previewImage({
-        current: '../images/photos/1.jpg', // 当前显示图片的http链接
+        current: 'http://inviting.mylord.cn/images/photos/1.jpg', // 当前显示图片的http链接
         urls: <?php
             $urls = [];
             for($i = 1; $i < 18; $i++) {
-                $urls[] = "../images/photos/$i.jpg";
+                $urls[] = "http://inviting.mylord.cn/images/photos/$i.jpg";
             }
             echo json_encode($urls);
-            ?>
-
+        ?>
     });
+}
+
     wx.error(function () {
         console.log(123)
     });

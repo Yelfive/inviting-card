@@ -61,7 +61,7 @@ class FileCache
 
     protected function file()
     {
-        $cacheDir = __APP__ . '/runtime/logs';
+        $cacheDir = __APP__ . '/runtime/cache';
         is_dir($cacheDir) || mkdir($cacheDir, 0755, true);
         $cacheFile = "$cacheDir/cache";
         return $cacheFile;
