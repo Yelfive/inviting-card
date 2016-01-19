@@ -110,9 +110,8 @@ Css::keyframes('zoomIn', [
     'to' => ['transform' => 'scale(1.3)'],
 ]);
 Css::keyframes('heartbeats', [
-    '0%' => ['transform' => 'scale(0.8)'],
+    '0%, 100%' => ['transform' => 'scale(0.8)'],
     '50%' => ['transform' => 'scale(1)'],
-    '100%' => ['transform' => 'scale(0.8)'],
 ]);
 Css::style('#heartbeats', [
     'position' => 'absolute',
@@ -129,6 +128,20 @@ Css::style('#heartbeats', [
 Css::style('#heartbeats.beats', ['display' => 'block']);
 Css::style('#heartbeats.beats > canvas', [
     'animation' => 'heartbeats 1s ease-in-out infinite',
+    'animation-fill-mode' => 'both'
+]);
+Css::style('#heartbeats > canvas:nth-child(1)', [
+]);
+Css::style('#heartbeats > canvas:nth-child(2)', [
+    'margin-left' => '-20px',
+    'width' => '50px',
+]);
+Css::style('#heartbeats > canvas:nth-child(3)', [
+    'margin-left' => '-10px',
+    'width' => '80px',
+]);
+Css::style('#heartbeats > canvas', [
+    'margin-top' => '50%'
 ]);
 /* album out */
 

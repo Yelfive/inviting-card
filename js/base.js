@@ -29,7 +29,7 @@
     var Wechat = {
         wechat: wx,
         init: function () {
-            DATA.config.debug = true;
+            //DATA.config.debug = true;
             DATA.config.jsApiList = ['previewImage'];
             this.wechat.config(DATA.config);
         },
@@ -51,6 +51,7 @@
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
         setTimeout(afterLoadingRemoved, 550);
+        Album.init();
     };
 
     function afterLoadingRemoved() {
@@ -114,7 +115,6 @@
         setTimeout(function () {
             typeIn($_TIMING, function () {
                 timing.together();
-                Album.init();
             });
         }, 2300);
     };
@@ -491,13 +491,15 @@
     var Loading = {
         _: document.querySelector('#heartbeats'),
         init: function () {
-            this._.appendChild(new Heart(document.createElement('canvas')));
+            for (var i = 0; i < 3; i++) {
+                this._.appendChild(new Heart(document.createElement('canvas')));
+            }
         },
         show: function () {
-            //this._.className = 'beats';
+            this._.className = 'beats';
         },
         hide: function () {
-            //this._.className = '';
+            this._.className = '';
         }
     };
     Loading.init();
