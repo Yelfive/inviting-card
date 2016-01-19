@@ -5,7 +5,7 @@
  */
 define('__APP__', __DIR__);
 define('DEBUG', true);
-
+// TODO: location, music, video, thumb up
 include __APP__ . '/library/fk.php';
 
 \fk\web\Application::run();
