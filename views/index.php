@@ -1,8 +1,6 @@
 <?php
 
-defined('__APP__') or header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
-
-fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t'] + 10) && header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
+(!defined('__APP__') || fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t'] + 4)) && header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
 /**
  * @var string $appId
  * @var int $timestamp
@@ -19,8 +17,7 @@ fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t']
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="screen-orientation" content="portrait"/>
     <title>Home</title>
-    <!--<link rel="stylesheet" href="../css/base.css">-->
-    <script>document.write('<link rel="stylesheet" href="../css/base.css?t=' + (new Date).getTime() + '">')</script>
+    <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
     </script>
