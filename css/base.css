@@ -13,6 +13,12 @@ body, .wrapper {
     background-color: #ffe;
 }
 
+body > .container {
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+}
+
 .loading {
     position: absolute;
     width: 100%;
@@ -70,10 +76,6 @@ body, .wrapper {
     background-position: 2px 6px;
     background-repeat: no-repeat;
 }
-
-/*#circle-flowers > div {*/
-/*-webkit-transform: scale(0);*/
-/*}*/
 
 .font-it,
 .font-it > * {
@@ -467,3 +469,14 @@ ul#album-ul.photo-in {
     animation: touchIn 0.5s ease-in-out;
 }
 
+#music {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+    border-radius: 50%;
+    background: black url(../images/us_cd.png) no-repeat center center;
+    background-size: 50%;
+}

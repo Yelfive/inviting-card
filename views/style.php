@@ -56,7 +56,7 @@ $duration = 0.25;
 $operand = 1;
 for ($i = 1; $i <= $max; $i++) {
     $delay = ($max - $i) * $duration * 0.8;
-    if ($i < 5) {
+    if ($i <= 5) {
         $i % 2 === 0 && $operand *= -1;
         $degree = $operand * rand(5, 15);
         Css::style("#items > div:nth-child($i)", ['transform' => "rotateZ({$degree}deg)"]);
@@ -144,5 +144,13 @@ Css::style('#heartbeats > canvas', [
     'margin-top' => '50%'
 ]);
 /* album out */
+
+/* Music */
+Css::keyframes('rotate', [
+    'from' => ['transform' =>  'rotateZ(0deg)'],
+    'to' => ['transform' =>  'rotateZ(360deg)'],
+]);
+Css::style('#music', ['animation' => 'rotate 10s linear infinite']);
+Css::style('#music.paused', ['animation-play-state' => 'paused']);
 
 Css::register();

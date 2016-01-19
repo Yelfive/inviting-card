@@ -30,35 +30,37 @@ fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t']
     </style>
 </head>
 <body>
-<div class="loading"></div>
-<div id="heartbeats"></div>
-<div class="wrapper">
-    <div class="welcome">
-        <div class="circle" id="circle-flowers">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div>
-        </div>
-        <div id="timing-being-together" class="invisible font-it">
-            <?php $duration = time() - 1405785600 + 6; ?>
-            <div class="prefix">We have been <b>together</b> for</div>
-            <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
-            <i class="value hour"><?= intval($duration / 3600 % 24, 0); ?></i><i class="unit hour"></i>
-            <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
-            <i class="value second"><?= intval($duration % 60); ?></i><i class="unit second"></i>
-        </div>
-        <div class="words font-it invisible" id="votes">
-            No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
-        </div>
-    </div>
-    <div class="love-story rotateY-90 font-it" data-init="typeIn">
-        <div class="invisible">
-            <div id="timing-love-story" class="font-it">
-                <div class="prefix">We have been <b>known each other</b> for</div>
-                <i class="value year">00</i><i class="unit year"></i>
-                <i class="value month">00</i><i class="unit month"></i>
-                <i class="value day">00</i><i class="unit day"></i>
+<div class="container">
+    <div class="loading"></div>
+    <div id="music" class="paused"><audio src="./medias/bg.mp3" loop="true" preload="true"></audio></div>
+    <div id="heartbeats"></div>
+    <div class="wrapper">
+        <div class="welcome">
+            <div class="circle" id="circle-flowers">
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div>
             </div>
+            <div id="timing-being-together" class="invisible font-it">
+                <?php $duration = time() - 1405785600 + 6; ?>
+                <div class="prefix">We have been <b>together</b> for</div>
+                <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
+                <i class="value hour"><?= intval($duration / 3600 % 24, 0); ?></i><i class="unit hour"></i>
+                <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
+                <i class="value second"><?= intval($duration % 60); ?></i><i class="unit second"></i>
+            </div>
+            <div class="words font-it invisible" id="votes">
+                No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
+            </div>
+        </div>
+        <div class="love-story rotateY-90 font-it" data-init="typeIn">
+            <div class="invisible">
+                <div id="timing-love-story" class="font-it">
+                    <div class="prefix">We have been <b>known each other</b> for</div>
+                    <i class="value year">00</i><i class="unit year"></i>
+                    <i class="value month">00</i><i class="unit month"></i>
+                    <i class="value day">00</i><i class="unit day"></i>
+                </div>
             <pre>
                 You know when I said I knew little about love?
                 Well,that wasn't true
@@ -83,49 +85,51 @@ fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t']
                 Just your heart
                 In exchange for mine
             </pre>
+            </div>
+        </div>
+        <div class="album rotateY-90" data-init="">
+            <?php if (fk::$app->request->terminal == 'pc'):?>
+                <ul class="bg-pink" id="album-ul">
+                    <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>
+                    <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>
+                </ul>
+            <?php else: ?>
+                <img src="../images/photos/pc_cover.jpg">
+            <?php endif; ?>
+        </div>
+        <div class="movie rotateY-90" id="love-movie">
+            我是视频么么哒
+        </div>
+        <div class="invitation rotateY-90" data-init="openMap">
+            It would be an honor to have you with us to witness the sacred bounding of our wedding
         </div>
     </div>
-    <div class="album rotateY-90" data-init="">
-        <?php if (fk::$app->request->terminal == 'pc'):?>
-        <ul class="bg-pink" id="album-ul">
-            <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>
-            <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>
-        </ul>
-        <?php else: ?>
-            <img src="../images/photos/pc_cover.jpg">
-        <?php endif; ?>
-    </div>
-    <!--<div class="movie rotateY-90" id="love-movie">-->
-
-    <!--</div>-->
-    <div class="invitation rotateY-90" data-init="openMap">
-    It would be an honor to have you with us to witness the sacred bounding of our wedding
-</div>
-</div>
-<div id="menu">
-    <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
-    <div id="cover"></div>
-    <div id="bubble"></div>
-    <div id="items" class="font-it">
-        <div class="item-1" data-class="welcome">时间de证明</div>
-        <div class="item-2" data-class="love-story">我们de故事</div>
-        <div class="item-3" data-class="album">幸福de刻印</div>
-        <div class="item-4" data-class="invitation">地址</div>
+    <div id="menu">
+        <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
+        <div id="cover"></div>
+        <div id="bubble"></div>
+        <div id="items" class="font-it">
+            <div class="item-1" data-class="welcome">时间de证明</div>
+            <div class="item-2" data-class="love-story">我们de故事</div>
+            <div class="item-3" data-class="album">幸福de刻印</div>
+            <div class="item-4" data-class="movie">视频</div>
+            <div class="item-5" data-class="invitation">地址</div>
+        </div>
     </div>
 </div>
 </body>

@@ -17,7 +17,7 @@
     }
 
     function addEvent(elem, eventName, callback) {
-        if (1 ||navigator.userAgent == 'test') {
+        if (navigator.userAgent == 'test') {
             elem['onclick'] = callback;
         } else {
             elem['on' + eventName] = callback;
@@ -45,16 +45,16 @@
         },
         openLocation: function () {
             var config = {
-                latitude: '30.6001688195',
-                longitude: '103.9143360720',
+                latitude: 30.6001688195,
+                longitude: 103.9143360720,
                 name: '双流聚竹园酒楼',
                 address: '双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222',
-                scale: 1, // 1~28,
+                scale: 20, // 1~28,
                 infoUrl: 'abc'
-            }
+            };
             this.wechat.openLocation(config);
         }
-    }
+    };
     Wechat.init();
 
     var $body = document.body;
@@ -66,7 +66,7 @@
     };
 
     function afterLoadingRemoved() {
-        document.body.removeChild(document.querySelector('.loading'));
+        $body.querySelector('.container').removeChild(document.querySelector('.loading'));
         typeIn(document.getElementById('votes'));
         drawCircle();
         Menu.init();
@@ -168,7 +168,7 @@
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
         this.timeout = 600;
-    }
+    };
     PageBase.prototype = {
         hasClass: function (elem, className) {
             var cls = elem.className;
@@ -212,7 +212,7 @@
             var $this = this;
             var current = $this.currentDom;
 
-            $this.addClass(current, 'flip-0-90')
+            $this.addClass(current, 'flip-0-90');
             setTimeout(function () {
                 $this.removeClass(current, 'flip-0-90')
                     .addClass(current, 'rotateY-90')
@@ -520,4 +520,34 @@
         }
     };
     Loading.init();
+
+    function BaseMusic () {
+        this.music = document.querySelector('#music');
+        this.audio = this.music.querySelector('audio');
+    }
+    BaseMusic.prototype = {
+        init: function () {
+            this._paused() || this.play();
+            var self = this;
+            addEvent(this.music, 'touchstart', function () {
+                self._paused() ? self.play() : self.pause();
+            });
+        },
+        _paused: function () {
+            return 1 == localStorage.musicPaused;
+        },
+        play: function () {
+            this.music.className = '';
+            this.audio.play();
+            localStorage.musicPaused = 0;
+        },
+        pause: function () {
+            this.music.className = 'paused';
+            this.audio.pause();
+            localStorage.musicPaused = 1;
+        }
+    };
+    var Music = new BaseMusic();
+    Music.init();
+    window.Music = Music;
 }());
