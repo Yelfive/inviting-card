@@ -129,7 +129,7 @@
         }
         var html = dom.innerHTML.replace(/ {2,}/g, ' ');
         dom.innerHTML = '';
-        dom.style.display = 'block';
+        dom.style.opacity = 1;
 
         var progress = 1;
         var args = arguments;
@@ -314,7 +314,7 @@
 
     var initializer = {
         typeIn: function (elem) {
-            typeIn(elem, function () {
+            typeIn(elem.children[0], function () {
                 timing.story();
             });
         },
@@ -487,7 +487,6 @@
         }
     };
 
-
     var Loading = {
         _: document.querySelector('#heartbeats'),
         init: function () {
@@ -497,6 +496,10 @@
         },
         show: function () {
             this._.className = 'beats';
+            var self = this;
+            setTimeout(function () {
+                self.hide(); // In case js sdk callback does not work properly
+            }, 1000)
         },
         hide: function () {
             this._.className = '';

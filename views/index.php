@@ -25,7 +25,7 @@
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
             <div></div><div></div>
         </div>
-        <div id="timing-being-together" class="hide font-it">
+        <div id="timing-being-together" class="invisible font-it">
             <?php $duration = time() - 1405785600 + 6; ?>
             <div class="prefix">We have been <b>together</b> for</div>
             <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
@@ -33,41 +33,43 @@
             <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
             <i class="value second"><?= intval($duration % 60); ?></i><i class="unit second"></i>
         </div>
-        <div class="words hide font-it" id="votes">
+        <div class="words font-it invisible" id="votes">
             No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
         </div>
     </div>
-    <div class="love-story hide rotateY-90 font-it" data-init="typeIn">
-        <div id="timing-love-story" class="font-it">
-            <div class="prefix">We have been <b>known each other</b> for</div>
-            <i class="value year">00</i><i class="unit year"></i>
-            <i class="value month">00</i><i class="unit month"></i>
-            <i class="value day">00</i><i class="unit day"></i>
+    <div class="love-story rotateY-90 font-it" data-init="typeIn">
+        <div class="invisible">
+            <div id="timing-love-story" class="font-it">
+                <div class="prefix">We have been <b>known each other</b> for</div>
+                <i class="value year">00</i><i class="unit year"></i>
+                <i class="value month">00</i><i class="unit month"></i>
+                <i class="value day">00</i><i class="unit day"></i>
+            </div>
+            <pre>
+                You know when I said I knew little about love?
+                Well,that wasn't true
+                I know a lot about love
+                I've seen it,I've seen it centuries and centuries of it
+                And it was the only thing that made watching you would bearable
+                All this wars,pain and lies,hate
+                Made me want to turn away and never look down again
+                But to see the way that mankind love
+                I mean,
+                you could search the furthest reaches the universe and never find anything more beautiful
+                so,yes,I know that love is unconditional
+                But I also know it can be unpredictable,unexpected,uncontrollable,unbearable
+                and,well,strangely easy to mistake for loathing
+                And,what I'm trying to say is
+                I think I love you
+                My heart,it fells like my chest can barely contain it
+                Like it doesn't belong to me anymore,it belongs to you
+                And if you wanted it,I'd wish for nothing to exchange
+                No gifts,no goods,no demonstrations for devotion
+                Nothing but knowing you love me too
+                Just your heart
+                In exchange for mine
+            </pre>
         </div>
-        <pre class="hide">
-            You know when I said I knew little about love?
-            Well,that wasn't true
-            I know a lot about love
-            I've seen it,I've seen it centuries and centuries of it
-            And it was the only thing that made watching you would bearable
-            All this wars,pain and lies,hate
-            Made me want to turn away and never look down again
-            But to see the way that mankind love
-            I mean,
-            you could search the furthest reaches the universe and never find anything more beautiful
-            so,yes,I know that love is unconditional
-            But I also know it can be unpredictable,unexpected,uncontrollable,unbearable
-            and,well,strangely easy to mistake for loathing
-            And,what I'm trying to say is
-            I think I love you
-            My heart,it fells like my chest can barely contain it
-            Like it doesn't belong to me anymore,it belongs to you
-            And if you wanted it,I'd wish for nothing to exchange
-            No gifts,no goods,no demonstrations for devotion
-            Nothing but knowing you love me too
-            Just your heart
-            In exchange for mine
-        </pre>
     </div>
     <div class="album rotateY-90" data-init="">
         <?php if (fk::$app->request->terminal == 'pc'):?>

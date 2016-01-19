@@ -89,6 +89,10 @@ body, .wrapper {
     display: none;
 }
 
+.invisible {
+    opacity: 0;
+}
+
 #timing-being-together {
     position: absolute;
     text-align: center;
@@ -130,61 +134,11 @@ body, .wrapper {
     content: '秒';
 }
 
-/*.wrapper .flip-0-90 {*/
-    /*transform: rotateY(90deg);*/
-    /*-webkit-transform: rotateY(90deg);*/
-    /*animation: flip-0-90 0.5s linear;*/
-/*}*/
 
-/*.wrapper .flip-90-0 {*/
-    /*transform: rotateX(0deg);*/
-    /*-webkit-transform: rotateX(0deg);*/
-    /*animation: flip-90-0 0.5s linear;*/
-/*}*/
-
-/*.rotateY-90 {*/
-    /*transform: rotateY(-90deg);*/
-    /*-webkit-transform: rotateY(-90deg);*/
-/*}*/
-
-/*@keyframes flip-0-90 {*/
-    /*from {*/
-        /*transform: rotateY(0deg);*/
-    /*}*/
-    /*to {*/
-        /*transform: rotateY(90deg);*/
-    /*}*/
-/*}*/
-
-/*@-webkit-keyframes flip-0-90 {*/
-    /*from {*/
-        /*-webkit-transform: rotateY(0deg);*/
-    /*}*/
-    /*to {*/
-        /*-webkit-transform: rotateY(90deg);*/
-    /*}*/
-/*}*/
-
-/*@keyframes flip-90-0 {*/
-    /*from {*/
-        /*transform: rotateY(90deg);*/
-    /*}*/
-    /*to {*/
-        /*transform: rotateY(0deg);*/
-    /*}*/
-/*}*/
-
-/*@-webkit-keyframes flip-90-0 {*/
-    /*from {*/
-        /*-webkit-transform: rotateY(90deg);*/
-    /*}*/
-    /*to {*/
-        /*-webkit-transform: rotateY(0deg);*/
-    /*}*/
-/*}*/
-
-.wrapper .love-story {
+.wrapper .love-story > div {
     word-wrap: break-word;
+    width: 100%;
+    height: 100%;
 }
 
 /* album animation */
@@ -241,18 +195,6 @@ ul#album-ul {
 ul#album-ul.photo-in {
     display: block;
 }
-
-/*@keyframes photosIn {*/
-    /*from {*/
-        /*transform: scale(0.01);*/
-    /*}*/
-/*}*/
-
-/*@-webkit-keyframes photosIn {*/
-    /*from {*/
-        /*-webkit-transform: scale(0.01);*/
-    /*}*/
-/*}*/
 
 @media screen and (max-height: 480px) {
     .wrapper .album li {
@@ -313,91 +255,6 @@ ul#album-ul.photo-in {
         opacity: 0;
     }
 }
-
-/*#album-ul.photo-in li:nth-child(1) {*/
-    /*animation: photosIn 0.5s ease-in-out;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(2) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.1s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.1s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(3) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.1s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.1s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(4) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.2s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.2s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(5) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.2s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.2s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(6) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.3s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.3s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(7) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.3s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.3s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(8) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.4s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.4s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(9) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.4s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.4s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(10) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.5s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.5s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(11) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.5s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.5s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(12) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.6s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.6s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(13) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.6s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.6s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(14) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.7s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.7s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(15) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.7s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.7s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(16) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.8s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.8s;*/
-/*}*/
-
-/*#album-ul.photo-in li:nth-child(17) {*/
-    /*animation: photosIn 0.5s ease-in-out 0.8s;*/
-    /*-webkit-animation: photosIn 0.5s ease-in-out 0.8s;*/
-/*}*/
 
 #album-ul.photo-in li {
     animation-fill-mode: both !important;
@@ -467,43 +324,26 @@ ul#album-ul.photo-in {
 @keyframes herKiss {
     to {
         transform: rotateZ(-10deg) translateZ(0) translateX(3px) translate3d(0, 0, 0);
-        /*right: -2px;*/
-        /*top: 2px;*/
     }
 }
 
 @-webkit-keyframes herKiss {
     to {
         -webkit-transform: rotateZ(-5deg) translateZ(0) translateX(3px) translate3d(0, 0, 0);
-        /*right: -5px;*/
     }
 }
 
 @keyframes meKiss {
     to {
         transform: rotateZ(-10deg) translateZ(0) translateX(-3px);
-        /*right: 5px;*/
     }
 }
 
 @-webkit-keyframes meKiss {
     to {
         -webkit-transform: rotateZ(-10deg) translateZ(0) translateX(-3px);
-        /*right: 5px;*/
     }
 }
-
-/*@keyframes zoomIn {*/
-    /*to {*/
-        /*transform: scale(1.3);*/
-    /*}*/
-/*}*/
-
-/*@-webkit-keyframes zoomIn {*/
-    /*to {*/
-        /*-webkit-transform: scale(1.3);*/
-    /*}*/
-/*}*/
 
 #cover {
     position: absolute;
@@ -539,14 +379,6 @@ ul#album-ul.photo-in {
     z-index: 2;
 }
 
-/*.kiss #items {*/
-/*display: block;*/
-/*animation: fadeIn 0.5s ease-in 0.5s;*/
-/*-webkit-animation: fadeIn 0.5s ease-in 0.5s;*/
-/*-webkit-animation-fill-mode: both;*/
-/*animation-fill-mode: both;*/
-/*}*/
-
 #menu {
     width: 100%;
     height: 100%;
@@ -557,10 +389,6 @@ ul#album-ul.photo-in {
     position: absolute;
 }
 
-/*#menu #bubble {*/
-/*opacity: 0;*/
-/*}*/
-
 #menu #bubble canvas {
     position: absolute;
     width: 10%;
@@ -568,28 +396,6 @@ ul#album-ul.photo-in {
     margin-top: -8.5rem;
     margin-left: -5.1rem;
 }
-
-/*#menu.kiss #bubble {*/
-/*opacity: 1;*/
-/*}*/
-
-/*@keyframes bubbleIn {*/
-/*from {*/
-/*transform: scale(0);*/
-/*}*/
-/*to {*/
-/*transform: scale(1);*/
-/*}*/
-/*}*/
-
-/*@-webkit-keyframes bubbleIn {*/
-/*from {*/
-/*-webkit-transform: scale(0);*/
-/*}*/
-/*to {*/
-/*-webkit-transform: scale(1);*/
-/*}*/
-/*}*/
 
 #items > div {
     width: 150px;
@@ -659,20 +465,3 @@ ul#album-ul.photo-in {
     animation: touchIn 0.5s ease-in-out;
 }
 
-/*@keyframes touchIn {*/
-    /*from {*/
-        /*transform: scale(0) translate3d(0, 0, 0);*/
-    /*}*/
-    /*to {*/
-        /*transform: scale(1) translate3d(0, 0, 0);*/
-    /*}*/
-/*}*/
-
-/*@-webkit-keyframes touchIn {*/
-    /*from {*/
-        /*-webkit-transform: scale(0);*/
-    /*}*/
-    /*to {*/
-        /*-webkit-transform: scale(1);*/
-    /*}*/
-/*}*/
