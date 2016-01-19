@@ -23,6 +23,11 @@ class fk
      */
     public static $app;
 
+    public static function isDebugging()
+    {
+        return defined('DEBUG') && DEBUG === true;
+    }
+
     public static function init()
     {
         static::$app = new FKComponents();

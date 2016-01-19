@@ -17,7 +17,7 @@
     }
 
     function addEvent(elem, eventName, callback) {
-        if (navigator.userAgent == 'test') {
+        if (1 ||navigator.userAgent == 'test') {
             elem['onclick'] = callback;
         } else {
             elem['on' + eventName] = callback;
@@ -30,7 +30,7 @@
         wechat: wx,
         init: function () {
             //DATA.config.debug = true;
-            DATA.config.jsApiList = ['previewImage'];
+            DATA.config.jsApiList = ['previewImage', 'openLocation'];
             this.wechat.config(DATA.config);
         },
         previewImage: function () {
@@ -42,6 +42,17 @@
                 config.complete = arguments[0];
             }
             this.wechat.previewImage(config);
+        },
+        openLocation: function () {
+            var config = {
+                latitude: '30.6001688195',
+                longitude: '103.9143360720',
+                name: '双流聚竹园酒楼',
+                address: '双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222',
+                scale: 1, // 1~28,
+                infoUrl: 'abc'
+            }
+            this.wechat.openLocation(config);
         }
     }
     Wechat.init();
@@ -320,6 +331,9 @@
         },
         albumShow: function () {
             Album.show();
+        },
+        openMap: function () {
+            Wechat.openLocation();
         }
     };
 

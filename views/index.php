@@ -1,3 +1,17 @@
+<?php
+
+defined('__APP__') or header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
+
+fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t'] + 10) && header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
+/**
+ * @var string $appId
+ * @var int $timestamp
+ * @var string $nonceStr
+ * @var string $signature
+ *
+ */
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,10 +113,9 @@
     <!--<div class="movie rotateY-90" id="love-movie">-->
 
     <!--</div>-->
-    <!--<div class="invitation rotateY-90">-->
-        <!--It would be an honor to have you with us to witness the sacred bounding of our wedding-->
-        <!--<textarea name="words"></textarea>-->
-    <!--</div>-->
+    <div class="invitation rotateY-90" data-init="openMap">
+    It would be an honor to have you with us to witness the sacred bounding of our wedding
+</div>
 </div>
 <div id="menu">
     <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
@@ -112,21 +125,11 @@
         <div class="item-1" data-class="welcome">时间de证明</div>
         <div class="item-2" data-class="love-story">我们de故事</div>
         <div class="item-3" data-class="album">幸福de刻印</div>
-        <div class="item-4">想不出名字</div>
+        <div class="item-4" data-class="invitation">地址</div>
     </div>
 </div>
 </body>
-<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
-<?php
-/**
- * @var string $appId
- * @var int $timestamp
- * @var string $nonceStr
- * @var string $signature
- *
- */
-?>
     var DATA = {
         config: {
             appId: '<?= $appId; ?>',
@@ -143,6 +146,7 @@
         ?>
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
-    document.write('<script src="../js/base.js?t=' + (new Date).getTime() + '"><\/script>');
 </script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../js/base.js?t=<?= time(); ?>"></script>
 </html>
