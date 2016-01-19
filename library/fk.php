@@ -67,16 +67,35 @@ class fk
  * @package fk
  * @property \fk\base\Curl $curl
  * @property \fk\cache\FileCache $cache
+ * @property \fk\web\Request $request
  */
 class FKComponents
 {
+    public $components = [
+        'curl' => 'fk\base\Curl',
+        'cache' => [
+            'class' => 'fk\cache\FileCache',
+            'cacheDir' => 'wechat',
+        ],
+        'request' => 'fk\web\Request',
+    ];
+
+    private $_loadedComponents = [];
+
     public function __get($name)
     {
-        switch ($name) {
-            case 'curl':
-                return new Curl();
-            case 'cache':
-                return new FileCache();
+        if (isset($this->components[$name])) {
+            if (isset($this->_loadedComponents[$name])) {
+                return $this->_loadedComponents[$name];
+            } else if (is_array($this->components[$name])) {
+                $params = $this->components[$name];
+                $class = $params['class'];
+                unset($params['class']);
+            } else {
+                $class = $this->components[$name];
+                $params = [];
+            }
+            return $this->_loadedComponents[$name] = new $class($params);
         }
     }
 

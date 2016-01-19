@@ -45,49 +45,54 @@
             <i class="value day">00</i><i class="unit day"></i>
         </div>
         <pre class="hide">
-You know when I said I knew little about love?
-Well,that wasn't true
-I know a lot about love
-I've seen it,I've seen it centuries and centuries of it
-And it was the only thing that made watching you would bearable
-All this wars,pain and lies,hate
-Made me want to turn away and never look down again
-But to see the way that mankind love
-I mean,you could search the furthest reaches the universe and never find anything more beautiful
-so,yes,I know that love is unconditional
-But I also know it can be unpredictable,unexpected,uncontrollable,unbearable
-and,well,strangely easy to mistake for loathing
-And,what I'm trying to say is
-I think I love you
-My heart,it fells like my chest can barely contain it
-Like it doesn't belong to me anymore,it belongs to you
-And if you wanted it,I'd wish for nothing to exchange
-No gifts,no goods,no demonstrations for devotion
-Nothing but knowing you love me too
-Just your heart
-In exchange for mine
+            You know when I said I knew little about love?
+            Well,that wasn't true
+            I know a lot about love
+            I've seen it,I've seen it centuries and centuries of it
+            And it was the only thing that made watching you would bearable
+            All this wars,pain and lies,hate
+            Made me want to turn away and never look down again
+            But to see the way that mankind love
+            I mean,
+            you could search the furthest reaches the universe and never find anything more beautiful
+            so,yes,I know that love is unconditional
+            But I also know it can be unpredictable,unexpected,uncontrollable,unbearable
+            and,well,strangely easy to mistake for loathing
+            And,what I'm trying to say is
+            I think I love you
+            My heart,it fells like my chest can barely contain it
+            Like it doesn't belong to me anymore,it belongs to you
+            And if you wanted it,I'd wish for nothing to exchange
+            No gifts,no goods,no demonstrations for devotion
+            Nothing but knowing you love me too
+            Just your heart
+            In exchange for mine
         </pre>
     </div>
     <div class="album rotateY-90" data-init="">
-<!--        <ul class="bg-pink" id="album-ul">-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>-->
-<!--            <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>-->
-<!--        </ul>-->
+        <?php if (fk::$app->request->terminal == 'pc'):?>
+        <ul class="bg-pink" id="album-ul">
+            <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>
+            <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>
+        </ul>
+        <?php else: ?>
+            <img src="../images/photos/pc_cover.jpg">
+        <?php endif; ?>
     </div>
     <!--<div class="movie rotateY-90" id="love-movie">-->
 
@@ -122,11 +127,10 @@ In exchange for mine
 ?>
     var DATA = {
         config: {
-            debug: false,
             appId: '<?= $appId; ?>',
             timestamp: '<?= $timestamp; ?>',
             nonceStr: '<?= $nonceStr; ?>',
-            signature: '<?= $signature; ?>',
+            signature: '<?= $signature; ?>'
         },
         images: <?php
             $urls = [];
@@ -135,8 +139,8 @@ In exchange for mine
             }
             echo json_encode($urls);
         ?>
-    }
-
+    };
+    const TERMINAL = '<?= fk::$app->request->terminal; ?>';
     document.write('<script src="../js/base.js?t=' + (new Date).getTime() + '"><\/script>');
 </script>
 </html>

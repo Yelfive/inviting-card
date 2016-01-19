@@ -8,6 +8,14 @@ namespace fk\cache;
 
 class FileCache
 {
+
+    public $cacheDir = 'cache';
+
+    public function __construct($config = [])
+    {
+        $this->cacheDir = $config['cacheDir'];
+    }
+
     public function get($name)
     {
         $caches = $this->fetchAllCaches();
@@ -63,7 +71,7 @@ class FileCache
     {
         $cacheDir = __APP__ . '/runtime/cache';
         is_dir($cacheDir) || mkdir($cacheDir, 0755, true);
-        $cacheFile = "$cacheDir/cache";
+        $cacheFile = "$cacheDir/$this->cacheDir";
         return $cacheFile;
     }
 

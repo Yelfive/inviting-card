@@ -29,6 +29,7 @@
     var Wechat = {
         wechat: wx,
         init: function () {
+            DATA.config.debug = true;
             DATA.config.jsApiList = ['previewImage'];
             this.wechat.config(DATA.config);
         },
@@ -109,7 +110,7 @@
         setTimeout(function () {
             typeIn($_TIMING, function () {
                 timing.together();
-                //Album.init();
+                Album.init();
             });
         }, 2300);
     };
@@ -217,25 +218,51 @@
     var page = new PageBase();
     /* Album */
     function BaseAlbum() {
-        this.album = document.querySelector('#album-ul');
-        if (!this.album) {
-            return;
+        switch (TERMINAL) {
+            case 'pc':
+                this.album = document.querySelector('#album-ul');
+                if (!this.album) {
+                    return;
+                }
+                this.lis = this.album.querySelectorAll('li');
+                this.imgCount = this.lis.length;
+                this.timeout = 1000;
+                break;
+            case 'mobile':
         }
-        this.lis = this.album.querySelectorAll('li');
-        this.imgCount = this.lis.length;
-        this.timeout = 1000;
     }
 
     BaseAlbum.prototype = {
         downloadInterval: 100,
         img: null,
         show: function () {
-            if (page.hasClass(this.album, 'photo-in')) {
-                return;
+            switch (TERMINAL) {
+                case 'pc':
+                    if (page.hasClass(this.album, 'photo-in')) {
+                        return;
+                    }
+                    this.album.className += ' photo-in';
+                    break;
+                case 'mobile':
+                    Wechat.previewImage();
             }
-            this.album.className += ' photo-in';
         },
         init: function () {
+            switch (TERMINAL) {
+                case 'pc':
+                    return this._initPc();
+                case 'mobile':
+                    return this._initMobile();
+            }
+
+            return this;
+        },
+        _initMobile: function () {
+            addEvent(document.querySelector('.wrapper .album > img'), 'touchstart', function () {
+                Wechat.previewImage();
+            })
+        },
+        _initPc: function () {
             var i = 17, $this = this;
             this.img = new Image();
             function download() {
