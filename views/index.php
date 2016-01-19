@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="loading"></div>
-<div id="container"></div>
+<div id="heartbeats"></div>
 <div class="wrapper">
     <div class="welcome">
         <div class="circle" id="circle-flowers">

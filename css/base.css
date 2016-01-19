@@ -199,6 +199,7 @@ body, .wrapper {
     top: 0;
     left: 0;
     transform: rotateZ(10deg);
+    -webkit-transform: rotateZ(10deg);
     box-shadow: 0 0 50px #808080;
 }
 .wrapper .album ul {

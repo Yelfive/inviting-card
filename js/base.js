@@ -34,10 +34,14 @@
             this.wechat.config(DATA.config);
         },
         previewImage: function () {
-            this.wechat.previewImage({
+            var config = {
                 current: DATA.images[0],
                 urls: DATA.images
-            });
+            };
+            if (arguments[0]) {
+                config.complete = arguments[0];
+            }
+            this.wechat.previewImage(config);
         }
     }
     Wechat.init();
@@ -231,7 +235,6 @@
             case 'mobile':
         }
     }
-
     BaseAlbum.prototype = {
         downloadInterval: 100,
         img: null,
@@ -244,7 +247,7 @@
                     this.album.className += ' photo-in';
                     break;
                 case 'mobile':
-                    Wechat.previewImage();
+                    //Wechat.previewImage();
             }
         },
         init: function () {
@@ -259,7 +262,10 @@
         },
         _initMobile: function () {
             addEvent(document.querySelector('.wrapper .album > img'), 'touchstart', function () {
-                Wechat.previewImage();
+                Loading.show();
+                Wechat.previewImage(function () {
+                    Loading.hide();
+                });
             })
         },
         _initPc: function () {
@@ -480,4 +486,19 @@
             this.context.stroke();
         }
     };
+
+
+    var Loading = {
+        _: document.querySelector('#heartbeats'),
+        init: function () {
+            this._.appendChild(new Heart(document.createElement('canvas')));
+        },
+        show: function () {
+            //this._.className = 'beats';
+        },
+        hide: function () {
+            //this._.className = '';
+        }
+    };
+    Loading.init();
 }());

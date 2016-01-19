@@ -35,8 +35,12 @@ Css::keyframes('bloom', [
 
 Css::style('#menu #bubble canvas', [
     'animation-fill-mode' => 'forwards !important',
-    'transform' => 'scale(1.5)',
+    'transform' => 'scale(0)',
     'opacity' => 0,
+]);
+
+Css::style('#menu.kiss #bubble canvas', [
+    'transform' => 'scale(1.5)',
 ]);
 
 Css::keyframes('bubbleIn', [
@@ -104,6 +108,27 @@ Css::keyframes('touchIn', [
 ]);
 Css::keyframes('zoomIn', [
     'to' => ['transform' => 'scale(1.3)'],
+]);
+Css::keyframes('heartbeats', [
+    '0%' => ['transform' => 'scale(0.8)'],
+    '50%' => ['transform' => 'scale(1)'],
+    '100%' => ['transform' => 'scale(0.8)'],
+]);
+Css::style('#heartbeats', [
+    'position' => 'absolute',
+    'left' => 0,
+    'top' => 0,
+    'text-align' => 'center',
+    'height' => '100%',
+    'width' => '100%',
+    'background-color' => 'rgba(255, 255, 255, 0.3)',
+    'z-index' => 1,
+    'display' => 'none',
+]);
+
+Css::style('#heartbeats.beats', ['display' => 'block']);
+Css::style('#heartbeats.beats > canvas', [
+    'animation' => 'heartbeats 1s ease-in-out infinite',
 ]);
 /* album out */
 
