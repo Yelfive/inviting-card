@@ -26,12 +26,6 @@ class Application extends Object
         $appId = $wechat->appId;
         $nonceStr = time();
         $timestamp = time();
-//        $signature = http_build_str([
-//            'jsapi_ticket' => $ticket,
-//            'noncestr' => time(),
-//            'timestamp' => time(),
-//            'url' => $_SERVER['HTTP_REFERER'],
-//        ]);
         $url = static::currentUrl();
         $signature = sha1("jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$url");
         include __APP__ . '/views/index.php';
