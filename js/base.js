@@ -524,14 +524,15 @@
     function BaseMusic () {
         this.music = document.querySelector('#music');
         this.audio = this.music.querySelector('audio');
+
+        //this._paused() || this.play();  // Safari mobile cannot play music automatically
+        var self = this;
+        addEvent(this.music, 'touchstart', function () {
+            self._paused() ? self.play() : self.pause();
+        });
     }
     BaseMusic.prototype = {
         init: function () {
-            this._paused() || this.play();
-            var self = this;
-            addEvent(this.music, 'touchstart', function () {
-                self._paused() ? self.play() : self.pause();
-            });
         },
         _paused: function () {
             return 1 == localStorage.musicPaused;
@@ -548,11 +549,10 @@
         }
     };
     var Music = new BaseMusic();
-    Music.init();
 
     function BaseMovie() {
         this.movie = document.querySelector('#love-movie .video');
-        var img = this.movie.querySelector('img:nth-child(2)');
+        var img = this.movie.querySelector('img.tv');
         this.movie.style.height = img.clientHeight + 'px';
     }
 

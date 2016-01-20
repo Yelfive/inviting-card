@@ -44,7 +44,6 @@ body > .container {
 
 @keyframes bounceOut {
     to {
-        /*background-size: 100%;*/
         transform: scale(2);
         opacity: 0;
     }
@@ -144,10 +143,12 @@ body > .container {
     content: '秒';
 }
 
-.wrapper .love-story > div {
+.wrapper .love-story > div,
+.wrapper .invitation > div {
     word-wrap: break-word;
-    width: 100%;
+    width: 90%;
     height: 100%;
+    margin: 0 auto;
 }
 
 /* album animation */
@@ -497,14 +498,20 @@ ul#album-ul.photo-in {
 }
 
 #love-movie .video {
-    margin-top: 50%;
     position: relative;
+    padding-top: 1.5rem;
 }
-#love-movie .video > * {
+
+#love-movie .video > img {
     position: absolute;
-    top: 0px;
-    left: 0px;
 }
-#love-movie .video  img{
+
+#love-movie .video > img.movie {
+    width: 70%;
+    left: 10%;
+    bottom: 2%;
+}
+
+#love-movie .video > img.tv {
     width: 100%;
 }

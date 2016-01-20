@@ -29,7 +29,7 @@
 <body>
 <div class="container">
     <div class="loading"></div>
-    <div id="music" class="paused"><audio src="./medias/bg.mp3" loop="true" preload="true"></audio></div>
+    <div id="music" class="paused"><audio src="./medias/bg.mp3" loop></audio></div>
     <div id="heartbeats"></div>
     <div class="wrapper">
         <div class="welcome">
@@ -113,19 +113,16 @@
             <div class="box">
                 <div class="video">
 <!--                    <video src=""></video>-->
-                    <img src="images/movie_cover.jpg" style="
-    width: 70%;
-    display: inline-block;
-    margin: auto;
-    left: 10%;
-    top: 20%;
-">
-                    <img src="../images/tv.png" alt="">
+                    <img src="../images/movie_cover.jpg" class="movie">
+                    <img src="../images/tv.png" class="tv">
                 </div>
             </div>
         </div>
         <div class="invitation rotateY-90" data-init="openMap">
-            It would be an honor to have you with us to witness the sacred bounding of our wedding
+            <div>
+                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding</p>
+                <div id="map" style="height: 300px; box-shadow: 5px 5px 10px;"></div>
+            </div>
         </div>
     </div>
     <div id="menu">
@@ -160,6 +157,16 @@
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
 </script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="../js/base.js?t=<?= time(); ?>"></script>
+<script>
+    var map = new BMap.Map("map");
+    var point = new BMap.Point(103.9207520000 , 30.6064530000);  // longitude, latitude
+    map.centerAndZoom(point, 15);
+
+    var marker = new BMap.Marker(point);        // 创建标注
+    map.addOverlay(marker);                     // 将标注添加到地图中
+
+</script>
 </html>
