@@ -5,7 +5,7 @@
  */
 define('__APP__', __DIR__);
 define('DEBUG', true);
-// TODO: video, thumb up
+// TODO: video,loading, thumb up, location unfinished
 // TODO: check document.load
 include __APP__ . '/library/fk.php';
 

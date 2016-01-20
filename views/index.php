@@ -110,7 +110,19 @@
             <?php endif; ?>
         </div>
         <div class="movie rotateY-90" id="love-movie">
-            我是视频么么哒
+            <div class="box">
+                <div class="video">
+<!--                    <video src=""></video>-->
+                    <img src="images/movie_cover.jpg" style="
+    width: 70%;
+    display: inline-block;
+    margin: auto;
+    left: 30px;
+    top: 60px;
+">
+                    <img src="../images/tv.png" alt="">
+                </div>
+            </div>
         </div>
         <div class="invitation rotateY-90" data-init="openMap">
             It would be an honor to have you with us to witness the sacred bounding of our wedding

@@ -10,7 +10,7 @@ html, body {
 }
 
 body
-/*, .wrapper*/
+    /*, .wrapper*/
 {
     text-align: center;
     background-color: #ffe;
@@ -143,7 +143,6 @@ body > .container {
     content: '秒';
 }
 
-
 .wrapper .love-story > div {
     word-wrap: break-word;
     width: 100%;
@@ -152,12 +151,12 @@ body > .container {
 
 /* album animation */
 
-.wrapper .album{
+.wrapper .album {
     text-align: center;
     overflow: hidden;
 }
 
-.wrapper .album > img{
+.wrapper .album > img {
     width: 90%;
     position: relative;
     top: 0;
@@ -166,6 +165,7 @@ body > .container {
     -webkit-transform: rotateZ(10deg);
     box-shadow: 0 0 50px #808080;
 }
+
 .wrapper .album ul {
     list-style: none;
     position: relative;
@@ -485,4 +485,25 @@ ul#album-ul.photo-in {
     border-radius: 50%;
     background: black url(../images/us_cd.png) no-repeat center center;
     background-size: 50%;
+}
+
+#love-movie .box {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#love-movie .video {
+    margin-top: 50%;
+    position: relative;
+}
+#love-movie .video > * {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#love-movie .video  img{
+    width: 100%;
 }

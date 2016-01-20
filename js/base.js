@@ -17,7 +17,7 @@
     }
 
     function addEvent(elem, eventName, callback) {
-        if (navigator.userAgent == 'test') {
+        if (TERMINAL == 'pc') {
             elem['onclick'] = callback;
         } else {
             elem['on' + eventName] = callback;
@@ -47,8 +47,8 @@
             var config = {
                 latitude: 30.6001688195,
                 longitude: 103.9143360720,
-                name: '双流聚竹园酒楼',
-                address: '双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222',
+                name: '双流聚竹园酒�?',
+                address: '双流县其他航空路西段2号近紫荆电影�?,聚竹园酒楼双流示范店 (028)85736222',
                 scale: 20, // 1~28,
                 infoUrl: 'abc'
             };
