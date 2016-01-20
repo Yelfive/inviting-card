@@ -76,12 +76,14 @@ for ($i = 1; $i <= $max; $i++) {
 }
 
 /* bubble END */
-Css::keyframes('photoIn', ['from' => ['transform' => 'scale(0.01)']]);
-for ($i = 1; $i <= 17; $i++) {
-    $degree = 0.5 * $i - 2;
-    $delay = round(($i - 1) / 18, 1);
-    Css::style(".wrapper .album li:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
-    Css::style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photoIn 0.5s ease-in-out {$delay}s"]);
+if (fk::$app->request->terminal == 'pc') {
+    Css::keyframes('photoIn', ['from' => ['transform' => 'scale(0.01)']]);
+    for ($i = 1; $i <= 17; $i++) {
+        $degree = 0.5 * $i - 2;
+        $delay = round(($i - 1) / 18, 1);
+        Css::style(".wrapper .album li:nth-child($i)", ['transform' => "rotateZ({$degree}deg) translateZ(0)"]);
+        Css::style("#album-ul.photo-in li:nth-child($i)", ['animation' => "photoIn 0.5s ease-in-out {$delay}s"]);
+    }
 }
 
 Css::style('.wrapper .flip-90-0', [

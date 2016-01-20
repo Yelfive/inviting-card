@@ -549,5 +549,13 @@
     };
     var Music = new BaseMusic();
     Music.init();
+
+    function BaseMovie() {
+        this.movie = document.querySelector('#love-movie .video');
+        var img = this.movie.querySelector('img:nth-child(2)');
+        this.movie.style.height = img.clientHeight + 'px';
+    }
+
     window.Music = Music;
+    window.Movie = new BaseMovie();
 }());

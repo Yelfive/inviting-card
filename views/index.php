@@ -117,8 +117,8 @@
     width: 70%;
     display: inline-block;
     margin: auto;
-    left: 30px;
-    top: 60px;
+    left: 10%;
+    top: 20%;
 ">
                     <img src="../images/tv.png" alt="">
                 </div>
