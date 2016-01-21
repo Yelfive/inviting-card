@@ -515,3 +515,8 @@ ul#album-ul.photo-in {
 #love-movie .video > img.tv {
     width: 100%;
 }
+
+.invitation p {
+    padding: 10px;
+    font-family: Microsoft YaHei;
+}

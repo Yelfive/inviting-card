@@ -58,7 +58,7 @@
     Wechat.init();
 
     var $body = document.body;
-    $body.onload = function () {
+    window.onload = function () {
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
         setTimeout(afterLoadingRemoved, 550);
@@ -332,8 +332,10 @@
         albumShow: function () {
             Album.show();
         },
-        openMap: function () {
-            Wechat.openLocation();
+        openMap: function (elem) {
+            addEvent(elem.querySelector('#open-map'), 'touchstart', function () {
+                Wechat.openLocation();
+            });
         }
     };
 

@@ -120,8 +120,11 @@
         </div>
         <div class="invitation rotateY-90" data-init="openMap">
             <div>
-                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding</p>
-                <div id="map" style="height: 300px; box-shadow: 5px 5px 10px;"></div>
+                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding.</p>
+                <p>我们诚挚的邀请您参加我们的婚礼</p>
+                <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
+                <button id="open-map">窗口打开</button>
+                <div id="map" style="height: 300px; box-shadow: 5px 5px 10px; margin-top: 10px;"></div>
             </div>
         </div>
     </div>
