@@ -333,8 +333,13 @@
             Album.show();
         },
         openMap: function (elem) {
-            addEvent(elem.querySelector('#open-map'), 'touchstart', function () {
+            var $button = elem.querySelector('#open-map');
+            addEvent($button, 'touchstart', function () {
+                this.className = 'active';
                 Wechat.openLocation();
+            });
+            addEvent($button, 'touchend', function () {
+                this.className = '';
             });
         }
     };
@@ -352,33 +357,49 @@
             var self = this;
             this.register(function () {
                 ts = ((new Date) - self.diff) / 1000 - start;
-                d = parseInt(ts / 86400);
-                h = parseInt(ts / 3600 % 24);
-                m = parseInt(ts / 60 % 60);
-                s = parseInt(ts % 60);
-                de.innerText = self.zeroFill(d);
-                he.innerText = self.zeroFill(h);
-                me.innerText = self.zeroFill(m);
-                se.innerText = self.zeroFill(s);
+                de.innerText = self._days(ts);
+                he.innerText = self._hour(ts);
+                me.innerText = self._minute(ts);
+                se.innerText = self._second(ts);
             });
         },
         story: function () {
             var start = 1030809600;
             var valElem = document.querySelector('#timing-love-story').querySelectorAll('.value');
-            var ye = valElem[0], me = valElem[1], de = valElem[2];
-            var ts, y, m, d;
+            var ye = valElem[0], me = valElem[1], de = valElem[2], he = valElem[3], ie = valElem[4], se = valElem[5];
+            var ts;
             var self = this;
 
-            var time = function () {
+            this.register(function () {
                 ts = ((new Date) - self.diff) / 1000 - start;
-                y = parseInt(ts / 86400 / 365);
-                m = parseInt(ts / 86400 % 365 / 30);
-                d = parseInt(ts / 86400 % 365 % 30);
-                ye.innerText = y;
-                me.innerText = self.zeroFill(m);
-                de.innerText = self.zeroFill(d);
-            };
-            time();
+                ye.innerText = self._years(ts);
+                me.innerText = self._month(ts);
+                de.innerText = self._day(ts);
+                he.innerText = self._hour(ts);
+                ie.innerText = self._minute(ts);
+                se.innerText = self._second(ts);
+            });
+        },
+        _years: function (ts) { // total years
+            return parseInt(ts / 86400 / 365);
+        },
+        _days: function (ts) { // total days
+            return this.zeroFill(parseInt(ts / 86400));
+        },
+        _month: function (ts) {
+            return this.zeroFill(parseInt(ts / 86400 % 365 / 30));
+        },
+        _day: function (ts) {
+            return this.zeroFill(parseInt(ts / 86400 % 365));
+        },
+        _hour: function (ts) {
+            return this.zeroFill(parseInt(ts / 3600 % 24));
+        },
+        _minute: function (ts) {
+          return this.zeroFill(parseInt(ts / 60 % 60));
+        },
+        _second: function (ts) {
+            return this.zeroFill(parseInt(ts % 60));
         },
         register: function (handler) {
             handler();

@@ -9,6 +9,7 @@
  *
  */
 
+$host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,7 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="screen-orientation" content="portrait"/>
+    <meta name="format-detection" content="telephone=no"/>
     <title>Home</title>
     <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
@@ -39,8 +41,8 @@
                 <div></div><div></div>
             </div>
             <div id="timing-being-together" class="invisible font-it">
-                <?php $duration = time() - 1405785600 + 6; ?>
-                <div class="prefix">We have been <b>together</b> for</div>
+                <?php $duration = time() - 1405785600 + 8; ?>
+                <div class="prefix">此时，我们已<b>相恋</b></div>
                 <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
                 <i class="value hour"><?= intval($duration / 3600 % 24, 0); ?></i><i class="unit hour"></i>
                 <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
@@ -52,36 +54,16 @@
         </div>
         <div class="love-story rotateY-90 font-it" data-init="typeIn">
             <div class="invisible">
+                <div>我们在</div>
                 <div id="timing-love-story" class="font-it">
-                    <div class="prefix">We have been <b>known each other</b> for</div>
                     <i class="value year">00</i><i class="unit year"></i>
                     <i class="value month">00</i><i class="unit month"></i>
-                    <i class="value day">00</i><i class="unit day"></i>
+                    <i class="value day">000</i><i class="unit day"></i>
+                    <i class="value hour">00</i><i class="unit hour"></i>
+                    <i class="value minute">00</i><i class="unit minute"></i>
+                    <i class="value second">00</i><i class="unit second"></i>
                 </div>
-            <pre>
-                You know when I said I knew little about love?
-                Well,that wasn't true
-                I know a lot about love
-                I've seen it,I've seen it centuries and centuries of it
-                And it was the only thing that made watching you would bearable
-                All this wars,pain and lies,hate
-                Made me want to turn away and never look down again
-                But to see the way that mankind love
-                I mean,
-                you could search the furthest reaches the universe and never find anything more beautiful
-                so,yes,I know that love is unconditional
-                But I also know it can be unpredictable,unexpected,uncontrollable,unbearable
-                and,well,strangely easy to mistake for loathing
-                And,what I'm trying to say is
-                I think I love you
-                My heart,it fells like my chest can barely contain it
-                Like it doesn't belong to me anymore,it belongs to you
-                And if you wanted it,I'd wish for nothing to exchange
-                No gifts,no goods,no demonstrations for devotion
-                Nothing but knowing you love me too
-                Just your heart
-                In exchange for mine
-            </pre>
+                <div>前第一次<b>遇见</b></div>
             </div>
         </div>
         <div class="album rotateY-90" data-init="">
@@ -92,7 +74,7 @@
                     <?php endfor; ?>
                 </ul>
             <?php else: ?>
-                <img src="../images/photos/pc_cover.jpg">
+                <img src="<?= $host; ?>/pc_cover.jpg">
             <?php endif; ?>
         </div>
         <div class="movie rotateY-90" id="love-movie">
@@ -106,7 +88,7 @@
         </div>
         <div class="invitation rotateY-90" data-init="openMap">
             <div>
-                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding.</p>
+<!--                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding.</p>-->
                 <p>我们诚挚的邀请您参加我们的婚礼</p>
                 <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
                 <div>
@@ -141,7 +123,7 @@
         images: <?php
             $urls = [];
             for($i = 1; $i < 18; $i++) {
-                $urls[] = "http://$_SERVER[HTTP_HOST]/images/photos/$i.jpg";
+                $urls[] = "$host/$i.jpg";
             }
             echo json_encode($urls);
         ?>

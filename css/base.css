@@ -90,7 +90,6 @@ body > .container {
 .wrapper .welcome .words {
     padding: 0 2rem;
     text-align: center;
-    line-height: 50px;
 }
 
 .hide {
@@ -107,11 +106,16 @@ body > .container {
     width: 100%;
 }
 
-#timing-love-story .value,
+#timing-being-together > .prefix > b {
+    font-size: 1.2rem;
+}
+
 #timing-being-together .value {
     font-size: 1.5rem;
 }
-
+#timing-love-story {
+    color: #FF5555;
+}
 #timing-love-story .unit:after,
 #timing-being-together .unit:after {
     font-size: 0.8rem;
@@ -130,16 +134,27 @@ body > .container {
     content: '天';
 }
 
+#timing-love-story .unit.hour:after,
 #timing-being-together .unit.hour:after {
     content: '小时';
 }
 
+#timing-love-story .unit.minute:after,
 #timing-being-together .unit.minute:after {
     content: '分';
 }
 
+#timing-love-story .unit.second:after,
 #timing-being-together .unit.second:after {
     content: '秒';
+}
+
+.wrapper .love-story > div > div {
+    display: inline;
+}
+
+.wrapper .love-story > div {
+    padding-top: 10px;
 }
 
 .wrapper .love-story > div,
@@ -533,6 +548,7 @@ ul#album-ul.photo-in {
     position: relative;
 }
 
+#open-map.active,
 #open-map:active {
     top: 3px;
     box-shadow: inset 0px 1px 0px #FF5C5C, 0px 2px 0px 0px #B34444, 0px 5px 3px #999;
