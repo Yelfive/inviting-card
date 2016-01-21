@@ -83,8 +83,7 @@ body > .container {
     background-repeat: no-repeat;
 }
 
-.font-it,
-.font-it > * {
+* {
     font-family: "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
 }
 
@@ -518,5 +517,39 @@ ul#album-ul.photo-in {
 
 .invitation p {
     padding: 10px;
-    font-family: Microsoft YaHei;
+}
+
+#open-map {
+    outline: none;
+    width: 100%;
+    border: none;
+    height: 30px;
+    line-height: 30px;
+    background-color: #FF5C5C;
+    color: white;
+    box-shadow: inset 0px 1px 0px #FF5C5C, 0px 5px 0px 0px #B34444, 0px 10px 5px #999;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+}
+
+#open-map:active {
+    top: 3px;
+    box-shadow: inset 0px 1px 0px #FF5C5C, 0px 2px 0px 0px #B34444, 0px 5px 3px #999;
+}
+
+#map {
+    height: 300px;
+    margin-right: 1px;
+}
+
+.invitation > div > div {
+    outline: none;
+    border: none;
+    background-color: #FF5C5C;
+    color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    position: relative;
+    padding: 1px;
 }

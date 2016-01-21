@@ -87,23 +87,9 @@
         <div class="album rotateY-90" data-init="">
             <?php if (fk::$app->request->terminal == 'pc'):?>
                 <ul class="bg-pink" id="album-ul">
-                    <li><img src="../images/photos/0.jpg"><p>One line description 1</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 2</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 3</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 4</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 5</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 6</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 7</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 8</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 9</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 10</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 11</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 12</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 13</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 14</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 15</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 16</p></li>
-                    <li><img src="../images/photos/0.jpg"><p>One line description 17</p></li>
+                    <?php for ($i = 1; $i <= 17; $i++): ?>
+                    <li><img src="../images/photos/0.jpg"><p>One line description <?= $i; ?></p></li>
+                    <?php endfor; ?>
                 </ul>
             <?php else: ?>
                 <img src="../images/photos/pc_cover.jpg">
@@ -123,8 +109,10 @@
                 <p>It would be an honor to have you with us to witness the sacred bounding of our wedding.</p>
                 <p>我们诚挚的邀请您参加我们的婚礼</p>
                 <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
-                <button id="open-map">窗口打开</button>
-                <div id="map" style="height: 300px; box-shadow: 5px 5px 10px; margin-top: 10px;"></div>
+                <div>
+                    <div id="map"></div>
+                    <button id="open-map">窗口打开</button>
+                </div>
             </div>
         </div>
     </div>
