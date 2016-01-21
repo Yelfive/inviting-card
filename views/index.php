@@ -80,7 +80,7 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
         <div class="movie rotateY-90" id="love-movie">
             <div class="box">
                 <div class="video">
-<!--                    <video src=""></video>-->
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video%2Ffinal.mp4"></video>
                     <img src="../images/movie_cover.jpg" class="movie">
                     <img src="../images/tv.png" class="tv">
                 </div>
