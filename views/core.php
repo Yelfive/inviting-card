@@ -9,7 +9,10 @@ class Background
 
     public static function top($i)
     {
-        return 96 * floor($i / 6);
+        if ($i == 17) {
+            return 172;
+        }
+        return 96 * floor($i / 6); // 172
     }
 
     public static function scale($i)

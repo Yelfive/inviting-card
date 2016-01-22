@@ -1,6 +1,10 @@
 <?php
 
 echo "\n";
+$imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/';
+
+Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
+
 //Css::style('.hide', ['transform' => 'scale(0)']);
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
 Css::style('#circle-flowers > div', [
@@ -18,7 +22,7 @@ for ($i = 1; $i <= 22; $i++) {
     $bgTop = Background::top($i);
     $delay = $i * 0.3;
     Css::style("#circle-flowers > div:nth-child($i)", [
-        'background-image' => 'url(../images/flowers.png)',
+        'background-image' => "url($imgHost/flowers.png)",
         'background-position' => "-{$bgLeft}px -{$bgTop}px",
     ]);
     Css::style("#circle-flowers.bloom > div:nth-child($i)", [
@@ -154,5 +158,12 @@ Css::keyframes('rotate', [
 ]);
 Css::style('#music', ['animation' => 'rotate 10s linear infinite']);
 Css::style('#music.paused', ['animation-play-state' => 'paused']);
+
+/* Video */
+Css::keyframes('videoPlay', [
+    'from' => ['opacity' => 1, 'transform' => 'scale(1)'],
+    'to' => ['opacity' => 0, 'transform' => 'scale(0)'],
+]);
+Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
 
 Css::register();

@@ -22,6 +22,59 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
     <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
+        var Heart = function (canvas) {
+            if (arguments[1]) {
+                this.size = arguments[1];
+            }
+            return this.draw(canvas);
+        };
+        Heart.prototype = {
+            radius: 0,
+            zero: {},
+            radian: Math.PI,
+            radianIncrement: Math.PI / 15,
+            context: null,
+            maxRadian: 3 * Math.PI,
+            strokeStyle: '#FF5C5C',
+            size: 100,
+            coordinate: function () {
+                var radian = this.radian;
+                var x = this.zero.x + this.radius * (16 * Math.pow(Math.sin(radian), 3));
+                var y = this.zero.y - this.radius * (13 * Math.cos(radian) - 5 * Math.cos(2 * radian) - 2 * Math.cos(3 * radian) - Math.cos(4 * radian));
+
+                this.radian += this.radianIncrement;
+
+                return {x: x, y: y};
+            },
+            draw: function (canvas) {
+                this.context = canvas.getContext('2d');
+                this.context.beginPath();
+                this.context.strokeStyle = this.strokeStyle;
+                this.context.lineWidth = 1;
+
+                canvas.width = this.size;
+                canvas.height = this.size;
+                this.zero = {x: this.size / 2, y: this.size / 2};
+                this.radius = this.size / 40;
+
+                var initCoordinate = this.coordinate();
+                this.context.moveTo(initCoordinate.x, initCoordinate.y);
+
+                while (this.radian < this.maxRadian) {
+                    this.registerLine();
+                }
+                this.context.fillStyle = this.strokeStyle;
+                this.context.fill();
+                return canvas;
+            },
+            registerLine: function () {
+                var c = this.coordinate();
+                this.context.lineTo(c.x, c.y);
+                this.context.strokeStyle = this.strokeStyle;
+                this.context.stroke();
+            }
+        };
+
     </script>
     <style>
         <?php include __DIR__ . '/core.php'; ?>
@@ -30,15 +83,16 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
 </head>
 <body>
 <div class="container">
-    <div class="loading"></div>
-    <div id="music" class="paused"><audio src="./medias/bg.mp3" loop></audio></div>
+    <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
+    <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
+    <div id="music" class="paused"><audio src="http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting/bg.mp3" loop preload></audio></div>
     <div id="heartbeats"></div>
     <div class="wrapper">
         <div class="welcome">
             <div class="circle" id="circle-flowers">
-                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                <div></div><div></div>
+                <?php for($i = 0; $i < 22; $i ++): ?>
+                    <div></div>
+                <?php endfor; ?>
             </div>
             <div id="timing-being-together" class="invisible font-it">
                 <?php $duration = time() - 1405785600 + 8; ?>
@@ -66,7 +120,7 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
                 <div>前第一次<b>遇见</b></div>
             </div>
         </div>
-        <div class="album rotateY-90" data-init="">
+        <div class="album rotateY-90" data-init="albumShow">
             <?php if (fk::$app->request->terminal == 'pc'):?>
                 <ul class="bg-pink" id="album-ul">
                     <?php for ($i = 1; $i <= 17; $i++): ?>
@@ -74,26 +128,32 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
                     <?php endfor; ?>
                 </ul>
             <?php else: ?>
-                <img src="<?= $host; ?>/pc_cover.jpg">
+                <div>
+                    <div class="cover">
+                        <div class="mask"></div>
+                        <div class="start"></div>
+                    </div>
+                    <div class="words">我们的第一个里程碑</div>
+                </div>
+<!--                <img src="--><?//= $host; ?><!--/pc_cover.jpg">-->
             <?php endif; ?>
         </div>
         <div class="movie rotateY-90" id="love-movie">
             <div class="box">
                 <div class="video">
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video%2Ffinal.mp4"></video>
-                    <img src="../images/movie_cover.jpg" class="movie">
-                    <img src="../images/tv.png" class="tv">
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4"></video>
+                    <img src="<?= $host; ?>/tv.png" class="tv">
+                    <div class="start"></div>
                 </div>
             </div>
         </div>
         <div class="invitation rotateY-90" data-init="openMap">
             <div>
-<!--                <p>It would be an honor to have you with us to witness the sacred bounding of our wedding.</p>-->
                 <p>我们诚挚的邀请您参加我们的婚礼</p>
                 <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
                 <div>
                     <div id="map"></div>
-                    <button id="open-map">窗口打开</button>
+                    <button id="open-map"><?= fk::$app->request->terminal == 'pc' ? '' : '窗口打开'; ?></button>
                 </div>
             </div>
         </div>
@@ -126,7 +186,8 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
                 $urls[] = "$host/$i.jpg";
             }
             echo json_encode($urls);
-        ?>
+        ?>,
+        photoHost: '<?= $host; ?>'
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
 </script>

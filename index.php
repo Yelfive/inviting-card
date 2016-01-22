@@ -5,7 +5,6 @@
  */
 define('__APP__', __DIR__);
 define('DEBUG', true);
-// TODO: video, thumb up
 // TODO: music auto-play
 // TODO: loading page --> animation
 include __APP__ . '/library/fk.php';

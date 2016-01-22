@@ -272,7 +272,7 @@
             return this;
         },
         _initMobile: function () {
-            addEvent(document.querySelector('.wrapper .album > img'), 'touchstart', function () {
+            addEvent(document.querySelector('.wrapper .album .start'), 'touchstart', function () {
                 Loading.show();
                 Wechat.previewImage(function () {
                     Loading.hide();
@@ -283,11 +283,11 @@
             var i = 17, $this = this;
             this.img = new Image();
             function download() {
-                $this.img.src = '../images/photos/' + i + '.jpg';
+                $this.img.src = DATA.photoHost + '/' + i + '.jpg';
             }
 
             this.img.onload = function () {
-                $this.lis[i - 1].querySelector('img').src = '../images/photos/' + i + '.jpg';
+                $this.lis[i - 1].querySelector('img').src = DATA.photoHost + '/' + i + '.jpg';
                 if (--i > 0) {
                     setTimeout(download, $this.downloadInterval);
                 } else {
@@ -468,62 +468,6 @@
         page.hasClass(Menu.menu, 'kiss') ? Menu.hide() : Menu.show();
     });
 
-    window.Menu = Menu;
-
-    window.page = page;
-
-    window.timing = timing;
-
-    var Heart = function (canvas) {
-        return this.draw(canvas);
-    };
-    Heart.prototype = {
-        radius: 0,
-        zero: {},
-        radian: Math.PI,
-        radianIncrement: Math.PI / 30 * 2,
-        context: null,
-        maxRadian: 3 * Math.PI,
-        strokeStyle: '#FF9191',
-        size: 100,
-        coordinate: function () {
-            var radian = this.radian;
-            var x = this.zero.x + this.radius * (16 * Math.pow(Math.sin(radian), 3));
-            var y = this.zero.y - this.radius * (13 * Math.cos(radian) - 5 * Math.cos(2 * radian) - 2 * Math.cos(3 * radian) - Math.cos(4 * radian));
-
-            this.radian += this.radianIncrement;
-
-            return {x: x, y: y};
-        },
-        draw: function (canvas) {
-            this.context = canvas.getContext('2d');
-            this.context.beginPath();
-            this.context.strokeStyle = this.strokeStyle;
-            this.context.lineWidth = 2;
-
-            canvas.width = this.size;
-            canvas.height = this.size;
-            this.zero = {x: this.size / 2, y: this.size / 2};
-            this.radius = this.size / 40;
-
-            var initCoordinate = this.coordinate();
-            this.context.moveTo(initCoordinate.x, initCoordinate.y);
-
-            while (this.radian < this.maxRadian) {
-                this.registerLine();
-            }
-            this.context.fillStyle = this.strokeStyle;
-            this.context.fill();
-            return canvas;
-        },
-        registerLine: function () {
-            var c = this.coordinate();
-            this.context.lineTo(c.x, c.y);
-            this.context.strokeStyle = this.strokeStyle;
-            this.context.stroke();
-        }
-    };
-
     var Loading = {
         _: document.querySelector('#heartbeats'),
         init: function () {
@@ -544,15 +488,21 @@
     };
     Loading.init();
 
+
     function BaseMusic () {
         this.music = document.querySelector('#music');
         this.audio = this.music.querySelector('audio');
 
-        //this._paused() || this.play();  // Safari mobile cannot play music automatically
         var self = this;
         addEvent(this.music, 'touchstart', function () {
             self._paused() ? self.play() : self.pause();
         });
+
+        this._paused() || this.play();  // Safari mobile cannot play music automatically
+        document.ontouchstart = function() { // touch the document to play music
+            self._paused() || self.play();
+            this.ontouchstart = undefined;
+        };
     }
     BaseMusic.prototype = {
         init: function () {
@@ -561,8 +511,8 @@
             return 1 == localStorage.musicPaused;
         },
         play: function () {
-            this.music.className = '';
             this.audio.play();
+            this.music.className = '';
             localStorage.musicPaused = 0;
         },
         pause: function () {
@@ -573,12 +523,32 @@
     };
     var Music = new BaseMusic();
 
-    function BaseMovie() {
+    function BaseMovie() { // 舍本求末
         this.movie = document.querySelector('#love-movie .video');
         var img = this.movie.querySelector('img.tv');
         this.movie.style.height = img.clientHeight + 'px';
-    }
+        this.video = this.movie.querySelector('video');
+        var self = this;
 
-    window.Music = Music;
-    window.Movie = new BaseMovie();
+        this.paused = true;
+        addEvent(this.movie, 'touchstart', function() {
+            self.paused ? self.play() : self.pause();
+        });
+
+        this.musicPlayed = !Music._paused();
+        this.play = function () {
+            this.video.play();
+            this.movie.className = 'video play';
+            Music.pause();
+            this.paused = false;
+        };
+        this.pause = function () {
+            this.video.pause();
+            this.musicPlayed && Music.play();
+            this.movie.className = 'video';
+            this.paused = true;
+        }
+    }
+    new BaseMovie();
+
 }());

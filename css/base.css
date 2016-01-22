@@ -26,16 +26,36 @@ body > .container {
     text-align: left;
 }
 
-.loading {
+#stage-in {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #FF6766 url(../images/running.gif) no-repeat center;
-    background-size: 50%;
+    /*background: #FF6766 url(../images/running.gif) no-repeat center;*/
+    /*background-size: 50%;*/
+    background-color: #FFFFEE;
     z-index: 101;
 }
+#stage-in > div {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+#stage-in canvas {
 
-.loading.running {
+    width: 100%;
+    height: 100%;
+
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
+    /*margin-top: -50px;*/
+    /*margin-left: -50px;*/
+}
+#stage-in.running {
     animation: bounceOut 0.5s ease 1s;
     -webkit-animation: bounceOut 0.5s ease;
     animation-fill-mode: both;
@@ -77,10 +97,8 @@ body > .container {
     width: 100%;
     height: 50%;
     position: relative;
-    background-image: url(../images/f/ring.png);
+    background: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/ring.png) no-repeat 2px 6px;
     background-size: 100%;
-    background-position: 2px 6px;
-    background-repeat: no-repeat;
 }
 
 * {
@@ -113,9 +131,11 @@ body > .container {
 #timing-being-together .value {
     font-size: 1.5rem;
 }
+
 #timing-love-story {
     color: #FF5555;
 }
+
 #timing-love-story .unit:after,
 #timing-being-together .unit:after {
     font-size: 0.8rem;
@@ -172,14 +192,49 @@ body > .container {
     overflow: hidden;
 }
 
-.wrapper .album > img {
-    width: 90%;
+.wrapper .album > div {
+    width: 95%;
+    height: 95%;
     position: relative;
     top: 0;
     left: 0;
     transform: rotateZ(10deg);
     -webkit-transform: rotateZ(10deg);
     box-shadow: 0 0 50px #808080;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.wrapper .album > div .mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.start {
+    position: absolute;
+    width: 114px;
+    height: 114px;
+    background: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/flowers.png) -402px -270px no-repeat;
+}
+.wrapper .album > div .start {
+    left: 50%;
+    top: 50%;
+    margin-left: -62px;
+    margin-top: -62px;
+}
+.wrapper .album > div .words{
+    padding: 20px;
+}
+.wrapper .album > div .cover {
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+    background: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/9.jpg) no-repeat center center;
+    background-size: 100%;
+    position: relative;
 }
 
 .wrapper .album ul {
@@ -324,12 +379,12 @@ ul#album-ul.photo-in {
 }
 
 #touch-us .her {
-    background-image: url(../images/her.png);
+    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);
 }
 
 #touch-us .me {
     width: 50%;
-    background-image: url(../images/me.png);
+    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);
 }
 
 .kiss > #touch-us .her {
@@ -426,7 +481,7 @@ ul#album-ul.photo-in {
 #items > div {
     width: 150px;
     height: 100px;
-    background: url(../images/bubbles/25.png) no-repeat;
+    background: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/25.png) no-repeat;
     background-size: 100%;
     text-align: center;
     line-height: 100px;
@@ -499,7 +554,7 @@ ul#album-ul.photo-in {
     top: 10px;
     z-index: 2;
     border-radius: 50%;
-    background: black url(../images/us_cd.png) no-repeat center center;
+    background: black url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/us_cd.png) no-repeat center center;
     background-size: 50%;
 }
 
@@ -516,6 +571,19 @@ ul#album-ul.photo-in {
     padding-top: 1.5rem;
 }
 
+#love-movie .video .start {
+    bottom: 18%;
+    left: 28%;
+    z-index: 1000;
+}
+
+#love-movie .video video {
+    position: absolute;
+    width: 67%;
+    left: 10%;
+    bottom: 1%;
+}
+
 #love-movie .video > img {
     position: absolute;
 }
@@ -523,7 +591,7 @@ ul#album-ul.photo-in {
 #love-movie .video > img.movie {
     width: 70%;
     left: 10%;
-    bottom: 2%;
+    bottom: 6%;
 }
 
 #love-movie .video > img.tv {
