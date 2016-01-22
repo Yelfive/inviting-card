@@ -30,8 +30,19 @@
         wechat: wx,
         init: function () {
             //DATA.config.debug = true;
-            DATA.config.jsApiList = ['previewImage', 'openLocation'];
+            DATA.config.jsApiList = ['previewImage', 'openLocation', 'onMenuShareAppMessage', 'onMenuShareTimeline'];
             this.wechat.config(DATA.config);
+
+
+            /* share */
+            //var title = '黄伍&谢凤',
+            //    link = 'http',
+            //    imgUrl = '',
+            //    desc = '我们邀请您及家人为我们见证这一美妙的时刻';
+            //var shareConfig = {title: title, link: link, imgUrl: imgUrl};
+            this.wechat.onMenuShareTimeline(DATA.shareConfig);
+            //shareConfig.desc = desc;
+            this.wechat.onMenuShareAppMessage(DATA.shareConfig);
         },
         previewImage: function () {
             var config = {

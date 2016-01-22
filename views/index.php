@@ -10,6 +10,7 @@
  */
 
 $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
+$title = '黄伍&谢凤';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="screen-orientation" content="portrait"/>
     <meta name="format-detection" content="telephone=no"/>
-    <title>Home</title>
+    <title><?= $title; ?></title>
     <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
@@ -187,7 +188,13 @@ $host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
             }
             echo json_encode($urls);
         ?>,
-        photoHost: '<?= $host; ?>'
+        photoHost: '<?= $host; ?>',
+        shareConfig: {
+            title: '<?= $title; ?>',
+            desc: '我们邀请您及家人为我们见证这一美妙的时刻',
+            link: '<?= "http://$_SERVER[HTTP_HOST]/index.php"; ?>',
+            imgUrl: 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/2.jpg'
+        }
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
 </script>
