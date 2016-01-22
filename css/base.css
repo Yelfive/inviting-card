@@ -45,15 +45,8 @@ body > .container {
     margin-left: -50px;
 }
 #stage-in canvas {
-
     width: 100%;
     height: 100%;
-
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    /*margin-top: -50px;*/
-    /*margin-left: -50px;*/
 }
 #stage-in.running {
     animation: bounceOut 0.5s ease 1s;
@@ -582,6 +575,7 @@ ul#album-ul.photo-in {
     width: 67%;
     left: 10%;
     bottom: 1%;
+    z-index: 9;
 }
 
 #love-movie .video > img {
@@ -596,6 +590,7 @@ ul#album-ul.photo-in {
 
 #love-movie .video > img.tv {
     width: 100%;
+    z-index: 10;
 }
 
 .invitation p {

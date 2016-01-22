@@ -17,7 +17,7 @@ class Js extends Base
 
     public function getTicket()
     {
-        $key = 'js_api_ticket';
+        $key = "js_api_ticket_$this->appId";
         if ($ticket = fk::$app->cache->get($key)) {
             return $ticket;
         }

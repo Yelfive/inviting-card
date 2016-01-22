@@ -8,9 +8,9 @@
         return window.orientation !== undefined && window.orientation !== 0;
     }
 
-    window.onresize = function () {
-        location.reload();
-    };
+    //window.onresize = function () {
+    //    location.reload();
+    //};
 
     if (isHorizon()) {
         return alert('Please place your phone vertically.');
@@ -30,19 +30,20 @@
         wechat: wx,
         init: function () {
             //DATA.config.debug = true;
-            DATA.config.jsApiList = ['previewImage', 'openLocation', 'onMenuShareAppMessage', 'onMenuShareTimeline'];
+            var shareApi = ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'];
+            DATA.config.jsApiList = ['previewImage', 'openLocation'];
+            for (var i = 0, len = shareApi.length; i < len; i++) {
+                DATA.config.jsApiList.push(shareApi[i]);
+            }
             this.wechat.config(DATA.config);
 
 
-            /* share */
-            //var title = '黄伍&谢凤',
-            //    link = 'http',
-            //    imgUrl = '',
-            //    desc = '我们邀请您及家人为我们见证这一美妙的时刻';
-            //var shareConfig = {title: title, link: link, imgUrl: imgUrl};
-            this.wechat.onMenuShareTimeline(DATA.shareConfig);
-            //shareConfig.desc = desc;
-            this.wechat.onMenuShareAppMessage(DATA.shareConfig);
+            var self = this;
+            this.wechat.ready(function () {
+                for (var i = 0, len = shareApi.length; i < len; i++ ) {
+                    self.wechat[shareApi[i]](DATA.shareConfig);
+                }
+            });
         },
         previewImage: function () {
             var config = {
@@ -539,6 +540,7 @@
         var img = this.movie.querySelector('img.tv');
         this.movie.style.height = img.clientHeight + 'px';
         this.video = this.movie.querySelector('video');
+        this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
         var self = this;
 
         this.paused = true;

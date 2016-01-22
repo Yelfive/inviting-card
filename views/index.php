@@ -20,6 +20,9 @@ $title = '黄伍&谢凤';
     <meta name="screen-orientation" content="portrait"/>
     <meta name="format-detection" content="telephone=no"/>
     <title><?= $title; ?></title>
+    <div style="display: none">
+        <img src="<?= $host; ?>/share.jpg">
+    </div>
     <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
@@ -142,7 +145,8 @@ $title = '黄伍&谢凤';
         <div class="movie rotateY-90" id="love-movie">
             <div class="box">
                 <div class="video">
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4"></video>
+<!--                    <iframe src="./video.php?t=--><?//= time(); ?><!--" frameborder="0" style="width: 251px; height: 188px;"></iframe>-->
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" poster></video>
                     <img src="<?= $host; ?>/tv.png" class="tv">
                     <div class="start"></div>
                 </div>
@@ -193,7 +197,7 @@ $title = '黄伍&谢凤';
             title: '<?= $title; ?>',
             desc: '我们邀请您及家人为我们见证这一美妙的时刻',
             link: '<?= "http://$_SERVER[HTTP_HOST]/index.php"; ?>',
-            imgUrl: 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/2.jpg'
+            imgUrl: 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/share.jpg'
         }
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';

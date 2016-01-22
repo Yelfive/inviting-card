@@ -37,6 +37,9 @@ class FileCache
             return [];
         }
         $caches = json_decode(file_get_contents($file), true);
+        if (!is_array($caches)) {
+            return [];
+        }
         $changed = false;
         foreach ($caches as $name => $cache) {
             if ($cache[2] !== 0 && $cache[1] + $cache[2] <= time()) {

@@ -22,7 +22,8 @@ class Base extends Object
 
     public function getAccessToken()
     {
-        if ($token = fk::$app->cache->get('access_token')) {
+        $key = "access_token_$this->appId";
+        if ($token = fk::$app->cache->get($key)) {
             return $token;
         }
 
@@ -30,7 +31,7 @@ class Base extends Object
         $response = fk::$app->curl->get($url);
         if ($response) {
             $this->throwError($response);
-            fk::$app->cache->set('access_token', $response['access_token'], $response['expires_in']);
+            fk::$app->cache->set($key, $response['access_token'], $response['expires_in']);
             return $response['access_token'];
         }
         return null;
@@ -46,12 +47,14 @@ class Base extends Object
 
     public function getAppId()
     {
-        return 'wx0be266702a6567a6';
+//        return 'wx0be266702a6567a6';
+        return 'wx9d3f8dce520b4c01'; // test
     }
 
     protected function getSecret()
     {
-        return 'b11ca215130a194ca0c2002cd547ce27';
+//        return 'b11ca215130a194ca0c2002cd547ce27';
+        return '3b7bbe37c0af4d11623cb3f69673dd67';
     }
 
 }
