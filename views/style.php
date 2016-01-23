@@ -5,7 +5,6 @@ $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/';
 
 Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
 
-//Css::style('.hide', ['transform' => 'scale(0)']);
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
 Css::style('#circle-flowers > div', [
     'width' => '100px',
@@ -165,5 +164,7 @@ Css::keyframes('videoPlay', [
     'to' => ['opacity' => 0, 'transform' => 'scale(0)'],
 ]);
 Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
+Css::style('.scale-0', ['transform' => 'scale(0)']);
+
 
 Css::register();

@@ -10,7 +10,6 @@ use fk;
 use fk\base\Object;
 use fk\wechat\Js;
 
-
 class Application extends Object
 {
     public static function run()
@@ -28,7 +27,10 @@ class Application extends Object
         $timestamp = time();
         $url = static::currentUrl();
         $signature = sha1("jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$url");
-        include __APP__ . '/views/index.php';
+
+        $viewPath = __APP__ . '/views';
+        $page = empty($_GET['p']) || !in_array($_GET['p'], ['index', 'video']) ? 'index' : $_GET['p'];
+        include "$viewPath/$page.php";
     }
 
     public static function currentUrl()

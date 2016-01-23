@@ -54,7 +54,7 @@ class Base extends Object
     protected function getSecret()
     {
 //        return 'b11ca215130a194ca0c2002cd547ce27';
-        return '3b7bbe37c0af4d11623cb3f69673dd67';
+        return '3b7bbe37c0af4d11623cb3f69673dd67'; // test
     }
 
 }

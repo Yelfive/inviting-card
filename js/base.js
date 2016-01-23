@@ -419,6 +419,7 @@
         }
     };
 
+    const $VIDEO = document.querySelector('#love-movie video');
     var BaseMenu = function () {
         this.menu = document.querySelector('#menu');
         this.touch = this.menu.querySelector('#touch-us');
@@ -428,6 +429,7 @@
 
     BaseMenu.prototype = {
         currentIndex: 0, // current page
+        movieIndex: null,
         init: function () {
             this.bubble();
             this.registerJs();
@@ -439,22 +441,28 @@
             var self = this;
             for (var i = 0; i < length; i++) {
                 $items[i].index = i;
+                if ($items[i].dataset.class == 'movie') {
+                    this.movieIndex = i;
+                }
                 addEvent($items[i], 'touchstart', function () {
                     if (self.currentIndex == this.index) {
                         return self.hide();
                     }
-                    var dest = $wrapper.querySelector('.' + this.dataset.class);
-                    if (!dest) {
+                    var dst = $wrapper.querySelector('.' + this.dataset.class);
+                    if (!dst) {
                         return ;
                     }
                     self.currentIndex = this.index;
-                    page.flipTo(dest);
+                    page.flipTo(dst);
                     self.hide();
                 });
             }
         },
         hide: function () {
             var self = this;
+            if (self.currentIndex == self.movieIndex) {
+                $VIDEO.className = '';
+            }
             self.menu.className += ' fade';
             setTimeout(function () {
                 self.menu.className = '';
@@ -464,6 +472,9 @@
         show: function () {
             if (page.hasClass(this.menu, 'kiss')) {
                 return;
+            }
+            if (this.currentIndex == this.movieIndex) {
+                $VIDEO.className = 'scale-0';
             }
             this.touch.className = '';
             this.menu.className = 'kiss';
@@ -535,33 +546,33 @@
     };
     var Music = new BaseMusic();
 
-    function BaseMovie() { // 舍本求末
-        this.movie = document.querySelector('#love-movie .video');
-        var img = this.movie.querySelector('img.tv');
-        this.movie.style.height = img.clientHeight + 'px';
-        this.video = this.movie.querySelector('video');
-        this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
-        var self = this;
-
-        this.paused = true;
-        addEvent(this.movie, 'touchstart', function() {
-            self.paused ? self.play() : self.pause();
-        });
-
-        this.musicPlayed = !Music._paused();
-        this.play = function () {
-            this.video.play();
-            this.movie.className = 'video play';
-            Music.pause();
-            this.paused = false;
-        };
-        this.pause = function () {
-            this.video.pause();
-            this.musicPlayed && Music.play();
-            this.movie.className = 'video';
-            this.paused = true;
-        }
-    }
-    new BaseMovie();
+    //function BaseMovie() { // 舍本求末
+        //this.movie = document.querySelector('#love-movie .video');
+        //var img = this.movie.querySelector('img.tv');
+        //this.movie.style.height = img.clientHeight + 'px';
+        //this.video = this.movie.querySelector('video');
+        //this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
+        //var self = this;
+        //
+        //this.paused = true;
+        //addEvent(this.movie, 'touchstart', function() {
+        //    self.paused ? self.play() : self.pause();
+        //});
+        //
+        //this.musicPlayed = !Music._paused();
+        //this.play = function () {
+        //    this.video.play();
+        //    this.movie.className = 'video play';
+        //    Music.pause();
+        //    this.paused = false;
+        //};
+        //this.pause = function () {
+        //    this.video.pause();
+        //    this.musicPlayed && Music.play();
+        //    this.movie.className = 'video';
+        //    this.paused = true;
+        //}
+    //}
+    //new BaseMovie();
 
 }());

@@ -146,9 +146,9 @@ $title = '黄伍&谢凤';
             <div class="box">
                 <div class="video">
 <!--                    <iframe src="./video.php?t=--><?//= time(); ?><!--" frameborder="0" style="width: 251px; height: 188px;"></iframe>-->
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" poster></video>
-                    <img src="<?= $host; ?>/tv.png" class="tv">
-                    <div class="start"></div>
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" poster controls ></video>
+<!--                    <img src="--><?//= $host; ?><!--/tv.png" class="tv">-->
+<!--                    <div class="start"></div>-->
                 </div>
             </div>
         </div>
