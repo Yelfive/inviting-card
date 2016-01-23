@@ -130,43 +130,45 @@ body > .container {
     color: #FF5555;
 }
 
-#timing-love-story .unit:after,
-#timing-being-together .unit:after {
+.unit:after {
     font-size: 0.8rem;
 }
 
-#timing-love-story .unit.year:after {
+.unit.year:after {
     content: '年';
 }
 
-#timing-love-story .unit.month:after {
+.unit.month:after {
     content: '月';
 }
 
-#timing-love-story .unit.day:after,
-#timing-being-together .unit.day:after {
+.unit.day:after {
     content: '天';
 }
 
-#timing-love-story .unit.hour:after,
-#timing-being-together .unit.hour:after {
+.unit.hour:after {
     content: '小时';
 }
 
-#timing-love-story .unit.minute:after,
-#timing-being-together .unit.minute:after {
+.unit.minute:after {
     content: '分';
 }
 
-#timing-love-story .unit.second:after,
-#timing-being-together .unit.second:after {
+.unit.second:after {
     content: '秒';
 }
 
+.wrapper .love-story > div > span,
 .wrapper .love-story > div > div {
-    display: inline;
+    opacity: 0;
 }
-
+.wrapper .love-story .title {
+    display: block;
+    line-height: 60px;
+    font-weight:bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}
 .wrapper .love-story > div {
     padding-top: 10px;
 }
@@ -174,6 +176,7 @@ body > .container {
 .wrapper .love-story > div,
 .wrapper .invitation > div {
     word-wrap: break-word;
+    word-break: break-all;
     width: 90%;
     height: 100%;
     margin: 0 auto;
@@ -575,7 +578,7 @@ ul#album-ul.photo-in {
     left: 28%;
     z-index: 1000;
 }
-
+#love-movie .video img,
 #love-movie .video video {
     position: absolute;
     /*width: 67%;*/
@@ -628,7 +631,7 @@ ul#album-ul.photo-in {
 }
 
 #map {
-    height: 300px;
+    height: 200px;
     margin-right: 1px;
 }
 

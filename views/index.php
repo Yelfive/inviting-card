@@ -9,7 +9,7 @@
  *
  */
 
-$host = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
+$imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
 $title = '黄伍&谢凤';
 ?>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ $title = '黄伍&谢凤';
     <meta name="format-detection" content="telephone=no"/>
     <title><?= $title; ?></title>
     <div style="display: none">
-        <img src="<?= $host; ?>/share.jpg">
+        <img src="<?= $imgHost; ?>/share.jpg">
     </div>
     <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
     <script>
@@ -102,26 +102,39 @@ $title = '黄伍&谢凤';
                 <?php $duration = time() - 1405785600 + 8; ?>
                 <div class="prefix">此时，我们已<b>相恋</b></div>
                 <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
-                <i class="value hour"><?= intval($duration / 3600 % 24, 0); ?></i><i class="unit hour"></i>
-                <i class="value minute"><?= intval($duration / 60 % 60, 0); ?></i><i class="unit minute"></i>
-                <i class="value second"><?= intval($duration % 60); ?></i><i class="unit second"></i>
+                <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
+                <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
+                <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
             </div>
             <div class="words font-it invisible" id="votes">
                 No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
             </div>
         </div>
         <div class="love-story rotateY-90 font-it" data-init="typeIn">
-            <div class="invisible">
-                <div>我们在</div>
-                <div id="timing-love-story" class="font-it">
-                    <i class="value year">00</i><i class="unit year"></i>
-                    <i class="value month">00</i><i class="unit month"></i>
-                    <i class="value day">000</i><i class="unit day"></i>
-                    <i class="value hour">00</i><i class="unit hour"></i>
-                    <i class="value minute">00</i><i class="unit minute"></i>
-                    <i class="value second">00</i><i class="unit second"></i>
-                </div>
-                <div>前第一次<b>遇见</b></div>
+            <div>
+                <div class="title">相识相恋</div>
+                <span>我们在</span>
+                <span id="timing-love-story" data-timing-type="story" class="font-it">
+                    <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
+                    <i class="value year"><?= intval($duration / 86400 / 365); ?></i><i class="unit year"></i>
+                    <i class="value month"><?= sprintf('%02d', $duration / 86400 % 365 / 30); ?></i><i class="unit month"></i>
+                    <i class="value day"><?= sprintf('%03d', $duration / 86400 % 365); ?></i><i class="unit day"></i>
+                    <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
+                    <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
+                    <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+                </span>
+                <span>前第一次<b>遇见</b></span>
+                <div>我们的婚礼</div>
+                <span>将在</span>
+                <span id="timing-to-marriage" data-timing-type="marriage">
+                    <?php $duration = 1458403200 - $_SERVER['REQUEST_TIME'] - 12; ?>
+                    <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
+                    <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
+                    <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
+                    <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+                </span>
+                <span>后</span>
+                <span>举行</span>
             </div>
         </div>
         <div class="album rotateY-90" data-init="albumShow">
@@ -139,16 +152,13 @@ $title = '黄伍&谢凤';
                     </div>
                     <div class="words">我们的第一个里程碑</div>
                 </div>
-<!--                <img src="--><?//= $host; ?><!--/pc_cover.jpg">-->
             <?php endif; ?>
         </div>
         <div class="movie rotateY-90" id="love-movie">
             <div class="box">
                 <div class="video">
-<!--                    <iframe src="./video.php?t=--><?//= time(); ?><!--" frameborder="0" style="width: 251px; height: 188px;"></iframe>-->
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" poster controls ></video>
-<!--                    <img src="--><?//= $host; ?><!--/tv.png" class="tv">-->
-<!--                    <div class="start"></div>-->
+                    <img src="<?= $imgHost; ?>/poster.jpg?v=1.0">
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" controls ></video>
                 </div>
             </div>
         </div>
@@ -188,16 +198,16 @@ $title = '黄伍&谢凤';
         images: <?php
             $urls = [];
             for($i = 1; $i < 18; $i++) {
-                $urls[] = "$host/$i.jpg";
+                $urls[] = "$imgHost/$i.jpg";
             }
             echo json_encode($urls);
         ?>,
-        photoHost: '<?= $host; ?>',
+        photoHost: '<?= $imgHost; ?>',
         shareConfig: {
             title: '<?= $title; ?>',
             desc: '我们邀请您及家人为我们见证这一美妙的时刻',
             link: '<?= "http://$_SERVER[HTTP_HOST]/index.php"; ?>',
-            imgUrl: 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/share.jpg'
+            imgUrl: '<?= $imgHost; ?>/share.jpg'
         }
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
@@ -212,6 +222,5 @@ $title = '黄伍&谢凤';
 
     var marker = new BMap.Marker(point);        // 创建标注
     map.addOverlay(marker);                     // 将标注添加到地图中
-
 </script>
 </html>

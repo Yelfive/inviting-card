@@ -25,10 +25,12 @@
     }
 
     const $_TIMING = document.querySelector('#timing-being-together');
-
     var Wechat = {
-        wechat: wx,
+        wechat: typeof wx === 'undefined' ? null : wx,
         init: function () {
+            if (!this.wechat) {
+                return;
+            }
             //DATA.config.debug = true;
             var shareApi = ['onMenuShareAppMessage', 'onMenuShareTimeline', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone'];
             DATA.config.jsApiList = ['previewImage', 'openLocation'];
@@ -40,7 +42,7 @@
 
             var self = this;
             this.wechat.ready(function () {
-                for (var i = 0, len = shareApi.length; i < len; i++ ) {
+                for (var i = 0, len = shareApi.length; i < len; i++) {
                     self.wechat[shareApi[i]](DATA.shareConfig);
                 }
             });
@@ -142,6 +144,22 @@
         }, 2300);
     };
 
+    function BaseTypeInQueue() {
+
+    }
+
+    BaseTypeInQueue.prototype = {
+        queue: [],
+        add: function () {
+            this.queue.push(arguments);
+        },
+        start: function () {
+            var args = this.queue.shift();
+            typeIn.call(this, args[0], args[1]);
+        }
+    };
+    var typeInQueue = new BaseTypeInQueue();
+
     /**
      * @param {HTMLElement} dom
      * @param {Function} $afterType
@@ -156,6 +174,7 @@
 
         var progress = 1;
         var args = arguments;
+        var self = this;
         var tick = setInterval(function () {
             var current = html.substr(progress, 1);
             if (current == '<') {
@@ -170,7 +189,11 @@
                 clearInterval(tick);
                 tick = null;
                 if (args[1] instanceof Function) {
-                    args[1](dom);
+                    args[1].call(timing, dom);
+                }
+
+                if (self instanceof BaseTypeInQueue && typeInQueue.queue.length) {
+                    typeInQueue.start();
                 }
             }
         }, 75);
@@ -258,6 +281,7 @@
             case 'mobile':
         }
     }
+
     BaseAlbum.prototype = {
         downloadInterval: 100,
         img: null,
@@ -270,7 +294,7 @@
                     this.album.className += ' photo-in';
                     break;
                 case 'mobile':
-                    //Wechat.previewImage();
+                //Wechat.previewImage();
             }
         },
         init: function () {
@@ -337,9 +361,16 @@
 
     var initializer = {
         typeIn: function (elem) {
-            typeIn(elem.children[0], function () {
-                timing.story();
-            });
+            var callback, nodeType;
+            for (var i = 0, children = elem.children[0].children, len = children.length; i < len; i++) {
+                if (nodeType = children[i].dataset.timingType) {
+                    callback = timing[nodeType];
+                } else {
+                    callback = undefined;
+                }
+                typeInQueue.add(children[i], callback);
+            }
+            typeInQueue.start();
         },
         albumShow: function () {
             Album.show();
@@ -392,6 +423,20 @@
                 se.innerText = self._second(ts);
             });
         },
+        marriage: function () {
+            var start = 1458403200;
+            var valElem = document.querySelector('#timing-to-marriage').querySelectorAll('.value');
+            var de = valElem[0], he = valElem[1], ie = valElem[2], se = valElem[3];
+            var ts;
+            var self = this;
+            this.register(function () {
+                ts = start - ((new Date) - self.diff) / 1000;
+                de.innerText = self._days(ts);
+                he.innerText = self._hour(ts);
+                ie.innerText = self._minute(ts);
+                se.innerText = self._second(ts);
+            });
+        },
         _years: function (ts) { // total years
             return parseInt(ts / 86400 / 365);
         },
@@ -408,7 +453,7 @@
             return this.zeroFill(parseInt(ts / 3600 % 24));
         },
         _minute: function (ts) {
-          return this.zeroFill(parseInt(ts / 60 % 60));
+            return this.zeroFill(parseInt(ts / 60 % 60));
         },
         _second: function (ts) {
             return this.zeroFill(parseInt(ts % 60));
@@ -450,7 +495,7 @@
                     }
                     var dst = $wrapper.querySelector('.' + this.dataset.class);
                     if (!dst) {
-                        return ;
+                        return;
                     }
                     self.currentIndex = this.index;
                     page.flipTo(dst);
@@ -480,7 +525,7 @@
             this.menu.className = 'kiss';
         },
         bubble: function () {
-            for (var i = 0; i < 10 ; i++) {
+            for (var i = 0; i < 10; i++) {
                 this.bubbleContainer.appendChild(new Heart(document.createElement('canvas')));
             }
         }
@@ -512,7 +557,7 @@
     Loading.init();
 
 
-    function BaseMusic () {
+    function BaseMusic() {
         this.music = document.querySelector('#music');
         this.audio = this.music.querySelector('audio');
 
@@ -522,11 +567,12 @@
         });
 
         this._paused() || this.play();  // Safari mobile cannot play music automatically
-        document.ontouchstart = function() { // touch the document to play music
+        document.ontouchstart = function () { // touch the document to play music
             self._paused() || self.play();
             this.ontouchstart = undefined;
         };
     }
+
     BaseMusic.prototype = {
         init: function () {
         },
@@ -547,31 +593,31 @@
     var Music = new BaseMusic();
 
     //function BaseMovie() { // 舍本求末
-        //this.movie = document.querySelector('#love-movie .video');
-        //var img = this.movie.querySelector('img.tv');
-        //this.movie.style.height = img.clientHeight + 'px';
-        //this.video = this.movie.querySelector('video');
-        //this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
-        //var self = this;
-        //
-        //this.paused = true;
-        //addEvent(this.movie, 'touchstart', function() {
-        //    self.paused ? self.play() : self.pause();
-        //});
-        //
-        //this.musicPlayed = !Music._paused();
-        //this.play = function () {
-        //    this.video.play();
-        //    this.movie.className = 'video play';
-        //    Music.pause();
-        //    this.paused = false;
-        //};
-        //this.pause = function () {
-        //    this.video.pause();
-        //    this.musicPlayed && Music.play();
-        //    this.movie.className = 'video';
-        //    this.paused = true;
-        //}
+    //this.movie = document.querySelector('#love-movie .video');
+    //var img = this.movie.querySelector('img.tv');
+    //this.movie.style.height = img.clientHeight + 'px';
+    //this.video = this.movie.querySelector('video');
+    //this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
+    //var self = this;
+    //
+    //this.paused = true;
+    //addEvent(this.movie, 'touchstart', function() {
+    //    self.paused ? self.play() : self.pause();
+    //});
+    //
+    //this.musicPlayed = !Music._paused();
+    //this.play = function () {
+    //    this.video.play();
+    //    this.movie.className = 'video play';
+    //    Music.pause();
+    //    this.paused = false;
+    //};
+    //this.pause = function () {
+    //    this.video.pause();
+    //    this.musicPlayed && Music.play();
+    //    this.movie.className = 'video';
+    //    this.paused = true;
+    //}
     //}
     //new BaseMovie();
 
