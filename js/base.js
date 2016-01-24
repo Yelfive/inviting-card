@@ -42,6 +42,9 @@
 
             var self = this;
             this.wechat.ready(function () {
+                DATA.shareConfig.fail = function () {
+                    console.log(arguments);
+                }
                 for (var i = 0, len = shareApi.length; i < len; i++) {
                     self.wechat[shareApi[i]](DATA.shareConfig);
                 }
@@ -59,13 +62,19 @@
         },
         openLocation: function () {
             var config = {
-                latitude: 30.6001688195,
+                fail: function (a) {
+                    alert(a.errMsg);
+                },
+                latitude: 30.601688195,
                 longitude: 103.9143360720,
                 name: '双流聚竹园酒楼',
                 address: '双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222',
                 scale: 20, // 1~28,
                 infoUrl: 'abc'
             };
+            if (arguments[0] && arguments[0] instanceof Function) {
+                config.complete = arguments[0];
+            }
             this.wechat.openLocation(config);
         }
     };
@@ -379,10 +388,12 @@
             var $button = elem.querySelector('#open-map');
             addEvent($button, 'touchstart', function () {
                 this.className = 'active';
-                Wechat.openLocation();
-            });
-            addEvent($button, 'touchend', function () {
-                this.className = '';
+                setTimeout(function () {
+                    this.className = '';
+                    Wechat.openLocation(function() {
+                        $button.className = '';
+                    });
+                }, 50);
             });
         }
     };
@@ -393,11 +404,9 @@
             return num < 10 ? '0' + num : num;
         },
         together: function () {
-            var start = 1405785600;
+            var start = 1405785600, ts, self = this;
             var valElem = $_TIMING.querySelectorAll('.value');
             var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
-            var ts, d, h, m, s;
-            var self = this;
             this.register(function () {
                 ts = ((new Date) - self.diff) / 1000 - start;
                 de.innerText = self._days(ts);
@@ -407,11 +416,9 @@
             });
         },
         story: function () {
-            var start = 1030809600;
+            var start = 1030809600, ts, self = this;
             var valElem = document.querySelector('#timing-love-story').querySelectorAll('.value');
             var ye = valElem[0], me = valElem[1], de = valElem[2], he = valElem[3], ie = valElem[4], se = valElem[5];
-            var ts;
-            var self = this;
 
             this.register(function () {
                 ts = ((new Date) - self.diff) / 1000 - start;
@@ -424,11 +431,10 @@
             });
         },
         marriage: function () {
-            var start = 1458403200;
+            var start = 1458403200, ts, self = this;
             var valElem = document.querySelector('#timing-to-marriage').querySelectorAll('.value');
             var de = valElem[0], he = valElem[1], ie = valElem[2], se = valElem[3];
-            var ts;
-            var self = this;
+
             this.register(function () {
                 ts = start - ((new Date) - self.diff) / 1000;
                 de.innerText = self._days(ts);
@@ -590,35 +596,6 @@
             localStorage.musicPaused = 1;
         }
     };
-    var Music = new BaseMusic();
-
-    //function BaseMovie() { // 舍本求末
-    //this.movie = document.querySelector('#love-movie .video');
-    //var img = this.movie.querySelector('img.tv');
-    //this.movie.style.height = img.clientHeight + 'px';
-    //this.video = this.movie.querySelector('video');
-    //this.video.style.height = (this.video.clientWidth * 36 / 48) + 'px';
-    //var self = this;
-    //
-    //this.paused = true;
-    //addEvent(this.movie, 'touchstart', function() {
-    //    self.paused ? self.play() : self.pause();
-    //});
-    //
-    //this.musicPlayed = !Music._paused();
-    //this.play = function () {
-    //    this.video.play();
-    //    this.movie.className = 'video play';
-    //    Music.pause();
-    //    this.paused = false;
-    //};
-    //this.pause = function () {
-    //    this.video.pause();
-    //    this.musicPlayed && Music.play();
-    //    this.movie.className = 'video';
-    //    this.paused = true;
-    //}
-    //}
-    //new BaseMovie();
+    new BaseMusic();
 
 }());

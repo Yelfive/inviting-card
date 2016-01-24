@@ -47,14 +47,14 @@ class Base extends Object
 
     public function getAppId()
     {
-//        return 'wx0be266702a6567a6';
-        return 'wx9d3f8dce520b4c01'; // test
+        return 'wx0be266702a6567a6';
+//        return 'wx9d3f8dce520b4c01'; // test
     }
 
     protected function getSecret()
     {
-//        return 'b11ca215130a194ca0c2002cd547ce27';
-        return '3b7bbe37c0af4d11623cb3f69673dd67'; // test
+        return 'b11ca215130a194ca0c2002cd547ce27';
+//        return '3b7bbe37c0af4d11623cb3f69673dd67'; // test
     }
 
 }

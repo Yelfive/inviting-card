@@ -1,8 +1,6 @@
 <?php
 
 echo "\n";
-$imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/';
-
 Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
 
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);

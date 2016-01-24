@@ -6,11 +6,10 @@
  * @var int $timestamp
  * @var string $nonceStr
  * @var string $signature
+ * @var string $imgHost
  *
  */
 
-$imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
-$title = '黄伍&谢凤';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -168,7 +167,7 @@ $title = '黄伍&谢凤';
                 <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
                 <div>
                     <div id="map"></div>
-                    <button id="open-map"><?= fk::$app->request->terminal == 'pc' ? '' : '窗口打开'; ?></button>
+                    <div id="open-map"><?= fk::$app->request->terminal == 'pc' ? '' : '打开地图'; ?></div>
                 </div>
             </div>
         </div>
@@ -178,13 +177,16 @@ $title = '黄伍&谢凤';
         <div id="cover"></div>
         <div id="bubble"></div>
         <div id="items" class="font-it">
-            <div class="item-1" data-class="welcome">时间de证明</div>
+            <div class="item-1" data-class="welcome">我眼里的Ta</div>
             <div class="item-2" data-class="love-story">我们de故事</div>
             <div class="item-3" data-class="album">幸福de刻印</div>
             <div class="item-4" data-class="movie">视频</div>
             <div class="item-5" data-class="invitation">地址</div>
         </div>
     </div>
+</div>
+<div style="display: none">
+    <img src="<?= $imgHost; ?>/share.jpg">
 </div>
 </body>
 <script>

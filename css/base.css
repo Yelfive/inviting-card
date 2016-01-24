@@ -622,10 +622,10 @@ ul#album-ul.photo-in {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     position: relative;
+    text-align: center;
 }
 
-#open-map.active,
-#open-map:active {
+#open-map.active {
     top: 3px;
     box-shadow: inset 0px 1px 0px #FF5C5C, 0px 2px 0px 0px #B34444, 0px 5px 3px #999;
 }
