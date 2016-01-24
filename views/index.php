@@ -156,8 +156,8 @@
         <div class="movie rotateY-90" id="love-movie">
             <div class="box">
                 <div class="video">
-                    <img src="<?= $imgHost; ?>/poster.jpg?v=1.0">
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final.mp4" controls ></video>
+                    <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
+                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls ></video>
                 </div>
             </div>
         </div>
