@@ -157,8 +157,6 @@
         <div class="movie rotateY-90" id="love-movie" data-init="movie">
             <div class="box">
                 <div class="video">
-<!--                    <video src=""></video>-->
-<!--                    <iframe height=498 width=510 src="http://player.youku.com/embed/XMTQ1NTM4MzYxMg==" frameborder=0 allowfullscreen></iframe>-->
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
                     <div class="start"></div>
                     <video class="hide" src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls></video>
@@ -221,12 +219,4 @@
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="../js/base.js?t=<?= time(); ?>"></script>
-<script>
-    var map = new BMap.Map("map");
-    var point = new BMap.Point(103.9207520000 , 30.6064530000);  // longitude, latitude
-    map.centerAndZoom(point, 15);
-
-    var marker = new BMap.Marker(point);        // 创建标注
-    map.addOverlay(marker);                     // 将标注添加到地图中
-</script>
 </html>

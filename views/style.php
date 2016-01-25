@@ -106,7 +106,7 @@ Css::keyframes('flip-90-0', [
 ]);
 Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
+    '0%' => ['transform' => 'scale(1.5) translate(-100px, -100px)', 'opacity' => 0], // TODO: touch in animation
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 Css::keyframes('zoomIn', [

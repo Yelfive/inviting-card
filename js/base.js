@@ -4,7 +4,7 @@
  *
  */
 +(function () {
-    function isHorizon() {
+    function isLandscape() {
         return window.orientation !== undefined && window.orientation !== 0;
     }
 
@@ -12,8 +12,8 @@
     //    location.reload();
     //};
 
-    if (isHorizon()) {
-        return alert('Please place your phone vertically.');
+    if (isLandscape()) {
+        return alert('竖屏效果更好哟~');
     }
 
     function addEvent(elem, eventName, callback) {
@@ -39,12 +39,11 @@
             }
             this.wechat.config(DATA.config);
 
-
             var self = this;
             this.wechat.ready(function () {
                 DATA.shareConfig.fail = function () {
                     console.log(arguments);
-                }
+                };
                 for (var i = 0, len = shareApi.length; i < len; i++) {
                     self.wechat[shareApi[i]](DATA.shareConfig);
                 }
@@ -448,15 +447,9 @@
         var $videoC = document.querySelector('#love-movie .video');
         $videoC.style.height = bw * rate + 'px';
         $videoC.style.marginTop = - bw * rate / 2 + 'px';
-
-        //$VIDEO.width = bw;
-        //$VIDEO.height = bw * 0.75;
-        //$VIDEO.style.marginTop = '-' + bw * 0.375 + 'px';
-        //$VIDEO.previousElementSibling.style.marginTop = '-' + bw * 0.375 + 'px';
-        this.played = false;
     }
 
-    var Movie = new BaseMovie();
+    new BaseMovie();
     var BaseMenu = function () {
         this.menu = document.querySelector('#menu');
         this.touch = this.menu.querySelector('#touch-us');
@@ -508,12 +501,8 @@
                 return;
             }
             if (this.currentIndex == this.movieIndex) {
-                //if (Movie.played) {
-                    $VIDEO.className = 'hide';
+                $VIDEO.className = 'hide';
                 $VIDEO.pause();
-                //} else {
-                //    $VIDEO.
-                //}
             }
             this.touch.className = '';
             this.menu.className = 'kiss';
@@ -604,14 +593,19 @@
             Album.show();
         },
         openMap: function (elem) {
+            /* Baidu map */
+            var map = new BMap.Map("map");
+            var point = new BMap.Point(103.9207520000 , 30.6064530000);  // longitude, latitude
+            map.centerAndZoom(point, 15);
+            map.addOverlay(new BMap.Marker(point)); // add marker
+
+            /* Wechat map*/
             var $button = elem.querySelector('#open-map');
             addEvent($button, 'touchstart', function () {
-                this.className = 'active';
+                $button.className = 'active';
                 setTimeout(function () {
-                    this.className = '';
-                    Wechat.openLocation(function() {
-                        $button.className = '';
-                    });
+                    $button.className = '';
+                    Wechat.openLocation();
                 }, 50);
             });
         },
@@ -619,7 +613,6 @@
             var $start = elem.querySelector('.start');
             var handler = function () {
                 $VIDEO.play();
-                Movie.played = true;
                 $VIDEO.className = '';
             };
             addEvent($start, 'touchstart', handler);
