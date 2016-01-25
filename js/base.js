@@ -65,7 +65,7 @@
                 fail: function (a) {
                     alert(a.errMsg);
                 },
-                latitude: 30.601688195,
+                latitude: 30.6001688195,
                 longitude: 103.9143360720,
                 name: '双流聚竹园酒楼',
                 address: '双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222',
@@ -368,36 +368,6 @@
     };
     var Album = new BaseAlbum();
 
-    var initializer = {
-        typeIn: function (elem) {
-            var callback, nodeType;
-            for (var i = 0, children = elem.children[0].children, len = children.length; i < len; i++) {
-                if (nodeType = children[i].dataset.timingType) {
-                    callback = timing[nodeType];
-                } else {
-                    callback = undefined;
-                }
-                typeInQueue.add(children[i], callback);
-            }
-            typeInQueue.start();
-        },
-        albumShow: function () {
-            Album.show();
-        },
-        openMap: function (elem) {
-            var $button = elem.querySelector('#open-map');
-            addEvent($button, 'touchstart', function () {
-                this.className = 'active';
-                setTimeout(function () {
-                    this.className = '';
-                    Wechat.openLocation(function() {
-                        $button.className = '';
-                    });
-                }, 50);
-            });
-        }
-    };
-
     var timing = {
         diff: window.diff, // milliseconds, client - server
         zeroFill: function (num) {
@@ -471,6 +441,22 @@
     };
 
     const $VIDEO = document.querySelector('#love-movie video');
+
+    function BaseMovie() {
+        var bw = $body.clientWidth;
+        var rate = 0.75;
+        var $videoC = document.querySelector('#love-movie .video');
+        $videoC.style.height = bw * rate + 'px';
+        $videoC.style.marginTop = - bw * rate / 2 + 'px';
+
+        //$VIDEO.width = bw;
+        //$VIDEO.height = bw * 0.75;
+        //$VIDEO.style.marginTop = '-' + bw * 0.375 + 'px';
+        //$VIDEO.previousElementSibling.style.marginTop = '-' + bw * 0.375 + 'px';
+        this.played = false;
+    }
+
+    var Movie = new BaseMovie();
     var BaseMenu = function () {
         this.menu = document.querySelector('#menu');
         this.touch = this.menu.querySelector('#touch-us');
@@ -511,9 +497,6 @@
         },
         hide: function () {
             var self = this;
-            if (self.currentIndex == self.movieIndex) {
-                $VIDEO.className = '';
-            }
             self.menu.className += ' fade';
             setTimeout(function () {
                 self.menu.className = '';
@@ -525,7 +508,12 @@
                 return;
             }
             if (this.currentIndex == this.movieIndex) {
-                $VIDEO.className = 'scale-0';
+                //if (Movie.played) {
+                    $VIDEO.className = 'hide';
+                $VIDEO.pause();
+                //} else {
+                //    $VIDEO.
+                //}
             }
             this.touch.className = '';
             this.menu.className = 'kiss';
@@ -598,4 +586,43 @@
     };
     new BaseMusic();
 
+
+    var initializer = {
+        typeIn: function (elem) {
+            var callback, nodeType;
+            for (var i = 0, children = elem.children[0].children, len = children.length; i < len; i++) {
+                if (nodeType = children[i].dataset.timingType) {
+                    callback = timing[nodeType];
+                } else {
+                    callback = undefined;
+                }
+                typeInQueue.add(children[i], callback);
+            }
+            typeInQueue.start();
+        },
+        albumShow: function () {
+            Album.show();
+        },
+        openMap: function (elem) {
+            var $button = elem.querySelector('#open-map');
+            addEvent($button, 'touchstart', function () {
+                this.className = 'active';
+                setTimeout(function () {
+                    this.className = '';
+                    Wechat.openLocation(function() {
+                        $button.className = '';
+                    });
+                }, 50);
+            });
+        },
+        movie: function (elem) {
+            var $start = elem.querySelector('.start');
+            var handler = function () {
+                $VIDEO.play();
+                Movie.played = true;
+                $VIDEO.className = '';
+            };
+            addEvent($start, 'touchstart', handler);
+        }
+    };
 }());

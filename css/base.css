@@ -213,8 +213,8 @@ body > .container {
 
 .start {
     position: absolute;
-    width: 114px;
-    height: 114px;
+    width: 120px;
+    height: 120px;
     background: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/flowers.png) -402px -270px no-repeat;
 }
 
@@ -569,30 +569,26 @@ ul#album-ul.photo-in {
 
 #love-movie .video {
     position: relative;
-    /*padding-top: 1.5rem;*/
-    height: 100%;
+    top: 50%;
+    /*height: 100%;*/
 }
 
 #love-movie .video .start {
-    bottom: 18%;
-    left: 28%;
-    z-index: 1000;
+    /*bottom: 18%;*/
+    /*left: 28%;*/
+    /*z-index: 1000;*/
+
+    left: 50%;
+    top: 50%;
+    margin-left: -60px;
+    margin-top: -60px;
 }
 #love-movie .video img,
 #love-movie .video video {
     position: absolute;
-    /*width: 67%;*/
-    /*left: 10%;*/
-    /*bottom: 1%;*/
-    /*z-index: 9;*/
     width: 100%;
-    top: 50%;
-    margin-top: -50%;
-
-}
-
-#love-movie .video > img {
-    position: absolute;
+    height: 100%;
+    /*margin-top: -50%;*/
 }
 
 #love-movie .video > img.movie {

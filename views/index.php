@@ -1,6 +1,7 @@
 <?php
 
 (!defined('__APP__') || fk::isDebugging() && (empty($_GET['t']) || $_SERVER['REQUEST_TIME'] > $_GET['t'] + 4)) && header("Location: ../index.php?t=$_SERVER[REQUEST_TIME]");
+
 /**
  * @var string $appId
  * @var int $timestamp
@@ -153,11 +154,14 @@
                 </div>
             <?php endif; ?>
         </div>
-        <div class="movie rotateY-90" id="love-movie">
+        <div class="movie rotateY-90" id="love-movie" data-init="movie">
             <div class="box">
                 <div class="video">
+<!--                    <video src=""></video>-->
+<!--                    <iframe height=498 width=510 src="http://player.youku.com/embed/XMTQ1NTM4MzYxMg==" frameborder=0 allowfullscreen></iframe>-->
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
-                    <video src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls ></video>
+                    <div class="start"></div>
+                    <video class="hide" src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls></video>
                 </div>
             </div>
         </div>
