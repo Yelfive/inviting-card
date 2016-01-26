@@ -79,6 +79,12 @@
     };
     Wechat.init();
 
+    function showTutorials() {
+        var isNew = localStorage.new_visitor == 1;
+        localStorage.new_visitor = 1;
+        return isNew;
+    }
+
     var $body = document.body;
     window.onload = function () {
         var $loading = document.querySelector('.loading');

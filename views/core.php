@@ -51,7 +51,7 @@ class Css
 
     protected static function is_webkit($property)
     {
-        return in_array($property, ['transform']) || strpos($property, 'animation') !== false;
+        return in_array($property, ['transform', 'transition']) || strpos($property, 'animation') !== false;
     }
 
     protected static function webkit($property, $value)
