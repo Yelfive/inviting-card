@@ -34,19 +34,8 @@ Css::keyframes('bloom', [
 
 /* bubble */
 
-Css::style('#menu #bubble canvas', [
-    'animation-fill-mode' => 'forwards !important',
-    'transform' => 'scale(0)',
-    'opacity' => 0,
-]);
-
-Css::style('#menu.kiss #bubble canvas', [
-    'transform' => 'scale(1.5)',
-]);
-
 Css::keyframes('bubbleIn', [
-    '0%' => ['transform' => 'scale(2)', 'opacity' => 0],
-    '1%' => ['transform' => 'scale(0)', 'opacity' => 1],
+    '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 
@@ -71,11 +60,16 @@ for ($i = 1; $i <= $max; $i++) {
     $left = $pos;
     $top = $pos;
     Css::style("#menu #bubble canvas:nth-child($i)", ['left' => "$left%", 'top' => "$top%"]);
-    Css::style("#menu.kiss #bubble canvas:nth-child($i)", [
-        'animation' => "bubbleIn {$duration}s ease-out {$delay}s",
-    ]);
+    Css::style("#menu.kiss #bubble canvas:nth-child($i)", ['animation' => "bubbleIn {$duration}s ease-out {$delay}s"]);
 }
 
+Css::style('#menu #bubble canvas', [
+    'animation-fill-mode' => 'forwards !important',
+    'display' => 'none',
+    'opacity' => 0
+]);
+
+Css::style('#menu.kiss #bubble canvas', ['display' => 'block']);
 /* bubble END */
 if (fk::$app->request->terminal == 'pc') {
     Css::keyframes('photoIn', ['from' => ['transform' => 'scale(0.01)']]);
@@ -106,9 +100,11 @@ Css::keyframes('flip-90-0', [
 ]);
 Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0], // TODO: touch in animation
+    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0], // TODO: touch-in animation
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
+
+Css::style('#touch-us.touch-in', ['animation' => 'touchIn 0.5s ease-in-out']);
 
 Css::style('transition', ['transition' => 'transform 1s']);
 
@@ -167,5 +163,6 @@ Css::keyframes('videoPlay', [
 Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
 Css::style('.scale-0', ['transform' => 'scale(0)']);
 
+Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);
 
 Css::register();

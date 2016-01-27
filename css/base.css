@@ -344,11 +344,14 @@ ul#album-ul.photo-in {
     right: 2rem;
     bottom: 2rem;
     /*border-radius: 10px;*/
-    border-radius: 50%;
-    box-shadow: 0 0 10px black;
+    /*border-radius: 50%;*/
+    /*box-shadow: 0 0 10px black;*/
+    background-color: rgba(255,88,88,0.7) /*#FF5C5C*/;
+    box-shadow: 0 0 10px #A53636;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.8);
+    /*background-color: rgba(255, 255, 255, 0.8);*/
     z-index: 100;
+    display: block;
 }
 
 #touch-us > div {
@@ -373,12 +376,13 @@ ul#album-ul.photo-in {
 }
 
 #touch-us .her {
-    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);
+    /*background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);*/
+    background-image: url(../images/her_white.png);
 }
 
 #touch-us .me {
-    width: 50%;
-    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);
+    /*background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);*/
+    background-image: url(../images/me_white.png);
 }
 
 .kiss > #touch-us .her {
@@ -398,13 +402,13 @@ ul#album-ul.photo-in {
 
 @keyframes herKiss {
     to {
-        transform: rotateZ(-10deg) translateZ(0) translateX(3px) translate3d(0, 0, 0);
+        transform: rotateZ(-10deg) translateZ(0) translateX(3px);
     }
 }
 
 @-webkit-keyframes herKiss {
     to {
-        -webkit-transform: rotateZ(-5deg) translateZ(0) translateX(3px) translate3d(0, 0, 0);
+        -webkit-transform: rotateZ(-5deg) translateZ(0) translateX(3px);
     }
 }
 
@@ -468,8 +472,8 @@ ul#album-ul.photo-in {
     position: absolute;
     width: 10%;
     z-index: 2;
-    margin-top: -8.5rem;
-    margin-left: -5.1rem;
+    margin-top: -9rem;
+    margin-left: -6rem;
 }
 
 #items > div {
@@ -535,10 +539,10 @@ ul#album-ul.photo-in {
     }
 }
 
-#touch-us.touch-in {
-    -webkit-animation: touchIn 0.5s ease-in-out;
-    animation: touchIn 0.5s ease-in-out;
-}
+/*#touch-us.touch-in {*/
+    /*-webkit-animation: touchIn 1s linear;*/
+    /*animation: touchIn 1s linear;*/
+/*}*/
 
 #music {
     width: 50px;

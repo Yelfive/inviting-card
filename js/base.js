@@ -20,7 +20,8 @@
         if (TERMINAL == 'pc') {
             elem['onclick'] = callback;
         } else {
-            elem['on' + eventName] = callback;
+            //elem['on' + eventName] = callback;
+            elem.addEventListener(eventName, callback, false);
         }
     }
 
@@ -213,10 +214,33 @@
         }, 75);
     }
 
+    const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
+
     /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
         this.timeout = 600;
+
+        // TODO: touch event
+        var startPos = {x: 0, y: 0};
+        var min = CLIENT.width * 0.1;
+        addEvent(document, 'touchstart', function (e) {
+            console.log(e)
+            startPos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+        });
+        addEvent(document, 'touchend', function (e) {
+            console.log(e)
+            var x = e.touches[0].clientX;
+            var distance = parseInt((x - startPos.x) / min);
+            console.log(e,min,startPos.x,distance);
+            if (distance > 0) { // to right
+                // alert()
+                alert('from left to right')
+            } else if (distance < 0) {
+                //
+                alert('from right to left')
+            }
+        });
     };
     PageBase.prototype = {
         hasClass: function (elem, className) {
@@ -560,6 +584,11 @@
             self._paused() || self.play();
             this.ontouchstart = undefined;
         };
+        var handler = function() {
+            self._paused() || self.play();
+            document.removeEventListener('touchstart', handler);
+        }
+        document.addEventListener('touchstart', handler);
     }
 
     BaseMusic.prototype = {
