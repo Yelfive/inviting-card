@@ -13,7 +13,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ontouchmove="!event || event.preventDefault()">
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -85,7 +85,9 @@
         <?php include __DIR__ . '/style.php'; ?>
     </style>
 </head>
-<body>
+<body >
+<div class="arrow left"></div>
+<div class="arrow right"></div>
 <div class="container">
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>

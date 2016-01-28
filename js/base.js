@@ -223,10 +223,9 @@
     /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
-        this.timeout = 600;
+        this.timeout = 550;
         var self = this;
 
-        // TODO: touch event
         var endPos, startPos = {x: 0, y: 0};
         var min = CLIENT.width * 0.1;
 
@@ -381,7 +380,7 @@
             return this;
         },
         _initMobile: function () {
-            addEvent(document.querySelector('.wrapper .album .start'), 'touchstart', function () {
+            addEvent(document.querySelector('.wrapper .album .start'), 'click', function () {
                 Loading.show();
                 Wechat.previewImage(function () {
                     Loading.hide();
@@ -409,7 +408,7 @@
             // Bind event
             for (i = 0; i < $this.imgCount; i++) {
                 $this.lis[i].index = i;
-                addEvent($this.lis[i], 'touchstart', function () {
+                addEvent($this.lis[i], 'click', function () {
                     var elem = this;
                     elem.className = 'photo-out';
                     setTimeout(function () {
@@ -521,8 +520,6 @@
     };
 
     BaseMenu.prototype = {
-        currentIndex: 0, // current page
-        movieIndex: null,
         init: function () {
             this.bubble();
             this.registerJs();
@@ -533,19 +530,11 @@
             var $wrapper = document.querySelector('.wrapper');
             var self = this;
             for (var i = 0; i < length; i++) {
-                $items[i].index = i;
-                if ($items[i].dataset.class == 'movie') {
-                    page.movieIndex = this.movieIndex = i;
-                }
-                addEvent($items[i], 'touchstart', function () {
-                    if (self.currentIndex == this.index) {
-                        return self.hide();
-                    }
+                addEvent($items[i], 'click', function () {
                     var dst = $wrapper.querySelector('.' + this.dataset.class);
                     if (!dst) {
                         return;
                     }
-                    self.currentIndex = this.index;
                     page.flipTo(dst);
                     self.hide();
                 });
@@ -563,7 +552,7 @@
             if (page.hasClass(this.menu, 'kiss')) {
                 return;
             }
-            if (this.currentIndex == this.movieIndex) {
+            if (page.currentDom.id == 'love-movie') {
                 $VIDEO.className = 'hide';
                 $VIDEO.pause();
             }
@@ -669,7 +658,8 @@
 
             /* Wechat map*/
             var $button = elem.querySelector('#open-map');
-            addEvent($button, 'touchstart', function () {
+            addEvent($button, 'click', function () {
+            //addEvent($button, 'touchstart', function () {
                 $button.className = 'active';
                 setTimeout(function () {
                     $button.className = '';
@@ -683,7 +673,7 @@
                 $VIDEO.play();
                 $VIDEO.className = '';
             };
-            addEvent($start, 'touchstart', handler);
+            addEvent($start, 'click', handler);
         }
     };
 }());

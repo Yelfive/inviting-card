@@ -348,11 +348,11 @@ ul#album-ul.photo-in {
     bottom: 1rem;
     /*border-radius: 10px;*/
     /*border-radius: 50%;*/
-    /*box-shadow: 0 0 10px black;*/
-    background-color: rgba(255,88,88,0.7) /*#FF5C5C*/;
-    box-shadow: 0 0 10px #A53636;
+    box-shadow: 0 0 10px black;
+    /*background-color: rgba(255,88,88,0.7) /!*#FF5C5C*!/;*/
+    /*box-shadow: 0 0 10px #A53636;*/
     overflow: hidden;
-    /*background-color: rgba(255, 255, 255, 0.8);*/
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 100;
     display: block;
 }
@@ -379,13 +379,13 @@ ul#album-ul.photo-in {
 }
 
 #touch-us .her {
-    /*background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);*/
-    background-image: url(../images/her_white.png);
+    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);
+    /*background-image: url(../images/her_white.png);*/
 }
 
 #touch-us .me {
-    /*background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);*/
-    background-image: url(../images/me_white.png);
+    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);
+    /*background-image: url(../images/me_white.png);*/
 }
 
 #cover {
@@ -502,11 +502,6 @@ ul#album-ul.photo-in {
         -webkit-transform: scale(0);
     }
 }
-
-/*#touch-us.touch-in {*/
-    /*-webkit-animation: touchIn 1s linear;*/
-    /*animation: touchIn 1s linear;*/
-/*}*/
 
 #music {
     width: 50px;

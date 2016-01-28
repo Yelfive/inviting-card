@@ -194,55 +194,28 @@ Css::style('.scale-0', ['transform' => 'scale(0)']);
 
 Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);
 
-// TODO arrow
-Css::style('.arrow:before', ['width' => '2rem', 'height' => '2rem', 'box-shadow' => '5px 5px 0px inset']);
-Css::style('.arrow:after', ['width' => '2rem', 'height' => '2rem', 'box-shadow' => '5px 5px 0px inset']);
-/**
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Document</title>
-</head>
-<style>
-body {
-background-color: #333;
-}
-div {
-position: absolute;
-left: 50%;
-top: 50%;
-}
-div:before,
-div:after{
-content: '';
-width: 2rem;
-height: 2rem;
-display: inline-block;
-box-shadow: -5px -5px 0 white;
-}
-div:before {
+Css::keyframes('arrowLeft', [
+    '0%' => ['transform' => 'rotateZ(135deg) translate(-1rem, -1rem)', 'opacity' => 0],
+    '50%' => ['transform' => 'rotateZ(135deg) translate(-0.5rem, -0.5rem)', 'opacity' => 1],
+    '100%' => ['transform' => 'rotateZ(135deg) translate(0,0)', 'opacity' => 0],
+]);
+Css::keyframes('arrowRight', [
+    '0%' => ['transform' => 'rotateZ(-45deg) translate(-1rem, -1rem)', 'opacity' => 0],
+    '50%' => ['transform' => 'rotateZ(-45deg) translate(-0.5rem, -0.5rem)', 'opacity' => 1],
+    '100%' => ['transform' => 'rotateZ(-45deg) translate(0,0)', 'opacity' => 0],
+]);
+Css::style('.arrow', ['width' => '1.5rem', 'height' => '1.5rem', 'position' => 'absolute', 'top' => '50%', 'z-index' => 1, 'animation' => '2s ease-in-out infinite']);
+Css::style('.arrow:before, .arrow:after', [
+    'content' => '""',
+    'width' => '70%',
+    'height' => '70%',
+    'display' => 'inline-block',
+    'box-shadow' => '-4px -4px 0 rgba(167, 167, 167, 0.9) inset',
+    'position' => 'absolute',
+]);
 
-}
-div:after {
-position: relative;
-left: -22px;
-top: 10px;
-}
-div:nth-child(1) {
-margin-right: -50px;
-transform: rotateZ(-45deg);
-}
-div:nth-child(2) {
-margin-left: -50px;
-transform: rotateZ(135deg);
-}
-</style>
-<body>
-<div></div>
-<div></div>
-</div>
-</div>
-</body>
-</html>
- */
+Css::style('.arrow:before', ['top' => 0, 'left' => 0]);
+Css::style('.arrow:after', ['bottom' => 0, 'right' => 0]);
+Css::style('.arrow.left', ['left' => '0.2rem', 'animation-name' => 'arrowLeft']);
+Css::style('.arrow.right', ['right' => '0.2rem', 'animation-name' => 'arrowRight']);
 Css::register();
