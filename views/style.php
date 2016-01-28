@@ -81,36 +81,65 @@ if (fk::$app->request->terminal == 'pc') {
     }
 }
 
-Css::style('.wrapper .flip-90-0', [
-    'transform' => 'rotateX(0deg)',
-    'animation' => 'flip-90-0 0.6s linear',
-]);
-Css::style('.wrapper .flip-0-90', [
-    'transform' => 'rotateY(90deg)',
-    'animation' => 'flip-0-90 0.6s linear',
-]);
+Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
 
 Css::keyframes('flip-0-90', [
     '0%' => ['transform' => 'rotateY(0deg)'],
     '100%' => ['transform' => 'rotateY(90deg)'],
 ]);
-Css::keyframes('flip-90-0', [
+Css::keyframes('flip-0-m90', [
+    '0%' => ['transform' => 'rotateY(0deg)'],
+    '100%' => ['transform' => 'rotateY(-90deg)'],
+]);
+Css::keyframes('flip-m90-0', [
     '0%' => ['transform' => 'rotateY(-90deg)'],
     '100%' => ['transform' => 'rotateY(0deg)'],
 ]);
-Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
+Css::keyframes('flip-90-0', [
+    '0%' => ['transform' => 'rotateY(90deg)'],
+    '100%' => ['transform' => 'rotateY(0deg)'],
+]);
+Css::keyframes('flip-m90-0', [ // minus 90 degree
+    '0%' => ['transform' => 'rotateY(-90deg)'],
+    '100%' => ['transform' => 'rotateY(0deg)'],
+]);
+
+Css::style('.wrapper .flip-90-0', [
+    'animation' => 'flip-90-0 0.6s linear',
+]);
+Css::style('.wrapper .flip-m90-0', [
+    'animation' => 'flip-m90-0 0.6s linear',
+]);
+Css::style('.wrapper .flip-0-90', [
+    'animation' => 'flip-0-90 0.6s linear',
+]);
+Css::style('.wrapper .flip-0-m90', [
+    'animation' => 'flip-0-m90 0.6s linear',
+]);
+Css::style('.wrapper > div', [
+    'position' => 'absolute',
+    'left' => '0',
+    'bottom' => '0',
+    'width' => '100%',
+    'box-shadow' => '0 0 40px #BDBDBD',
+    'animation-fill-mode' => 'both',
+]);
+/* touch */
+Css::keyframes('zoomIn', ['to' => ['transform' => 'scale(1.3)']]);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0], // TODO: touch-in animation
+    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
+Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(4%)']]);
+Css::keyframes('meKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(-10%)']]);
+Css::style('.kiss > #touch-us .her', ['animation' => 'herKiss 0.5s ease-out']);
+Css::style('.kiss > #touch-us .me', ['animation' => 'meKiss 0.5s ease-out']);
+Css::style('.kiss > #touch-us > div', ['animation' => 'zoomIn 0.5s ease-out']);
 
 Css::style('#touch-us.touch-in', ['animation' => 'touchIn 0.5s ease-in-out']);
 
 Css::style('transition', ['transition' => 'transform 1s']);
 
-Css::keyframes('zoomIn', [
-    'to' => ['transform' => 'scale(1.3)'],
-]);
 Css::keyframes('heartbeats', [
     '0%, 100%' => ['transform' => 'scale(0.8)'],
     '50%' => ['transform' => 'scale(1)'],
@@ -165,4 +194,55 @@ Css::style('.scale-0', ['transform' => 'scale(0)']);
 
 Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);
 
+// TODO arrow
+Css::style('.arrow:before', ['width' => '2rem', 'height' => '2rem', 'box-shadow' => '5px 5px 0px inset']);
+Css::style('.arrow:after', ['width' => '2rem', 'height' => '2rem', 'box-shadow' => '5px 5px 0px inset']);
+/**
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<style>
+body {
+background-color: #333;
+}
+div {
+position: absolute;
+left: 50%;
+top: 50%;
+}
+div:before,
+div:after{
+content: '';
+width: 2rem;
+height: 2rem;
+display: inline-block;
+box-shadow: -5px -5px 0 white;
+}
+div:before {
+
+}
+div:after {
+position: relative;
+left: -22px;
+top: 10px;
+}
+div:nth-child(1) {
+margin-right: -50px;
+transform: rotateZ(-45deg);
+}
+div:nth-child(2) {
+margin-left: -50px;
+transform: rotateZ(135deg);
+}
+</style>
+<body>
+<div></div>
+<div></div>
+</div>
+</div>
+</body>
+</html>
+ */
 Css::register();

@@ -91,6 +91,7 @@
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
     <div id="music" class="paused"><audio src="http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting/bg.mp3" loop preload></audio></div>
     <div id="heartbeats"></div>
+    <div id="wrapper-mask"></div>
     <div class="wrapper">
         <div class="welcome">
             <div class="circle" id="circle-flowers">

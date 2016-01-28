@@ -16,7 +16,10 @@
         return alert('竖屏效果更好哟~');
     }
 
+    const $VIDEO = document.querySelector('#love-movie video');
+
     function addEvent(elem, eventName, callback) {
+        return elem.addEventListener(eventName, callback, false);
         if (TERMINAL == 'pc') {
             elem['onclick'] = callback;
         } else {
@@ -216,32 +219,43 @@
 
     const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
 
+    const $WRAPPER = document.querySelector('.wrapper');
     /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
         this.timeout = 600;
+        var self = this;
 
         // TODO: touch event
-        var startPos = {x: 0, y: 0};
+        var endPos, startPos = {x: 0, y: 0};
         var min = CLIENT.width * 0.1;
-        addEvent(document, 'touchstart', function (e) {
-            console.log(e)
+
+        addEvent($WRAPPER, 'touchstart', function (e) {
             startPos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+            endPos = startPos;
         });
-        addEvent(document, 'touchend', function (e) {
-            console.log(e)
-            var x = e.touches[0].clientX;
-            var distance = parseInt((x - startPos.x) / min);
-            console.log(e,min,startPos.x,distance);
+
+        addEvent($WRAPPER, 'touchmove', function (e) {
+            endPos = {x: e.touches[0].clientX, y:e.touches[0].clientY};
+        });
+
+        addEvent($WRAPPER, 'touchend', function () {
+            var dstDom, direction, distance = parseInt((endPos.x - startPos.x) / min);
             if (distance > 0) { // to right
-                // alert()
-                alert('from left to right')
-            } else if (distance < 0) {
-                //
-                alert('from right to left')
+                dstDom = self.currentDom.previousElementSibling;
+                direction = 'backward';
+            } else if (distance < 0) { // to left
+                dstDom = self.currentDom.nextElementSibling;
+                direction = 'forward';
             }
+
+            if ((dstDom instanceof HTMLElement)) {
+                self.flipTo(dstDom, direction);
+            }
+
         });
     };
+    const $WRAPPER_MASK = document.querySelector('#wrapper-mask');
     PageBase.prototype = {
         hasClass: function (elem, className) {
             var cls = elem.className;
@@ -281,24 +295,45 @@
 
             this.flipTo(next);
         },
-        flipTo: function (to) {
-            var $this = this;
-            var current = $this.currentDom;
+        flipTo: function (to, direction) {
+            if (to == this.currentDom) {
+                return ;
+            }
 
-            $this.addClass(current, 'flip-0-90');
+            $WRAPPER_MASK.className = 'active';
+
+            if (to.id = 'love-movie') {
+                $VIDEO.className = 'hide';
+                $VIDEO.pause();
+            }
+            var hideClass, showClass;
+            switch (direction) {
+                case 'forward':
+                    hideClass = 'flip-0-m90';
+                    showClass = 'flip-90-0';
+                    break;
+                default:
+                    hideClass = 'flip-0-90';
+                    showClass = 'flip-m90-0';
+            }
+            var self = this;
+            var current = self.currentDom;
+
+            self.addClass(current, hideClass);
             setTimeout(function () {
-                $this.removeClass(current, 'flip-0-90')
+                self.removeClass(current, hideClass)
                     .addClass(current, 'rotateY-90')
-                    .addClass(to, 'flip-90-0');
+                    .addClass(to, showClass);
 
                 setTimeout(function () {
-                    $this.removeClass(to, 'rotateY-90').removeClass(to, 'flip-90-0');
+                    self.removeClass(to, 'rotateY-90').removeClass(to, showClass);
+                    $WRAPPER_MASK.className = '';
                     if (initializer[to.dataset.init] instanceof Function) {
                         initializer[to.dataset.init](to);
                         to.dataset.init = null;
                     }
-                }, $this.timeout);
-            }, $this.timeout);
+                }, self.timeout);
+            }, self.timeout);
             this.currentDom = to;
         }
     };
@@ -469,8 +504,6 @@
         }
     };
 
-    const $VIDEO = document.querySelector('#love-movie video');
-
     function BaseMovie() {
         var bw = $body.clientWidth;
         var rate = 0.75;
@@ -502,7 +535,7 @@
             for (var i = 0; i < length; i++) {
                 $items[i].index = i;
                 if ($items[i].dataset.class == 'movie') {
-                    this.movieIndex = i;
+                    page.movieIndex = this.movieIndex = i;
                 }
                 addEvent($items[i], 'touchstart', function () {
                     if (self.currentIndex == this.index) {
