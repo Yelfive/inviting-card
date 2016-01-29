@@ -10,6 +10,7 @@ html, body {
 }
 
 body {
+    font-family: "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
     text-align: center;
     background-color: #ffe;
 }
@@ -96,10 +97,6 @@ body > .container {
     background-size: 100%;
 }
 
-* {
-    font-family: "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-}
-
 .wrapper .welcome .words {
     padding: 0 2rem;
     text-align: center;
@@ -113,17 +110,17 @@ body > .container {
     opacity: 0;
 }
 
-#timing-being-together {
+#timing-to-marriage {
     position: absolute;
     text-align: center;
     width: 100%;
 }
 
-#timing-being-together > .prefix > b {
+#timing-to-marriage > .prefix > b {
     font-size: 1.2rem;
 }
 
-#timing-being-together .value {
+#timing-to-marriage .value {
     font-size: 1.5rem;
 }
 
@@ -131,8 +128,19 @@ body > .container {
     color: #FF5555;
 }
 
+.font-0 {
+    font-size: 0;
+}
+
+.value {
+    font-size: 1rem;
+}
+
 .unit:after {
-    font-size: 0.8rem;
+    margin-right: 4px;
+}
+.unit:after {
+    font-size: 0.6rem;
 }
 
 .unit.year:after {

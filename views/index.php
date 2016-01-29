@@ -23,7 +23,7 @@
     <div style="display: none">
         <img src="<?= $imgHost; ?>/share.jpg">
     </div>
-    <link rel="stylesheet" href="./css/base.css?t=<?= $_SERVER['REQUEST_TIME']; ?>">
+    <link rel="stylesheet" href="./css/<?= DEBUG ? "base.css?t=$_SERVER[REQUEST_TIME]" : 'base.min.css?v=1.0'; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
         var Heart = function (canvas) {
@@ -86,7 +86,7 @@
     </style>
 </head>
 <body >
-<div class="arrow left"></div>
+<div class="arrow left disabled"></div>
 <div class="arrow right"></div>
 <div class="container">
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
@@ -101,23 +101,26 @@
                     <div></div>
                 <?php endfor; ?>
             </div>
-            <div id="timing-being-together" class="invisible font-it">
-                <?php $duration = time() - 1405785600 + 8; ?>
-                <div class="prefix">此时，我们已<b>相恋</b></div>
-                <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
-                <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
-                <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
-                <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+            <div id="timing-to-marriage" class="invisible" data-timing-type="marriage">
+                <div>我们的婚礼将在</div>
+                <div class="font-0">
+                    <?php $duration = 1458403200 - $_SERVER['REQUEST_TIME'] - 12; ?>
+                    <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
+                    <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
+                    <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
+                    <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+                </div>
+                <span>后举行</span>
             </div>
             <div class="words font-it invisible" id="votes">
-                No measure of time<br>with you<br>will be long enough<br>but <br>let's start forever
+                <span>我们结婚啦</span>
             </div>
         </div>
-        <div class="love-story rotateY-90 font-it" data-init="typeIn">
+        <div class="love-story rotateY-90" data-init="typeIn">
             <div>
                 <div class="title">相识相恋</div>
                 <span>我们在</span>
-                <span id="timing-love-story" data-timing-type="story" class="font-it">
+                <span id="timing-love-story" data-timing-type="story" class="font-0">
                     <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
                     <i class="value year"><?= intval($duration / 86400 / 365); ?></i><i class="unit year"></i>
                     <i class="value month"><?= sprintf('%02d', $duration / 86400 % 365 / 30); ?></i><i class="unit month"></i>
@@ -127,17 +130,16 @@
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
                 </span>
                 <span>前第一次<b>遇见</b></span>
-                <div>我们的婚礼</div>
-                <span>将在</span>
-                <span id="timing-to-marriage" data-timing-type="marriage">
-                    <?php $duration = 1458403200 - $_SERVER['REQUEST_TIME'] - 12; ?>
-                    <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
+
+                <br>
+                <span class="prefix">此时，我们已<b>相恋</b></span>
+                <span id="timing-being-together" class="font-0" data-timing-type="together">
+                    <?php $duration = time() - 1405785600 + 8; ?>
+                    <i class="value day"><?= intval($duration / 86400, 0); ?></i><i class="unit day"></i>
                     <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
                     <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
                 </span>
-                <span>后</span>
-                <span>举行</span>
             </div>
         </div>
         <div class="album rotateY-90" data-init="albumShow">
@@ -221,5 +223,5 @@
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="../js/base.js?t=<?= time(); ?>"></script>
+<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : 'base.min.js?v=1.0'; ?>"></script>
 </html>

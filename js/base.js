@@ -28,7 +28,7 @@
         }
     }
 
-    const $_TIMING = document.querySelector('#timing-being-together');
+    const $TIMING_TOGETHER = document.querySelector('#timing-being-together');
     var Wechat = {
         wechat: typeof wx === 'undefined' ? null : wx,
         init: function () {
@@ -130,6 +130,7 @@
             }
         }
     };
+    const $FIRST_TIMING = $circle.nextElementSibling;
     var drawCircle = function () {
         var children = $circle.children;
         var len = children.length;
@@ -137,7 +138,7 @@
         $circle.className += ' bloom';
 
         // set timing position
-        $_TIMING.style.top = cw / 2 * 0.8 + 'px';
+        $FIRST_TIMING.style.top = cw / 2 * 0.8 + 'px';
 
         radius = 0.4 * cw;
         coordinate.config = {
@@ -156,8 +157,8 @@
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
         }
         setTimeout(function () {
-            typeIn($_TIMING, function () {
-                timing.together();
+            typeIn($FIRST_TIMING, function () {
+                timing[$FIRST_TIMING.dataset.timingType]();
             });
         }, 2300);
     };
@@ -250,6 +251,8 @@
 
             if ((dstDom instanceof HTMLElement)) {
                 self.flipTo(dstDom, direction);
+            } else {
+                self.registerTremble(self.currentDom, distance);
             }
 
         });
@@ -294,12 +297,15 @@
 
             this.flipTo(next);
         },
+        arrowLeft: document.querySelector('.arrow.left'),
+        arrowRight: document.querySelector('.arrow.right'),
         flipTo: function (to, direction) {
             if (to == this.currentDom) {
+                this.registerTremble(to, direction);
                 return ;
             }
 
-            $WRAPPER_MASK.className = 'active';
+            $WRAPPER_MASK.className = 'active'; // in case trigger flip page when flipping
 
             if (to.id = 'love-movie') {
                 $VIDEO.className = 'hide';
@@ -318,15 +324,14 @@
             var self = this;
             var current = self.currentDom;
 
-            self.addClass(current, hideClass);
-            setTimeout(function () {
-                self.removeClass(current, hideClass)
-                    .addClass(current, 'rotateY-90')
-                    .addClass(to, showClass);
+            self.addClass(current, hideClass);  // start flip-out animation
+            setTimeout(function () { // remove out-animation class
+                self.addClass(current, 'rotateY-90')
+                    .removeClass(current, hideClass);
 
-                setTimeout(function () {
-                    self.removeClass(to, 'rotateY-90').removeClass(to, showClass);
-                    $WRAPPER_MASK.className = '';
+                self.addClass(to, showClass); // start flip-in animation
+                setTimeout(function () {  // remove in-animation class
+                    self.afterFlipped(to, direction, showClass);
                     if (initializer[to.dataset.init] instanceof Function) {
                         initializer[to.dataset.init](to);
                         to.dataset.init = null;
@@ -334,6 +339,33 @@
                 }, self.timeout);
             }, self.timeout);
             this.currentDom = to;
+        },
+        afterFlipped: function (dst, direction, showClass) {
+            this.removeClass(dst, 'rotateY-90').removeClass(dst, showClass);
+            $WRAPPER_MASK.className = '';
+            this.registerArrow(dst);
+            this.registerTremble(dst, direction);
+        },
+        registerTremble: function (dst, direction) {
+            var trembleClass = direction == 'backward' ? 'anti' : '';
+            var originClass = dst.className;
+            dst.className = originClass + ' tremble ' + trembleClass + 'clockwise';
+            setTimeout(function () {
+                dst.className = originClass;
+            }, 500);
+        },
+        registerArrow: function (dst) {
+            if (dst.nextElementSibling) {
+                this.arrowRight.className = 'arrow right';
+            } else {
+                this.arrowRight.className = 'arrow right disabled';
+            }
+
+            if (dst.previousElementSibling) {
+                this.arrowLeft.className = 'arrow left';
+            } else {
+                this.arrowLeft.className = 'arrow left disabled';
+            }
         }
     };
 
@@ -438,7 +470,7 @@
         },
         together: function () {
             var start = 1405785600, ts, self = this;
-            var valElem = $_TIMING.querySelectorAll('.value');
+            var valElem = $TIMING_TOGETHER.querySelectorAll('.value');
             var de = valElem[0], he = valElem[1], me = valElem[2], se = valElem[3];
             this.register(function () {
                 ts = ((new Date) - self.diff) / 1000 - start;

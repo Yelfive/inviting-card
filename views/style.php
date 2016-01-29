@@ -33,7 +33,6 @@ Css::keyframes('bloom', [
 ]);
 
 /* bubble */
-
 Css::keyframes('bubbleIn', [
     '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
@@ -130,7 +129,7 @@ Css::keyframes('touchIn', [
     '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
-Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(4%)']]);
+Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(10%) translateY(2%)']]);
 Css::keyframes('meKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(-10%)']]);
 Css::style('.kiss > #touch-us .her', ['animation' => 'herKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us .me', ['animation' => 'meKiss 0.5s ease-out']);
@@ -218,4 +217,18 @@ Css::style('.arrow:before', ['top' => 0, 'left' => 0]);
 Css::style('.arrow:after', ['bottom' => 0, 'right' => 0]);
 Css::style('.arrow.left', ['left' => '0.2rem', 'animation-name' => 'arrowLeft']);
 Css::style('.arrow.right', ['right' => '0.2rem', 'animation-name' => 'arrowRight']);
+Css::style('.arrow.disabled', ['animation-name' => '""', 'display' => 'none']);
+Css::keyframes('trembleClockwise', [
+    '0%, 100%' => ['transform' => 'rotateY(0deg)'],
+    '25%' => ['transform' => 'rotateY(-5deg)'],
+    '75%' => ['transform' => 'rotateY(5deg)'],
+]);
+Css::keyframes('trembleAnticlockwise', [
+    '0%, 100%' => ['transform' => 'rotateY(0deg)'],
+    '25%' => ['transform' => 'rotateY(5deg)'],
+    '75%' => ['transform' => 'rotateY(-5deg)'],
+]);
+Css::style('.tremble', ['animation' => '0.3s ease-in-out 2']);
+Css::style('.tremble.clockwise', ['animation-name' => 'trembleClockwise']);
+Css::style('.tremble.anticlockwise', ['animation-name' => 'trembleAnticlockwise']);
 Css::register();
