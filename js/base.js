@@ -219,6 +219,7 @@
     }
 
     const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
+    const $MAP = document.querySelector('#map');
 
     const $WRAPPER = document.querySelector('.wrapper');
     /* Page */
@@ -239,7 +240,10 @@
             endPos = {x: e.touches[0].clientX, y:e.touches[0].clientY};
         });
 
-        addEvent($WRAPPER, 'touchend', function () {
+        addEvent($WRAPPER, 'touchend', function (e) {
+            if (e.target && $MAP.contains(e.target)) {
+                return ;
+            }
             var dstDom, direction, distance = parseInt((endPos.x - startPos.x) / min);
             if (distance > 0) { // to right
                 dstDom = self.currentDom.previousElementSibling;
@@ -247,6 +251,8 @@
             } else if (distance < 0) { // to left
                 dstDom = self.currentDom.nextElementSibling;
                 direction = 'forward';
+            } else {
+                return ;
             }
 
             if ((dstDom instanceof HTMLElement)) {
@@ -257,7 +263,16 @@
 
         });
     };
-    const $WRAPPER_MASK = document.querySelector('#wrapper-mask');
+
+    var Mask = {
+        element: document.querySelector('#wrapper-mask'),
+        show: function () {
+            this.element.className = 'active';
+        },
+        hide: function () {
+            this.element.className = '';
+        }
+    };
     PageBase.prototype = {
         hasClass: function (elem, className) {
             var cls = elem.className;
@@ -305,7 +320,7 @@
                 return ;
             }
 
-            $WRAPPER_MASK.className = 'active'; // in case trigger flip page when flipping
+            Mask.show(); // in case trigger flip page when flipping
 
             if (to.id = 'love-movie') {
                 $VIDEO.className = 'hide';
@@ -342,7 +357,7 @@
         },
         afterFlipped: function (dst, direction, showClass) {
             this.removeClass(dst, 'rotateY-90').removeClass(dst, showClass);
-            $WRAPPER_MASK.className = '';
+            Mask.hide();
             this.registerArrow(dst);
             this.registerTremble(dst, direction);
         },
@@ -350,7 +365,9 @@
             var trembleClass = direction == 'backward' ? 'anti' : '';
             var originClass = dst.className;
             dst.className = originClass + ' tremble ' + trembleClass + 'clockwise';
+            Mask.show();
             setTimeout(function () {
+                Mask.hide();
                 dst.className = originClass;
             }, 500);
         },
