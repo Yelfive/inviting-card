@@ -6,6 +6,8 @@
 
 namespace fk\web;
 
+defined('DEBUG') or define('DEBUG', false);
+
 use fk;
 use fk\base\Object;
 use fk\wechat\Js;

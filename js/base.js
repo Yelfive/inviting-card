@@ -258,7 +258,7 @@
             if ((dstDom instanceof HTMLElement)) {
                 self.flipTo(dstDom, direction);
             } else {
-                self.registerTremble(self.currentDom, distance);
+                self.registerTremble(self.currentDom, direction);
             }
 
         });

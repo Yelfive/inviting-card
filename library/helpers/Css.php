@@ -1,26 +1,10 @@
 <?php
 
-class Background
-{
-    public static function left($i)
-    {
-        return 100 * (($i % 6) - 1);
-    }
+/**
+ * @author Felix Huang <yelfivehuang@gamil.com>
+ */
 
-    public static function top($i)
-    {
-        if ($i == 17) {
-            return 172;
-        }
-        return 96 * floor($i / 6); // 172
-    }
-
-    public static function scale($i)
-    {
-        return $i == 3 ? 2 : round(rand(3, 7) / 10, 2);
-    }
-
-}
+namespace fk\helpers;
 
 class Css
 {
@@ -42,11 +26,16 @@ class Css
 
     public static function register()
     {
+        if (DEBUG) {
+            echo "\n";
+        }
         $data = array_merge(self::$keyframes, self::$styles);
         foreach ($data as $style) {
             echo $style;
         }
-        echo "\n";
+        if (DEBUG) {
+            echo "\n";
+        }
     }
 
     protected static function is_webkit($property)
@@ -58,36 +47,38 @@ class Css
     {
         $style = '';
         $style .= static::tab();
-        $style .= "$property: $value;\n";
+        $pending = DEBUG ? "\n" : '';
+        $style .= "$property: $value;$pending";
         if (static::is_webkit($property)) {
             $style .= static::tab();
-            $style .= "-webkit-$property: $value;\n";
+            $style .= "-webkit-$property: $value;$pending";
         }
         return $style;
     }
 
     protected static function tab($num = 1)
     {
-        return str_repeat(' ', 4 * $num);
+        return DEBUG ? str_repeat(' ', 4 * $num) : '';
     }
 
     private static function _keyframes($name, $data)
     {
         $style = '';
+        $pending = DEBUG ? "\n" : '';
         foreach (['', '-webkit-'] as $frame) {
-            $style .= "@{$frame}keyframes $name {\n";
+            $style .= "@{$frame}keyframes $name {{$pending}";
             foreach ($data as $progress => $properties) {
                 $style .= static::tab(1);
-                $style .= "$progress {\n";
+                $style .= "$progress {{$pending}";
                 foreach ($properties as $property => $value) {
                     $style .= static::tab(2);
                     $style .= $frame == '-webkit-' && static::is_webkit($property) ? '-webkit-' : '';
-                    $style .= "$property: $value;\n";
+                    $style .= "$property: $value;$pending";
                 }
                 $style .= static::tab(1);
-                $style .= "}\n";
+                $style .= "}$pending";
             }
-            $style .= "}\n";
+            $style .= "}$pending";
         }
 
         return $style;
@@ -95,11 +86,12 @@ class Css
 
     private static function _style($selector, $data)
     {
-        $style = "$selector {\n";
+        $pending = DEBUG ? "\n" : '';
+        $style = "$selector {{$pending}";
         foreach ($data as $property => $value) {
             $style .= static::webkit($property, $value);
         }
-        $style .= "}\n";
+        $style .= "}$pending";
         return $style;
     }
 

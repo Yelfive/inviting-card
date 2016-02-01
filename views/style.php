@@ -1,6 +1,8 @@
 <?php
 
-echo "\n";
+use fk\helpers\Background;
+use fk\helpers\Css;
+
 Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
 
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);

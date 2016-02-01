@@ -81,7 +81,6 @@
 
     </script>
     <style>
-        <?php include __DIR__ . '/core.php'; ?>
         <?php include __DIR__ . '/style.php'; ?>
     </style>
 </head>
