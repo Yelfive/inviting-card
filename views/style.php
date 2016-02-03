@@ -128,7 +128,7 @@ Css::style('.wrapper > div', [
 /* touch */
 Css::keyframes('zoomIn', ['to' => ['transform' => 'scale(1.3)']]);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
+    '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(10%) translateY(2%)']]);

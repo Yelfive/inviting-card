@@ -90,7 +90,7 @@
 <div class="container">
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
-    <div id="music" class="paused"><audio src="http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting/bg.mp3" loop preload></audio></div>
+    <div id="music" class="paused"><audio src="http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting/morning.mp3" loop preload></audio></div>
     <div id="heartbeats"></div>
     <div id="wrapper-mask"></div>
     <div class="wrapper">
@@ -170,7 +170,10 @@
         <div class="invitation rotateY-90" data-init="openMap">
             <div>
                 <p>我们诚挚的邀请您参加我们的婚礼</p>
-                <p><b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222</p>
+                <p>
+                    <b>电话:</b><a href="tel:13541013371">13541013371</a>/<a href="tel:13541336629">13541336629</a><br>
+                    <b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222
+                </p>
                 <div>
                     <div id="map"></div>
                     <div id="open-map"><?= fk::$app->request->terminal == 'pc' ? '' : '打开地图'; ?></div>
