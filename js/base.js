@@ -219,7 +219,7 @@
     }
 
     const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
-    const $MAP = document.querySelector('#map');
+    const $MAP = document.querySelector('#map').parentNode;
 
     const $WRAPPER = document.querySelector('.wrapper');
     /* Page */
@@ -240,19 +240,24 @@
             endPos = {x: e.touches[0].clientX, y:e.touches[0].clientY};
         });
 
-        addEvent($WRAPPER, 'touchend', function (e) {
-            if (e.target && $MAP.contains(e.target)) {
-                return ;
-            }
-            var dstDom, direction, distance = parseInt((endPos.x - startPos.x) / min);
-            if (distance > 0) { // to right
-                dstDom = self.currentDom.previousElementSibling;
-                direction = 'backward';
-            } else if (distance < 0) { // to left
-                dstDom = self.currentDom.nextElementSibling;
-                direction = 'forward';
+        var handler = function (e) {
+            var direction;
+            if (e.type == 'click') {
+                return page.hasClass(this, 'right') ? page.next() : page.prev();
             } else {
-                return ;
+                if (e.target && $MAP.contains(e.target)) {
+                    return ;
+                }
+                var dstDom, distance = parseInt((endPos.x - startPos.x) / min);
+                if (distance > 0) { // to right
+                    dstDom = self.currentDom.previousElementSibling;
+                    direction = 'backward';
+                } else if (distance < 0) { // to left
+                    dstDom = self.currentDom.nextElementSibling;
+                    direction = 'forward';
+                } else {
+                    return ;
+                }
             }
 
             if ((dstDom instanceof HTMLElement)) {
@@ -261,7 +266,10 @@
                 self.registerTremble(self.currentDom, direction);
             }
 
-        });
+        };
+        addEvent($WRAPPER, 'touchend', handler);
+        addEvent(this.arrowLeft, 'click', handler);
+        addEvent(this.arrowRight, 'click', handler);
     };
 
     var Mask = {
@@ -295,32 +303,20 @@
             return this;
         },
         prev: function () {
-            var current = this.currentDom;
-            var prev = current.previousElementSibling;
-            if (!prev) {
-                return;
-            }
-
-            this.flipTo(prev);
+            this.flipTo(this.currentDom.previousElementSibling, 'backward');
         },
         next: function () {
-            var current = this.currentDom;
-            var next = current.nextElementSibling;
-            if (!next) {
-                return;
-            }
-
-            this.flipTo(next);
+            this.flipTo(this.currentDom.nextElementSibling, 'forward');
         },
         arrowLeft: document.querySelector('.arrow.left'),
         arrowRight: document.querySelector('.arrow.right'),
         flipTo: function (to, direction) {
-            if (to == this.currentDom) {
-                this.registerTremble(to, direction);
-                return ;
+            if (to == this.currentDom || !to) {
+                to = this.currentDom;
+                return this.registerTremble(to, direction);
             }
 
-            Mask.show(); // in case trigger flip page when flipping
+            Mask.show(); // In case trigger flip page when flipping
 
             if (to.id = 'love-movie') {
                 $VIDEO.className = 'hide';

@@ -593,3 +593,7 @@ ul#album-ul.photo-in {
     position: relative;
     padding: 1px;
 }
+
+.font-xk {
+    font-family: STXingkai, "MicroSoft YaHei", serif;
+}

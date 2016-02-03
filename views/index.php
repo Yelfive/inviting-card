@@ -23,7 +23,7 @@
     <div style="display: none">
         <img src="<?= $imgHost; ?>/share.jpg">
     </div>
-    <link rel="stylesheet" href="./css/<?= DEBUG ? "base.css?t=$_SERVER[REQUEST_TIME]" : 'base.min.css?v=1.0'; ?>">
+    <link rel="stylesheet" href="./css/<?= DEBUG ? "base.css?t=$_SERVER[REQUEST_TIME]" : "base.min.css?v=$version"; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
         var Heart = function (canvas) {
@@ -112,7 +112,8 @@
                 <span>后举行</span>
             </div>
             <div class="words font-it invisible" id="votes">
-                <span>我们结婚啦</span>
+                <div class="font-xk"> Felix&Kitty</div>
+                <div>2016年3月20日</div>
             </div>
         </div>
         <div class="love-story rotateY-90" data-init="typeIn">
@@ -129,7 +130,6 @@
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
                 </span>
                 <span>前第一次<b>遇见</b></span>
-
                 <br>
                 <span class="prefix">此时，我们已<b>相恋</b></span>
                 <span id="timing-being-together" class="font-0" data-timing-type="together">
@@ -222,5 +222,5 @@
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : 'base.min.js?v=1.0'; ?>"></script>
+<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$version"; ?>"></script>
 </html>
