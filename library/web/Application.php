@@ -14,13 +14,20 @@ use fk\wechat\Js;
 
 class Application extends Object
 {
+    /**
+     * Different plan differs in effects
+     * @var string Plan A or B
+     */
+    public $plan = 'B';
+    public $version = '1.0.0';
+
     public static function run()
     {
         fk::init();
-        static::render();
+        (new static)->render();
     }
 
-    public static function render()
+    public function render()
     {
         $wechat = new Js();
         $ticket = $wechat->ticket;
@@ -34,7 +41,6 @@ class Application extends Object
         $page = empty($_GET['p']) || !in_array($_GET['p'], ['index', 'video']) ? 'index' : $_GET['p'];
         $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
         $title = '黄伍&谢凤-我们结婚啦';
-        $version = '1.0';
         include "$viewPath/$page.php";
     }
 

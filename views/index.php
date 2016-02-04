@@ -8,7 +8,7 @@
  * @var string $nonceStr
  * @var string $signature
  * @var string $imgHost
- *
+ * @var \fk\web\Application $this
  */
 
 ?>
@@ -23,7 +23,7 @@
     <div style="display: none">
         <img src="<?= $imgHost; ?>/share.jpg">
     </div>
-    <link rel="stylesheet" href="./css/<?= DEBUG ? "base.css?t=$_SERVER[REQUEST_TIME]" : "base.min.css?v=$version"; ?>">
+    <link rel="stylesheet" href="./css/<?= DEBUG ? "base.css?t=$_SERVER[REQUEST_TIME]" : "base.min.css?v=$this->version"; ?>">
     <script>
         var diff = new Date - <?= microtime(true) * 1000; ?>;
         var Heart = function (canvas) {
@@ -116,7 +116,8 @@
                 <div>2016年3月20日</div>
             </div>
         </div>
-        <div class="love-story rotateY-90" data-init="typeIn">
+        <div class="love-story rotateY-90" data-init="<?= $this->plan == 'A' ? 'typeIn' : 'timeLine'; ?>">
+        <?php if($this->plan == 'A'): ?>
             <div>
                 <div class="title">相识相恋</div>
                 <span>我们在</span>
@@ -140,6 +141,9 @@
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
                 </span>
             </div>
+        <?php else: ?>
+            <?php include __APP__ . '/tree.php';?>
+        <?php endif; ?>
         </div>
         <div class="album rotateY-90" data-init="albumShow">
             <?php if (fk::$app->request->terminal == 'pc'):?>
@@ -181,6 +185,7 @@
             </div>
         </div>
     </div>
+    <?php if ($this->plan == 'A'): ?>
     <div id="menu">
         <div id="touch-us" class="touch-in"><div><div class="her"></div><div class="me"></div></div></div>
         <div id="cover"></div>
@@ -193,6 +198,7 @@
             <div class="item-5" data-class="invitation">地址</div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 <div style="display: none">
     <img src="<?= $imgHost; ?>/share.jpg">
@@ -225,5 +231,5 @@
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$version"; ?>"></script>
+<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$this->version"; ?>"></script>
 </html>

@@ -318,7 +318,7 @@
 
             Mask.show(); // In case trigger flip page when flipping
 
-            if (to.id = 'love-movie') {
+            if (to.id == 'love-movie') {
                 $VIDEO.className = 'hide';
                 $VIDEO.pause();
             }
@@ -559,6 +559,9 @@
     new BaseMovie();
     var BaseMenu = function () {
         this.menu = document.querySelector('#menu');
+        if (!this.menu) {
+            return ;
+        }
         this.touch = this.menu.querySelector('#touch-us');
         this.items = this.menu.querySelector('#items');
         this.bubbleContainer = this.menu.querySelector('#bubble');
@@ -566,6 +569,13 @@
 
     BaseMenu.prototype = {
         init: function () {
+            if (!this.menu) {
+                return ;
+            }
+
+            addEvent(Menu.touch, 'touchstart', function () {
+                page.hasClass(Menu.menu, 'kiss') ? Menu.hide() : Menu.show();
+            });
             this.bubble();
             this.registerJs();
         },
@@ -612,9 +622,6 @@
     };
 
     var Menu = new BaseMenu();
-    addEvent(Menu.touch, 'touchstart', function () {
-        page.hasClass(Menu.menu, 'kiss') ? Menu.hide() : Menu.show();
-    });
 
     var Loading = {
         _: document.querySelector('#heartbeats'),
@@ -678,7 +685,12 @@
     new BaseMusic();
 
 
+    const $TOUCH_US = document.querySelector('#touch-us');
     var initializer = {
+        timeLine: function (elem) {
+            $TOUCH_US.style.height = CLIENT.width + 'px';
+            elem.querySelector('div').className += ' fadeIn';
+        },
         typeIn: function (elem) {
             var callback, nodeType;
             for (var i = 0, children = elem.children[0].children, len = children.length; i < len; i++) {
@@ -704,7 +716,6 @@
             /* Wechat map*/
             var $button = elem.querySelector('#open-map');
             addEvent($button, 'click', function () {
-            //addEvent($button, 'touchstart', function () {
                 $button.className = 'active';
                 setTimeout(function () {
                     $button.className = '';
