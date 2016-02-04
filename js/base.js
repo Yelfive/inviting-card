@@ -693,6 +693,9 @@
             $TOUCH_US.className = 'plan-b fade-in';
             setTimeout(function () {
                 $TOUCH_US.parentNode.className = 'kiss';
+                setTimeout(function () {
+                    $TOUCH_US.className += ' zoom-out';
+                }, 600);
             }, 1000);
         },
         typeIn: function (elem) {

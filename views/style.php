@@ -129,17 +129,21 @@ Css::style('.wrapper > div', [
 ]);
 /* touch */
 Css::keyframes('zoomIn', ['to' => ['transform' => 'scale(1.3)']]);
+//Css::keyframes('zoomOut', ['from' => ['transform' => 'scale(1)'], 'to' => ['transform' => 'scale(0.2) translate(50%,150%)']]);
 Css::keyframes('touchIn', [
     '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
-Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(10%) translateY(2%)']]);
+Css::keyframes('herKiss', ['to' => ['transform' => 'rotateZ(-10deg) translate3d(8%, 2%, 0)']]);
 Css::keyframes('meKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0) translateX(-10%)']]);
 Css::style('.kiss > #touch-us .her', ['animation' => 'herKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us .me', ['animation' => 'meKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us > div', ['animation' => 'zoomIn 0.5s ease-out']);
+//$this->plan == 'B' && Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 100%', 'opacity' => 1]);
+$this->plan == 'B' && Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 100%', 'opacity' => 1]);
 
 Css::style('#touch-us.touch-in', ['animation' => 'touchIn 0.5s ease-in-out']);
+Css::style('#touch-us', ['animation-fill-mode' => 'forwards !important']);
 
 Css::style('transition', ['transition' => 'transform 1s']);
 
