@@ -42,6 +42,8 @@ Css::keyframes('bubbleIn', [
 
 Css::keyframes('fadeIn', ['from' => ['opacity' => 0, 'transform' => 'translate3d(0, 0, 0)'], 'to' => ['opacity' => 1]]);
 
+Css::style('.fade-in', ['animation' => 'fadeIn 1s ease-in-out', 'animation-fill-mode' => 'forwards']);
+
 $max = 10;
 $duration = 0.25;
 $operand = 1;

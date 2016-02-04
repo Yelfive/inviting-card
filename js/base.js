@@ -689,7 +689,11 @@
     var initializer = {
         timeLine: function (elem) {
             $TOUCH_US.style.height = CLIENT.width + 'px';
-            elem.querySelector('div').className += ' fadeIn';
+            $TOUCH_US.style.bottom = (CLIENT.height - CLIENT.width) / 2 + 'px';
+            $TOUCH_US.className = 'plan-b fade-in';
+            setTimeout(function () {
+                $TOUCH_US.parentNode.className = 'kiss';
+            }, 1000);
         },
         typeIn: function (elem) {
             var callback, nodeType;

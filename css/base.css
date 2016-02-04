@@ -354,15 +354,20 @@ ul#album-ul.photo-in {
     position: absolute;
     right: 1rem;
     bottom: 1rem;
-    /*border-radius: 10px;*/
-    /*border-radius: 50%;*/
     box-shadow: 0 0 10px black;
-    /*background-color: rgba(255,88,88,0.7) /!*#FF5C5C*!/;*/
-    /*box-shadow: 0 0 10px #A53636;*/
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 100;
     display: block;
+}
+
+#touch-us.plan-b {
+    width: 100%;
+    left: 0;
+    right: auto;
+    box-shadow: none;
+    overflow: visible;
+    border-radius: 0;
 }
 
 #touch-us > div {
