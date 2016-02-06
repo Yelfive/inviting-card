@@ -349,25 +349,6 @@ ul#album-ul.photo-in {
 }
 
 #touch-us {
-    height: 3rem;
-    width: 3rem;
-    position: absolute;
-    right: 1rem;
-    bottom: 1rem;
-    box-shadow: 0 0 10px black;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 100;
-    display: block;
-}
-
-#touch-us.plan-b {
-    width: 100%;
-    left: 0;
-    right: auto;
-    box-shadow: none;
-    overflow: visible;
-    border-radius: 0;
 }
 
 #touch-us > div {
@@ -389,16 +370,6 @@ ul#album-ul.photo-in {
     background-position-y: bottom;
     animation-fill-mode: forwards !important;
     -webkit-animation-fill-mode: forwards !important;
-}
-
-#touch-us .her {
-    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/her.png);
-    /*background-image: url(../images/her_white.png);*/
-}
-
-#touch-us .me {
-    background-image: url(http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting/me.png);
-    /*background-image: url(../images/me_white.png);*/
 }
 
 #cover {
@@ -597,8 +568,4 @@ ul#album-ul.photo-in {
     border-bottom-right-radius: 20px;
     position: relative;
     padding: 1px;
-}
-
-.font-xk {
-    font-family: STXingkai, "MicroSoft YaHei", serif;
 }

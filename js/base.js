@@ -16,6 +16,12 @@
         return alert('竖屏效果更好哟~');
     }
 
+    document.ontouchmove = function (event) {
+        if (!event.scrollable) {
+            return event.preventDefault();
+        }
+    };
+
     const $VIDEO = document.querySelector('#love-movie video');
 
     function addEvent(elem, eventName, callback) {
@@ -229,7 +235,7 @@
         var self = this;
 
         var endPos, startPos = {x: 0, y: 0};
-        var min = CLIENT.width * 0.1;
+        var min = CLIENT.width * 0.2;
 
         addEvent($WRAPPER, 'touchstart', function (e) {
             startPos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
@@ -249,14 +255,14 @@
                     return ;
                 }
                 var dstDom, distance = parseInt((endPos.x - startPos.x) / min);
-                if (distance > 0) { // to right
+                if (distance == 0 || Math.abs(endPos.x - startPos.x) < Math.abs(endPos.y - startPos.y)) {
+                    return ;
+                } else if (distance > 0) { // to right
                     dstDom = self.currentDom.previousElementSibling;
                     direction = 'backward';
                 } else if (distance < 0) { // to left
                     dstDom = self.currentDom.nextElementSibling;
                     direction = 'forward';
-                } else {
-                    return ;
                 }
             }
 

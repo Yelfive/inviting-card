@@ -13,7 +13,7 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en" ontouchmove="!event || event.preventDefault()">
+<html lang="en" ontouchmove1="!event || event.preventDefault()">
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -112,7 +112,7 @@
                 <span>后举行</span>
             </div>
             <div class="words font-it invisible" id="votes">
-                <div class="font-xk"> Felix&Kitty</div>
+                <div> Felix&Kitty</div>
                 <div>2016年3月20日</div>
             </div>
         </div>
