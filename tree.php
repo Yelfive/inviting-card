@@ -13,12 +13,12 @@
         ];
     $story = array_reverse($story);
     ?>
-    <div style="opacity: 1; display: none;">
-        <div id="time-anchors">
+    <div  id="time-anchors" style="opacity: 1; display: none;">
+<!--        <div>-->
             <?php for($i = 0; $i < count($story); $i++): ?>
-                <div><canvas></canvas><div class="year"><?= $story[$i][0]; ?></div><div class="words"><?= $story[$i][1]; ?></div></div>
+                <div class="anchor"><canvas></canvas><div class="year"><?= $story[$i][0]; ?></div><div class="words"><?= $story[$i][1]; ?></div></div>
             <?php endfor; ?>
-        </div>
+<!--        </div>-->
     </div>
     <div style="opacity: 1;">
         <div id="touch-us"><div><div class="her"></div><div class="me"></div></div></div>

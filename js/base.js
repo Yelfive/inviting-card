@@ -700,7 +700,11 @@
             setTimeout(function () {
                 $TOUCH_US.parentNode.className = 'kiss';
                 setTimeout(function () {
-                    $TOUCH_US.className += ' zoom-out';
+                    $TOUCH_US.parentNode.className += ' zoom-out';
+                    setTimeout(function () {
+                        var $anchor = document.querySelector('#time-anchors');
+                        $anchor.style.display = 'block';
+                    }, 1000);
                 }, 600);
             }, 1000);
         },

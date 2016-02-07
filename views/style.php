@@ -144,15 +144,7 @@ Css::style('.kiss > #touch-us .her', ['animation' => 'herKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us .me', ['animation' => 'meKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us > div', ['animation' => 'zoomIn 0.5s ease-out']);
 
-if ($this->plan == 'B') {
-    Css::style('#touch-us', [
-        'width' => '100%',
-        'left' => '0',
-    ]);
-    Css::keyframes('zoomOut', ['from' => ['transform' => 'scale(1)'], 'to' => ['transform' => 'scale(0.2) translate(50%,100%)']]);
-//    $this->plan == 'B' && Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 100%', 'opacity' => 1]);
-    Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0', 'opacity' => 1]);
-} else {
+if ($this->plan == 'A') {
     Css::style('#touch-us', [
         'height' => '3rem',
         'width' => '3rem',
@@ -165,6 +157,18 @@ if ($this->plan == 'B') {
         'z-index' => '100',
         'display' => 'block',
     ]);
+} else {
+    Css::style('#touch-us', [
+        'width' => '100%',
+        'left' => '0',
+    ]);
+    Css::keyframes('zoomOut', ['from' => ['transform' => 'scale(1)'], 'to' => ['transform' => 'scale(0.2) translate(50%,100%)']]);
+//    $this->plan == 'B' && Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 100%', 'opacity' => 1]);
+    Css::style('.kiss.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 0', 'opacity' => 1, 'animation-fill-mode'=> 'forwards']);
+    Css::style('.anchor canvas', ['width' => '50px', 'height' => '50px', 'vertical-align' => 'bottom', 'margin' => '10px 0']);
+    Css::style('.anchor>div', ['display' => 'inline-block', 'height' => '70px', 'width' => '70%', 'max-width' => '300px']);
+    Css::style('.anchor>div.year', ['width' => '40px']);
+    Css::style('.anchor>div.words', ['width' => '40px']);
 }
 
 
