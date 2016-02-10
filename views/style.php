@@ -133,7 +133,7 @@ Css::style('.wrapper > div', [
 /* touch */
 Css::keyframes('zoomIn', ['to' => ['transform' => 'scale(1.3)']]);
 Css::keyframes('touchIn', [
-    '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
+    '0%' => ['transform' => 'scale(1.5)', 'opacity' => 0],
     '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
 ]);
 Css::style('#touch-us .her', ['background-image' => "url($imgHost/her.png)"]);
@@ -143,6 +143,53 @@ Css::keyframes('meKiss', ['to' => ['transform' => 'rotateZ(-10deg) translateZ(0)
 Css::style('.kiss > #touch-us .her', ['animation' => 'herKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us .me', ['animation' => 'meKiss 0.5s ease-out']);
 Css::style('.kiss > #touch-us > div', ['animation' => 'zoomIn 0.5s ease-out']);
+Css::style('#music', [
+    'width' => '50px',
+    'height' => '50px',
+    'position' => 'absolute',
+    'right' => '10px',
+    'top' => '10px',
+    'z-index' => '2',
+    'border-radius' => '50%',
+    'background' => "black url($this->imgHost/us_cd.png) no-repeat center center",
+    'background-size' => '50%',
+]);
+Css::style('.wrapper .album > div .cover', [
+    'width' => '90%',
+    'height' => '80%',
+    'margin' => '0 auto',
+    'background' => "url($this->imgHost/9.jpg) no-repeat center center",
+    'background-size' => '100%',
+    'position' => 'relative',
+]);
+Css::style('#items > div', [
+    'width' => '150px',
+    'height' => '100px',
+    'background' => "url($this->imgHost/25.png) no-repeat",
+    'background-size' => '100%',
+    'text-align' => 'center',
+    'line-height' => '100px',
+    'display' => 'inline-block',
+    'position' => 'relative',
+    'margin-bottom' => '1rem',
+]);
+Css::style('.start', [
+    'position' => 'absolute',
+    'width' => '120px',
+    'height' => '120px',
+    'background' => "url($this->imgHost/flowers.png) -402px -270px no-repeat",
+    'left' => '50%',
+    'top' => '50%',
+    'margin-left' => '-60px',
+    'margin-top' => '-60px',
+]);
+Css::style('.wrapper .welcome .circle', [
+    'width' => '100%',
+    'height' => '50%',
+    'position' => 'relative',
+    'background' => "url($this->imgHost/ring.png) no-repeat 2px 6px",
+    'background-size' => '100%',
+]);
 
 if ($this->plan == 'A') {
     Css::style('#touch-us', [
@@ -157,18 +204,23 @@ if ($this->plan == 'A') {
         'z-index' => '100',
         'display' => 'block',
     ]);
+    Css::style('.love-story .line', ['font-size' => '14px', 'line-height' => '14px', 'padding-left1' => '2rem', 'text-indent1' => '-2rem', 'margin-bottom' => '1rem']);
+    Css::style('.love-story .line>.year', ['font-weight' => 'bolder']);
+    Css::style('.love-story .line>.story:before', ['content' => '", "']);
+    Css::style('.love-story .line>.story', ['word-break' => 'break-word']);
 } else {
     Css::style('#touch-us', [
         'width' => '100%',
         'left' => '0',
     ]);
     Css::keyframes('zoomOut', ['from' => ['transform' => 'scale(1)'], 'to' => ['transform' => 'scale(0.2) translate(50%,100%)']]);
-//    $this->plan == 'B' && Css::style('#touch-us.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 100%', 'opacity' => 1]);
     Css::style('.kiss.zoom-out', ['animation' => 'zoomOut 1s ease-in-out', 'transform-origin' => '0 0', 'opacity' => 1, 'animation-fill-mode'=> 'forwards']);
-    Css::style('.anchor canvas', ['width' => '50px', 'height' => '50px', 'vertical-align' => 'bottom', 'margin' => '10px 0']);
-    Css::style('.anchor>div', ['display' => 'inline-block', 'height' => '70px', 'width' => '70%', 'max-width' => '300px']);
-    Css::style('.anchor>div.year', ['width' => '40px']);
-    Css::style('.anchor>div.words', ['width' => '40px']);
+    Css::style('.anchor', ['margin-bottom' => '0.5rem', 'display' => 'inline-block', 'width' => '100%']);
+    Css::style('.anchor canvas', ['width' => '50px', 'height' => '50px', 'vertical-align' => 'top', 'float' => 'left']);
+    Css::style('.anchor>div', ['display' => 'inline-block', 'vertical-align' => 'top']);
+    Css::style('.anchor>div.year', ['width' => '40px', 'line-height' => '50px', 'font-size' => '12px', 'float' => 'left']);
+    Css::style('.anchor>div.words', ['width' => '150px', 'background-color' => '#FF7070', 'border-radius' => '5px', 'padding' => '5px', 'float' => 'right']);
+    Css::style('.anchor .heart-chart', []);
 }
 
 
@@ -269,4 +321,5 @@ Css::keyframes('trembleAnticlockwise', [
 Css::style('.tremble', ['animation' => '0.3s ease-in-out 2']);
 Css::style('.tremble.clockwise', ['animation-name' => 'trembleClockwise']);
 Css::style('.tremble.anticlockwise', ['animation-name' => 'trembleAnticlockwise']);
+/* Register Css */
 Css::register();

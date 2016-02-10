@@ -18,8 +18,10 @@ class Application extends Object
      * Different plan differs in effects
      * @var string Plan A or B
      */
-    public $plan = 'B';
+    public $plan = 'A';
     public $version = '1.0.0';
+    public $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
+//    public $imgHost = 'images';
 
     public static function run()
     {
@@ -39,8 +41,8 @@ class Application extends Object
 
         $viewPath = __APP__ . '/views';
         $page = empty($_GET['p']) || !in_array($_GET['p'], ['index', 'video']) ? 'index' : $_GET['p'];
-        $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
-//        $imgHost = 'images';
+
+        $imgHost = $this->imgHost;
         $title = '黄伍&谢凤-我们结婚啦';
         include "$viewPath/$page.php";
     }

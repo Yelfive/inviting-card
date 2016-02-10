@@ -17,7 +17,7 @@
     }
 
     document.ontouchmove = function (event) {
-        if (!event.scrollable) {
+        if (OS =='iOS' && !event.scrollable) {
             return event.preventDefault();
         }
     };
@@ -26,12 +26,6 @@
 
     function addEvent(elem, eventName, callback) {
         return elem.addEventListener(eventName, callback, false);
-        if (TERMINAL == 'pc') {
-            elem['onclick'] = callback;
-        } else {
-            //elem['on' + eventName] = callback;
-            elem.addEventListener(eventName, callback, false);
-        }
     }
 
     const $TIMING_TOGETHER = document.querySelector('#timing-being-together');

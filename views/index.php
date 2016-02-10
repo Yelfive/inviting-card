@@ -11,9 +11,13 @@
  * @var \fk\web\Application $this
  */
 
+include __DIR__ . '/story.php';
+/**
+ * @var array $story
+ */
 ?>
 <!DOCTYPE html>
-<html lang="en" ontouchmove1="!event || event.preventDefault()">
+<html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -90,7 +94,7 @@
 <div class="container">
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
-    <div id="music" class="paused"><audio src="http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting/morning.mp3" loop preload></audio></div>
+    <div id="music" class="paused"><audio src="<?= $this->imgHost == 'images' ? 'images' : 'http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting'; ?>/morning.mp3" loop preload></audio></div>
     <div id="heartbeats"></div>
     <div id="wrapper-mask"></div>
     <div class="wrapper">
@@ -118,8 +122,37 @@
         </div>
         <div class="love-story rotateY-90" data-init="<?= $this->plan == 'A' ? 'typeIn' : 'timeLine'; ?>">
         <?php if($this->plan == 'A'): ?>
-            <div>
-                <div class="title">相识相恋</div>
+            <div ontouchmove="event.scrollable=true;">
+                <div class="title">幸福时刻</div>
+                <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
+                <?php foreach($story as &$s): ?>
+                    <?php
+                    $init = '';
+                    if(!is_numeric($s[0])) {
+                        $init = 'data-timing-type="story"';
+                        $year = intval($duration / 86400 / 365);
+                        $month = sprintf('%02d', $duration / 86400 % 365 / 30);
+                        $day = sprintf('%03d', $duration / 86400 % 365);
+                        $hour = sprintf('%02d', $duration / 3600 % 24);
+                        $minute = sprintf('%02d', $duration / 60 % 60);
+                        $second = sprintf('%02d', $duration % 60);
+
+                        $s[1] = str_replace('{time}', <<<HTML
+<span id="timing-love-story" data-timing-type="story" class="font-0">
+    <i class="value year">$year</i><i class="unit year"></i>
+    <i class="value month">$month</i><i class="unit month"></i>
+    <i class="value day">$day</i><i class="unit day"></i>
+    <i class="value hour">$hour</i><i class="unit hour"></i>
+    <i class="value minute">$minute</i><i class="unit minute"></i>
+    <i class="value second">$second</i><i class="unit second"></i>
+</span>
+HTML
+                        , $s[1]);
+                    }
+                    ?>
+                    <div class="line" <?= $init; ?>><span class="year"><?= $s[0]; ?></span><span class="story"><?= $s[1]; ?></span></div>
+                <?php endforeach; ?>
+                <?php if (0):  ?>
                 <span>我们在</span>
                 <span id="timing-love-story" data-timing-type="story" class="font-0">
                     <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
@@ -140,6 +173,7 @@
                     <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
                 </span>
+                <?php endif; ?>
             </div>
         <?php else: ?>
             <?php include __APP__ . '/tree.php';?>
@@ -228,6 +262,7 @@
         }
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
+    const OS = '<?= fk::$app->request->isAndroid ? 'Android' : 'iOS'; ?>';
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
