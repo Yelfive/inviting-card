@@ -526,12 +526,12 @@
             });
         },
         marriage: function () {
-            var start = 1458403200, ts, self = this;
+            var start = DATA.marriage, ts, self = this;
             var valElem = document.querySelector('#timing-to-marriage').querySelectorAll('.value');
             var de = valElem[0], he = valElem[1], ie = valElem[2], se = valElem[3];
 
             this.register(function () {
-                ts = start - ((new Date) - self.diff) / 1000;
+                ts = Math.abs(start - ((new Date) - self.diff) / 1000);
                 de.innerText = self._days(ts);
                 he.innerText = self._hour(ts);
                 ie.innerText = self._minute(ts);

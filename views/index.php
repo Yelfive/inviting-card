@@ -15,6 +15,7 @@ include __DIR__ . '/story.php';
 /**
  * @var array $story
  */
+$marriage = 1458446400;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,6 +107,7 @@ include __DIR__ . '/story.php';
             </div>
             <div id="timing-to-marriage" class="invisible" data-timing-type="marriage">
                 <div>我们的婚礼将在</div>
+                <i><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == '2016-03-20' ? '正在进行' : '已过') : '倒计时'; ?></i>
                 <div class="font-0">
                     <?php $duration = 1458403200 - $_SERVER['REQUEST_TIME'] - 12; ?>
                     <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
@@ -259,7 +261,8 @@ HTML
             desc: '我们邀请您及家人为我们见证这一美妙的时刻',
             link: '<?= "http://$_SERVER[HTTP_HOST]/index.php"; ?>',
             imgUrl: '<?= $imgHost; ?>/share.jpg'
-        }
+        },
+        marriage: <?= $marriage; ?>
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
     const OS = '<?= fk::$app->request->isAndroid ? 'Android' : 'iOS'; ?>';
