@@ -120,9 +120,9 @@ include __DIR__ . '/story.php';
                 <div>2016年3月20日</div>
             </div>
         </div>
-        <div class="love-story rotateY-90" data-init="<?= $this->plan == 'A' ? 'typeIn' : 'timeLine'; ?>">
+        <div id="love-story" class="love-story rotateY-90" data-init="<?= $this->plan == 'A' ? 'loveStory' : 'timeLine'; ?>">
         <?php if($this->plan == 'A'): ?>
-            <div ontouchmove="event.scrollable=true;">
+            <div>
                 <div class="title">幸福时刻</div>
                 <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
                 <?php foreach($story as &$s): ?>
@@ -179,7 +179,7 @@ HTML
             <?php include __APP__ . '/tree.php';?>
         <?php endif; ?>
         </div>
-        <div class="album rotateY-90" data-init="albumShow">
+        <div class="album rotateY-90" data-init="albumShow" id="album">
             <?php if (fk::$app->request->terminal == 'pc'):?>
                 <ul class="bg-pink" id="album-ul">
                     <?php for ($i = 1; $i <= 17; $i++): ?>
@@ -266,5 +266,6 @@ HTML
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="js/iscroll-lite.js"></script>
 <script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$this->version"; ?>"></script>
 </html>

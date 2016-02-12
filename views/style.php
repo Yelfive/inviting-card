@@ -38,14 +38,13 @@ Css::keyframes('bloom', [
 ]);
 
 /* bubble */
-Css::keyframes('bubbleIn', [
-    '0%' => ['transform' => 'scale(0)', 'opacity' => 0],
-    '100%' => ['transform' => 'scale(1)', 'opacity' => 1],
-]);
+Css::keyframes('bubbleIn', ['0%' => ['transform' => 'scale(0)', 'opacity' => 0], '100%' => ['transform' => 'scale(1)', 'opacity' => 1]]);
 
 Css::keyframes('fadeIn', ['from' => ['opacity' => 0, 'transform' => 'translate3d(0, 0, 0)'], 'to' => ['opacity' => 1]]);
+Css::keyframes('fadeOut', ['to' => ['opacity' => 0, 'transform' => 'translate3d(0, 0, 0)'], 'from' => ['opacity' => 1]]);
 
 Css::style('.fade-in', ['animation' => 'fadeIn 1s ease-in-out', 'animation-fill-mode' => 'forwards']);
+Css::style('.fade-out', ['animation' => 'fadeOut 0.5s ease-in-out', 'animation-fill-mode' => 'forwards']);
 
 $max = 10;
 $duration = 0.25;
@@ -157,6 +156,7 @@ Css::style('#music', [
 Css::style('.wrapper .album > div .cover', [
     'width' => '90%',
     'height' => '80%',
+    'top' => '1rem',
     'margin' => '0 auto',
     'background' => "url($this->imgHost/9.jpg) no-repeat center center",
     'background-size' => '100%',
@@ -204,10 +204,15 @@ if ($this->plan == 'A') {
         'z-index' => '100',
         'display' => 'block',
     ]);
-    Css::style('.love-story .line', ['font-size' => '14px', 'line-height' => '14px', 'padding-left1' => '2rem', 'text-indent1' => '-2rem', 'margin-bottom' => '1rem']);
+    Css::style('.love-story > div', ['width' => '90%', 'height1' => '1000px' /* TODO */, 'padding-bottom' => '3rem', 'margin' => '0 auto']);
+    Css::style('.love-story .line', ['font-size' => '14px', 'margin-bottom' => '1rem']);
     Css::style('.love-story .line>.year', ['font-weight' => 'bolder']);
     Css::style('.love-story .line>.story:before', ['content' => '", "']);
     Css::style('.love-story .line>.story', ['word-break' => 'break-word']);
+    Css::keyframes('lineIn', ['from' => ['transform' => 'translateY(-20px)', 'opacity' => 0], 'to' => ['opacity' => 1]]);
+    Css::style('.line-in', ['animation' => 'lineIn 1.5s ease-out', 'animation-fill-mode' => 'forwards']);
+    Css::style('.love-story .line>.story', ['word-break' => 'break-word']);
+    Css::style('.wrapper .love-story > div > div.title', ['opacity' => 1]);
 } else {
     Css::style('#touch-us', [
         'width' => '100%',

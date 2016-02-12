@@ -17,9 +17,7 @@
     }
 
     document.ontouchmove = function (event) {
-        if (OS =='iOS' && !event.scrollable) {
-            return event.preventDefault();
-        }
+        return event.preventDefault();
     };
 
     const $VIDEO = document.querySelector('#love-movie video');
@@ -229,15 +227,22 @@
         var self = this;
 
         var endPos, startPos = {x: 0, y: 0};
-        var min = CLIENT.width * 0.2;
+        var min = CLIENT.width * 0.1;
+        function moveVertically() {
+            return Math.abs(endPos.x - startPos.x) < Math.abs(endPos.y - startPos.y);
+        }
 
         addEvent($WRAPPER, 'touchstart', function (e) {
+            //e.preventDefault(); // if not, Android will cause problem: touchend will not be fired
             startPos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
             endPos = startPos;
         });
 
         addEvent($WRAPPER, 'touchmove', function (e) {
             endPos = {x: e.touches[0].clientX, y:e.touches[0].clientY};
+            //if (!moveVertically()) {
+                e.preventDefault();
+            //}
         });
 
         var handler = function (e) {
@@ -249,7 +254,7 @@
                     return ;
                 }
                 var dstDom, distance = parseInt((endPos.x - startPos.x) / min);
-                if (distance == 0 || Math.abs(endPos.x - startPos.x) < Math.abs(endPos.y - startPos.y)) {
+                if (distance == 0 || moveVertically()) {
                     return ;
                 } else if (distance > 0) { // to right
                     dstDom = self.currentDom.previousElementSibling;
@@ -260,12 +265,11 @@
                 }
             }
 
-            if ((dstDom instanceof HTMLElement)) {
+            if (dstDom instanceof HTMLElement) {
                 self.flipTo(dstDom, direction);
             } else {
                 self.registerTremble(self.currentDom, direction);
             }
-
         };
         addEvent($WRAPPER, 'touchend', handler);
         addEvent(this.arrowLeft, 'click', handler);
@@ -318,9 +322,23 @@
 
             Mask.show(); // In case trigger flip page when flipping
 
-            if (to.id == 'love-movie') {
+            var self = this;
+            if (to.id == 'love-movie' || self.currentDom.id == 'love-movie') {
                 $VIDEO.className = 'hide';
                 $VIDEO.pause();
+            }
+            if (this.currentDom.id == 'album') {
+                var $pic = this.currentDom.querySelector('div');
+                $pic.className = 'fade-out';
+                setTimeout(function () {
+                    $pic.className = '';
+                }, 500);
+            }
+            if (to.id == 'album') {
+                var $pic = to.querySelector('div');
+                setTimeout(function () {
+                    $pic.className = 'fade-in';
+                }, 1000);
             }
             var hideClass, showClass;
             switch (direction) {
@@ -332,7 +350,6 @@
                     hideClass = 'flip-0-90';
                     showClass = 'flip-m90-0';
             }
-            var self = this;
             var current = self.currentDom;
 
             self.addClass(current, hideClass);  // start flip-out animation
@@ -573,7 +590,7 @@
                 return ;
             }
 
-            addEvent(Menu.touch, 'touchstart', function () {
+            addEvent(Menu.touch, 'click', function () {
                 page.hasClass(Menu.menu, 'kiss') ? Menu.hide() : Menu.show();
             });
             this.bubble();
@@ -649,20 +666,20 @@
         this.audio = this.music.querySelector('audio');
 
         var self = this;
-        addEvent(this.music, 'touchstart', function () {
+        addEvent(this.music, 'click', function () {
             self._paused() ? self.play() : self.pause();
         });
 
         this._paused() || this.play();  // Safari mobile cannot play music automatically
-        document.ontouchstart = function () { // touch the document to play music
-            self._paused() || self.play();
-            this.ontouchstart = undefined;
-        };
+        //document.ontouchstart = function () { // touch the document to play music
+        //    self._paused() || self.play();
+        //    this.ontouchstart = undefined;
+        //};
         var handler = function() {
             self._paused() || self.play();
-            document.removeEventListener('touchstart', handler);
+            document.removeEventListener('click', handler);
         }
-        document.addEventListener('touchstart', handler);
+        document.addEventListener('click', handler);
     }
 
     BaseMusic.prototype = {
@@ -702,8 +719,33 @@
                 }, 600);
             }, 1000);
         },
+        loveStory: function (elem) {
+            var scroll = new IScroll('#love-story');
+
+            var children = elem.querySelectorAll('.line'), len = children.length, i = 1;
+
+            function fadeIn(elem, next) {
+                var nodeType;
+                elem.className += ' line-in';
+                if (nodeType = elem.dataset.timingType) {
+                    timing[nodeType]();
+                }
+                if (next && next.offsetTop > CLIENT.height) {
+                    scroll.scrollToElement(next, 2000);
+                }
+            }
+            fadeIn(children[0]);
+            var tt = setInterval(function() {
+                if (i < len) {
+                    fadeIn(children[i], children[++i]);
+                } else {
+                    clearInterval(tt);
+                }
+            }, 2000);
+        },
         typeIn: function (elem) {
             var callback, nodeType;
+            new IScroll('#love-story');
             for (var i = 0, children = elem.children[0].children, len = children.length; i < len; i++) {
                 if (nodeType = children[i].dataset.timingType) {
                     callback = timing[nodeType];

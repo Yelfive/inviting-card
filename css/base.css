@@ -159,7 +159,8 @@ body > .container {
     content: '秒';
 }
 .wrapper .love-story {
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .wrapper .love-story > div > span,
 .wrapper .love-story > div > div {
@@ -176,7 +177,7 @@ body > .container {
     padding-top: 10px;
 }
 
-.wrapper .love-story > div,
+/*.wrapper .love-story > div,*/
 .wrapper .invitation > div {
     word-wrap: break-word;
     word-break: break-all;
@@ -203,6 +204,7 @@ body > .container {
     box-shadow: 0 0 50px #808080;
     margin: 0 auto;
     background-color: white;
+    opacity: 0;
 }
 
 .wrapper .album > div .mask {
