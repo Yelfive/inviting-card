@@ -191,6 +191,20 @@ Css::style('.wrapper .welcome .circle', [
     'background-size' => '100%',
 ]);
 
+Css::style('.welcome>.wedding-photo', ['height' => '320px', 'position' => 'absolute', 'width' => '100%', 'opacity' => 0]);
+
+Css::style('.welcome>.wedding-photo>div', [
+    'background' => "url($this->imgHost/6.jpg) no-repeat center center",
+    'background-size' => '100%',
+    'position' => 'absolute',
+    'top' => '0',
+    'left' => '-3%',
+    'width' => '100%',
+    'height' => '100%',
+    'transform' => 'scale(0.8)',
+    'border-radius' => '50%',
+]);
+
 if ($this->plan == 'A') {
     Css::style('#touch-us', [
         'height' => '3rem',
@@ -204,7 +218,7 @@ if ($this->plan == 'A') {
         'z-index' => '100',
         'display' => 'block',
     ]);
-    Css::style('.love-story > div', ['width' => '90%', 'height1' => '1000px' /* TODO */, 'padding-bottom' => '3rem', 'margin' => '0 auto']);
+    Css::style('.love-story > div', ['width' => '90%', 'padding-bottom' => '3rem', 'margin' => '0 auto']);
     Css::style('.love-story .line', ['font-size' => '14px', 'margin-bottom' => '1rem']);
     Css::style('.love-story .line>.year', ['font-weight' => 'bolder']);
     Css::style('.love-story .line>.story:before', ['content' => '", "']);

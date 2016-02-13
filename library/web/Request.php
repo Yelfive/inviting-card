@@ -8,7 +8,7 @@ namespace fk\web;
 use fk\base\Object;
 
 /**
- * @property string $terminal
+ * @property string $terminal pc or mobile
  * @property string $isAndroid
  */
 class Request extends Object

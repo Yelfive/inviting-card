@@ -100,26 +100,28 @@ $marriage = 1458446400;
     <div id="wrapper-mask"></div>
     <div class="wrapper">
         <div class="welcome">
+            <div class="wedding-photo">
+                <div></div>
+            </div>
             <div class="circle" id="circle-flowers">
                 <?php for($i = 0; $i < 22; $i ++): ?>
                     <div></div>
                 <?php endfor; ?>
             </div>
-            <div id="timing-to-marriage" class="invisible" data-timing-type="marriage">
-                <div>我们的婚礼将在</div>
-                <i><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == '2016-03-20' ? '正在进行' : '已过') : '倒计时'; ?></i>
-                <div class="font-0">
-                    <?php $duration = 1458403200 - $_SERVER['REQUEST_TIME'] - 12; ?>
-                    <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
-                    <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
-                    <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
-                    <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
-                </div>
-                <span>后举行</span>
-            </div>
             <div class="words font-it invisible" id="votes">
-                <div> Felix&Kitty</div>
+                <div>黄伍&谢凤</div>
                 <div>2016年3月20日</div>
+                <div class="fs-14">聚竹园酒楼</div>
+                <div id="timing-to-marriage" class="fs-14" data-timing-type="marriage">
+                    <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == '2016-03-20' ? '正在进行' : '已过') : '倒计时'; ?></span>
+                    <div class="font-0">
+                        <?php $duration = $marriage - $_SERVER['REQUEST_TIME']; ?>
+                        <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
+                        <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
+                        <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
+                        <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="love-story" class="love-story rotateY-90" data-init="<?= $this->plan == 'A' ? 'loveStory' : 'timeLine'; ?>">

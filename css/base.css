@@ -102,14 +102,20 @@ body > .container {
     opacity: 0;
 }
 
-#timing-to-marriage {
-    position: absolute;
-    text-align: center;
-    width: 100%;
+.fs-14 {
+    font-size: 14px;
 }
 
-#timing-to-marriage > .prefix > b {
-    font-size: 1.2rem;
+#timing-to-marriage {
+    text-align: center;
+    /*display: inline-block;*/
+}
+#timing-to-marriage > span {
+    display: inline-block;
+    line-height: 28px;
+}
+#timing-to-marriage > div{
+    display: inline-block;
 }
 
 #timing-to-marriage .value {

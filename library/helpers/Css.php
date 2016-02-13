@@ -6,6 +6,8 @@
 
 namespace fk\helpers;
 
+use fk;
+
 class Css
 {
     protected static $count = 0;
@@ -38,9 +40,13 @@ class Css
         }
     }
 
-    protected static function is_webkit($property)
+    protected static function is_webkit($property = null)
     {
-        return in_array($property, ['transform', 'transition']) || strpos($property, 'animation') !== false;
+        $webkit = fk::$app->request->isAndroid;
+        if ($property !== null) {
+            $webkit = $webkit && (in_array($property, ['transform', 'transition']) || strpos($property, 'animation') !== false);
+        }
+        return $webkit;
     }
 
     protected static function webkit($property, $value)
@@ -65,7 +71,11 @@ class Css
     {
         $style = '';
         $pending = DEBUG ? "\n" : '';
-        foreach (['', '-webkit-'] as $frame) {
+        $frames = [''];
+        if (self::is_webkit()) {
+            $frames = ['-webkit-'];
+        }
+        foreach ($frames as $frame) {
             $style .= "@{$frame}keyframes $name {{$pending}";
             foreach ($data as $progress => $properties) {
                 $style .= static::tab(1);

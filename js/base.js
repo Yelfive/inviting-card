@@ -97,7 +97,9 @@
 
     function afterLoadingRemoved() {
         $body.querySelector('.container').removeChild(document.querySelector('.loading'));
-        typeIn(document.getElementById('votes'));
+        typeIn(document.getElementById('votes'), function () {
+            timing.marriage();
+        });
         drawCircle();
         Menu.init();
     }
@@ -128,15 +130,13 @@
             }
         }
     };
-    const $FIRST_TIMING = $circle.nextElementSibling;
     var drawCircle = function () {
         var children = $circle.children;
         var len = children.length;
 
         $circle.className += ' bloom';
-
-        // set timing position
-        $FIRST_TIMING.style.top = cw / 2 * 0.8 + 'px';
+        var $weddingPhoto = $circle.previousElementSibling;
+        $weddingPhoto.style.height = CLIENT.width + 'px';
 
         radius = 0.4 * cw;
         coordinate.config = {
@@ -155,10 +155,8 @@
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
         }
         setTimeout(function () {
-            typeIn($FIRST_TIMING, function () {
-                timing[$FIRST_TIMING.dataset.timingType]();
-            });
-        }, 2300);
+            $weddingPhoto.className += ' fade-in';
+        }, 6300);
     };
 
     function BaseTypeInQueue() {
@@ -185,7 +183,7 @@
         if (!(dom instanceof HTMLElement)) {
             return;
         }
-        var html = dom.innerHTML.replace(/ {2,}/g, ' ');
+        var html = dom.innerHTML.replace(/ {2,}/g, '');
         dom.innerHTML = '';
         dom.style.opacity = 1;
 
@@ -196,12 +194,14 @@
             var current = html.substr(progress, 1);
             if (current == '<') {
                 progress = html.indexOf('>', progress) + 1;
+            } else if (current == '&') {
+                progress = html.indexOf(';', progress) + 1;
             } else {
                 progress++;
             }
 
             // innerHTML creates end tag
-            dom.innerHTML = html.substring(0, progress) + (progress & 1 && progress < html.length ? '_' : '');
+            dom.innerHTML = html.substring(0, progress) + ((progress & 1) && progress < html.length ? '_' : '');
             if (progress >= html.length) {
                 clearInterval(tick);
                 tick = null;
@@ -233,16 +233,14 @@
         }
 
         addEvent($WRAPPER, 'touchstart', function (e) {
-            //e.preventDefault(); // if not, Android will cause problem: touchend will not be fired
             startPos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
             endPos = startPos;
         });
 
         addEvent($WRAPPER, 'touchmove', function (e) {
             endPos = {x: e.touches[0].clientX, y:e.touches[0].clientY};
-            //if (!moveVertically()) {
-                e.preventDefault();
-            //}
+            // if not, Android will cause problem: touchend will not be fired
+            e.preventDefault();
         });
 
         var handler = function (e) {
