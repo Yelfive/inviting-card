@@ -20,13 +20,73 @@
         return event.preventDefault();
     };
 
+    const $body = document.body;
+    const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
+    const $MAP = document.querySelector('#map').parentNode;
+    const $WRAPPER = document.querySelector('.wrapper');
     const $VIDEO = document.querySelector('#love-movie video');
+    const $TIMING_TOGETHER = document.querySelector('#timing-being-together');
+    const $INVITATION = $WRAPPER.querySelector('.invitation');
+
+    function BaseMusic() {
+        this.music = document.querySelector('#music');
+        this.audio = this.music.querySelector('audio');
+
+        var self = this;
+        addEvent(this.music, 'click', function () {
+            self._paused() ? self.play() : self.pause();
+        });
+
+        this._paused() || this.play();  // Safari mobile cannot play music automatically
+        //document.ontouchstart = function () { // touch the document to play music
+        //    self._paused() || self.play();
+        //    this.ontouchstart = undefined;
+        //};
+        var handler = function() {
+            self._paused() || self.play();
+            document.removeEventListener('click', handler);
+        };
+        document.addEventListener('click', handler);
+    }
+
+    BaseMusic.prototype = {
+        init: function () {
+        },
+        _paused: function () {
+            return 1 == localStorage.musicPaused;
+        },
+        play: function () {
+            this.audio.play();
+            this.music.className = '';
+            localStorage.musicPaused = 0;
+        },
+        pause: function () {
+            this.music.className = 'paused';
+            this.audio.pause();
+            localStorage.musicPaused = 1;
+        }
+    };
+    var Music = new BaseMusic();
+
+    var Movie = {
+        musicPaused: Music._paused(),
+        play: function () {
+            this.musicPaused = Music.pause();
+            $VIDEO.className = '';
+            $VIDEO.pause();
+            Music.pause();
+        },
+        pause: function () {
+            $VIDEO.className = 'hide';
+            console.log(this.musicPaused) // TODO video -> music pause
+            this.musicPaused || Music.play();
+        }
+    };
 
     function addEvent(elem, eventName, callback) {
         return elem.addEventListener(eventName, callback, false);
     }
 
-    const $TIMING_TOGETHER = document.querySelector('#timing-being-together');
     var Wechat = {
         wechat: typeof wx === 'undefined' ? null : wx,
         init: function () {
@@ -87,7 +147,6 @@
         return isNew;
     }
 
-    var $body = document.body;
     window.onload = function () {
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
@@ -97,8 +156,12 @@
 
     function afterLoadingRemoved() {
         $body.querySelector('.container').removeChild(document.querySelector('.loading'));
-        typeIn(document.getElementById('votes'), function () {
+        var $votes = document.getElementById('votes');
+        typeIn($votes, function () {
             timing.marriage();
+        });
+        $votes.addEventListener('click', function () {
+            page.flipTo($INVITATION, 'forward');
         });
         drawCircle();
         Menu.init();
@@ -216,10 +279,6 @@
         }, 75);
     }
 
-    const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
-    const $MAP = document.querySelector('#map').parentNode;
-
-    const $WRAPPER = document.querySelector('.wrapper');
     /* Page */
     var PageBase = function () {
         this.currentDom = document.querySelector('.wrapper>div');
@@ -322,8 +381,7 @@
 
             var self = this;
             if (to.id == 'love-movie' || self.currentDom.id == 'love-movie') {
-                $VIDEO.className = 'hide';
-                $VIDEO.pause();
+                Movie.pause();
             }
             if (this.currentDom.id == 'album') {
                 var $pic = this.currentDom.querySelector('div');
@@ -623,8 +681,7 @@
                 return;
             }
             if (page.currentDom.id == 'love-movie') {
-                $VIDEO.className = 'hide';
-                $VIDEO.pause();
+                Movie.pause();
             }
             this.touch.className = '';
             this.menu.className = 'kiss';
@@ -657,48 +714,6 @@
         }
     };
     Loading.init();
-
-
-    function BaseMusic() {
-        this.music = document.querySelector('#music');
-        this.audio = this.music.querySelector('audio');
-
-        var self = this;
-        addEvent(this.music, 'click', function () {
-            self._paused() ? self.play() : self.pause();
-        });
-
-        this._paused() || this.play();  // Safari mobile cannot play music automatically
-        //document.ontouchstart = function () { // touch the document to play music
-        //    self._paused() || self.play();
-        //    this.ontouchstart = undefined;
-        //};
-        var handler = function() {
-            self._paused() || self.play();
-            document.removeEventListener('click', handler);
-        }
-        document.addEventListener('click', handler);
-    }
-
-    BaseMusic.prototype = {
-        init: function () {
-        },
-        _paused: function () {
-            return 1 == localStorage.musicPaused;
-        },
-        play: function () {
-            this.audio.play();
-            this.music.className = '';
-            localStorage.musicPaused = 0;
-        },
-        pause: function () {
-            this.music.className = 'paused';
-            this.audio.pause();
-            localStorage.musicPaused = 1;
-        }
-    };
-    new BaseMusic();
-
 
     const $TOUCH_US = document.querySelector('#touch-us');
     var initializer = {
@@ -777,8 +792,7 @@
         movie: function (elem) {
             var $start = elem.querySelector('.start');
             var handler = function () {
-                $VIDEO.play();
-                $VIDEO.className = '';
+                Movie.play();
             };
             addEvent($start, 'click', handler);
         }
