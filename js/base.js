@@ -69,16 +69,22 @@
     var Music = new BaseMusic();
 
     var Movie = {
-        musicPaused: Music._paused(),
+        musicPaused: '',
+        playCalled: false,
         play: function () {
-            this.musicPaused = Music.pause();
+            this.musicPaused = Music._paused();
             $VIDEO.className = '';
-            $VIDEO.pause();
+            $VIDEO.play();
             Music.pause();
+            this.playCalled = true;
         },
         pause: function () {
             $VIDEO.className = 'hide';
-            console.log(this.musicPaused) // TODO video -> music pause
+            $VIDEO.pause();
+            if (!this.playCalled) {
+                return ;
+            }
+            this.playCalled = false;
             this.musicPaused || Music.play();
         }
     };
@@ -158,10 +164,10 @@
         $body.querySelector('.container').removeChild(document.querySelector('.loading'));
         var $votes = document.getElementById('votes');
         typeIn($votes, function () {
+            $votes.querySelector('.hotel').addEventListener('click', function () {
+                page.flipTo($INVITATION, 'forward');
+            });
             timing.marriage();
-        });
-        $votes.addEventListener('click', function () {
-            page.flipTo($INVITATION, 'forward');
         });
         drawCircle();
         Menu.init();

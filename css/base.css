@@ -164,10 +164,7 @@ body > .container {
 .unit.second:after {
     content: '秒';
 }
-.wrapper .love-story {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
+
 .wrapper .love-story > div > span,
 .wrapper .love-story > div > div {
     opacity: 0;

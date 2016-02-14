@@ -111,7 +111,7 @@ $marriage = 1458446400;
             <div class="words font-it invisible" id="votes">
                 <div>黄伍&谢凤</div>
                 <div>2016年3月20日</div>
-                <div class="fs-14">聚竹园酒楼</div>
+                <div class="fs-14 hotel">聚竹园酒楼</div>
                 <div id="timing-to-marriage" class="fs-14" data-timing-type="marriage">
                     <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == '2016-03-20' ? '正在进行' : '已过') : '倒计时'; ?></span>
                     <div class="font-0">
