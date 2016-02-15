@@ -68,10 +68,22 @@
     };
     var Music = new BaseMusic();
 
-    var Movie = {
+
+
+    function BaseMovie() {
+        var bw = $body.clientWidth;
+        var rate = 0.75;
+        var $videoC = document.querySelector('#love-movie .video');
+        $videoC.style.height = bw * rate + 'px';
+        $videoC.style.marginTop = - bw * rate / 2 + 'px';
+    }
+
+    BaseMovie.prototype = {
         musicPaused: '',
         playCalled: false,
+        startButton: document.querySelector('#love-movie .start'),
         play: function () {
+            this.startButton.className = 'hide';
             this.musicPaused = Music._paused();
             $VIDEO.className = '';
             $VIDEO.play();
@@ -79,6 +91,7 @@
             this.playCalled = true;
         },
         pause: function () {
+            this.startButton.className = 'start';
             $VIDEO.className = 'hide';
             $VIDEO.pause();
             if (!this.playCalled) {
@@ -88,6 +101,8 @@
             this.musicPaused || Music.play();
         }
     };
+
+    var Movie = new BaseMovie();
 
     function addEvent(elem, eventName, callback) {
         return elem.addEventListener(eventName, callback, false);
@@ -146,12 +161,6 @@
         }
     };
     Wechat.init();
-
-    function showTutorials() {
-        var isNew = localStorage.new_visitor == 1;
-        localStorage.new_visitor = 1;
-        return isNew;
-    }
 
     window.onload = function () {
         var $loading = document.querySelector('.loading');
@@ -627,15 +636,6 @@
         }
     };
 
-    function BaseMovie() {
-        var bw = $body.clientWidth;
-        var rate = 0.75;
-        var $videoC = document.querySelector('#love-movie .video');
-        $videoC.style.height = bw * rate + 'px';
-        $videoC.style.marginTop = - bw * rate / 2 + 'px';
-    }
-
-    new BaseMovie();
     var BaseMenu = function () {
         this.menu = document.querySelector('#menu');
         if (!this.menu) {
@@ -760,7 +760,7 @@
                 } else {
                     clearInterval(tt);
                 }
-            }, 2000);
+            }, 3000);
         },
         typeIn: function (elem) {
             var callback, nodeType;
@@ -795,12 +795,12 @@
                 }, 50);
             });
         },
-        movie: function (elem) {
-            var $start = elem.querySelector('.start');
-            var handler = function () {
+        movie: function () {
+            $VIDEO.src = $VIDEO.dataset.src;
+            console.log(Movie.startButton)
+            addEvent(Movie.startButton, 'click', function () {
                 Movie.play();
-            };
-            addEvent($start, 'click', handler);
+            });
         }
     };
 }());

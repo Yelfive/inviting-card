@@ -205,7 +205,7 @@ HTML
                 <div class="video">
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
                     <div class="start"></div>
-                    <video class="hide" src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls></video>
+                    <video class="hide" data-src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls></video>
                 </div>
             </div>
         </div>
