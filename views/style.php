@@ -189,9 +189,10 @@ Css::style('.wrapper .welcome .circle', [
     'position' => 'relative',
     'background' => "url($this->imgHost/ring.png) no-repeat 2px 6px",
     'background-size' => '100%',
+    'z-index' => '2'
 ]);
 
-Css::style('.welcome>.wedding-photo', ['height' => '320px', 'position' => 'absolute', 'width' => '100%', 'opacity' => 0]);
+Css::style('.welcome>.wedding-photo', ['height' => '320px', 'position' => 'absolute', 'width' => '100%', 'opacity' => 0, 'z-index' => 0]);
 
 Css::style('.welcome>.wedding-photo>div', [
     'background' => "url($this->imgHost/6.jpg) no-repeat center center",

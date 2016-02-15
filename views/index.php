@@ -90,9 +90,9 @@ $marriage = 1458446400;
     </style>
 </head>
 <body >
-<div class="arrow left disabled"></div>
-<div class="arrow right"></div>
 <div class="container">
+    <div class="arrow left disabled"></div>
+    <div class="arrow right"></div>
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
     <div id="music" class="paused"><audio src="<?= $this->imgHost == 'images' ? 'images' : 'http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting'; ?>/morning.mp3" loop preload></audio></div>

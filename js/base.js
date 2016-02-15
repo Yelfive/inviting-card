@@ -20,8 +20,8 @@
         return event.preventDefault();
     };
 
-    const $body = document.body;
-    const CLIENT = {width: $body.clientWidth, height: $body.clientHeight};
+    const $BODY = document.body;
+    const CLIENT = {width: $BODY.clientWidth, height: $BODY.clientHeight};
     const $MAP = document.querySelector('#map').parentNode;
     const $WRAPPER = document.querySelector('.wrapper');
     const $VIDEO = document.querySelector('#love-movie video');
@@ -71,7 +71,7 @@
 
 
     function BaseMovie() {
-        var bw = $body.clientWidth;
+        var bw = $BODY.clientWidth;
         var rate = 0.75;
         var $videoC = document.querySelector('#love-movie .video');
         $videoC.style.height = bw * rate + 'px';
@@ -170,8 +170,10 @@
     };
 
     function afterLoadingRemoved() {
-        $body.querySelector('.container').removeChild(document.querySelector('.loading'));
+        $BODY.querySelector('.container').removeChild(document.querySelector('.loading'));
         var $votes = document.getElementById('votes');
+        $BODY.style.width = CLIENT.width + 'px';
+        $BODY.style.height = CLIENT.height + 'px';
         typeIn($votes, function () {
             $votes.querySelector('.hotel').addEventListener('click', function () {
                 page.flipTo($INVITATION, 'forward');
