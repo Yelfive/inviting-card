@@ -8,10 +8,6 @@
         return window.orientation !== undefined && window.orientation !== 0;
     }
 
-    //window.onresize = function () {
-    //    location.reload();
-    //};
-
     if (isLandscape()) {
         return alert('竖屏效果更好哟~');
     }
@@ -33,20 +29,16 @@
         this.audio = this.music.querySelector('audio');
 
         var self = this;
-        addEvent(this.music, 'click', function () {
+        addEvent(this.music, 'touchstart', function () {
             self._paused() ? self.play() : self.pause();
         });
 
         this._paused() || this.play();  // Safari mobile cannot play music automatically
-        //document.ontouchstart = function () { // touch the document to play music
-        //    self._paused() || self.play();
-        //    this.ontouchstart = undefined;
-        //};
         var handler = function() {
             self._paused() || self.play();
-            document.removeEventListener('click', handler);
+            document.removeEventListener('touchstart', handler);
         };
-        document.addEventListener('click', handler);
+        document.addEventListener('touchstart', handler);
     }
 
     BaseMusic.prototype = {
@@ -163,11 +155,26 @@
     Wechat.init();
 
     window.onload = function () {
+        //adjustContainerSize(); TODO adjust container size
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
         setTimeout(afterLoadingRemoved, 550);
         Album.init();
     };
+
+    function adjustContainerSize() {
+        var $container = document.querySelector('.container');
+        var h = $container.offsetHeight;
+        var w = $container.offsetWidth;
+        if (w != CLIENT.width || h != CLIENT.height) {
+            var ratio = 5 / 8; // width/height = 5/8
+            $container.style.width = h + 'px';
+            $container.style.height = h + 'px';
+            if (CLIENT.width > CLIENT.height) { //
+
+            }
+        }
+    }
 
     function afterLoadingRemoved() {
         $BODY.querySelector('.container').removeChild(document.querySelector('.loading'));
