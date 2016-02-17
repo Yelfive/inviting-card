@@ -23,7 +23,19 @@
     const $VIDEO = document.querySelector('#love-movie video');
     const $TIMING_TOGETHER = document.querySelector('#timing-being-together');
     const $INVITATION = $WRAPPER.querySelector('.invitation');
+    const $TOUCH_US = document.querySelector('#touch-us');
+    const $CIRCLE = document.getElementById('circle-flowers');
 
+
+    (function () {
+        var $container = $BODY.querySelector('.container');
+        if (CLIENT.width > CLIENT.height) {  //
+            var h = $container.offsetHeight;
+            var ratio = 5 / 8; // width/height = 5/8
+            $container.style.height = h + 'px';
+            $container.style.width = h * ratio + 'px';
+        }
+    }());
     function BaseMusic() {
         this.music = document.querySelector('#music');
         this.audio = this.music.querySelector('audio');
@@ -63,7 +75,7 @@
 
 
     function BaseMovie() {
-        var bw = $BODY.clientWidth;
+        var bw = $WRAPPER.clientWidth;
         var rate = 0.75;
         var $videoC = document.querySelector('#love-movie .video');
         $videoC.style.height = bw * rate + 'px';
@@ -155,26 +167,11 @@
     Wechat.init();
 
     window.onload = function () {
-        //adjustContainerSize(); TODO adjust container size
         var $loading = document.querySelector('.loading');
         $loading.className = 'loading running';
         setTimeout(afterLoadingRemoved, 550);
         Album.init();
     };
-
-    function adjustContainerSize() {
-        var $container = document.querySelector('.container');
-        var h = $container.offsetHeight;
-        var w = $container.offsetWidth;
-        if (w != CLIENT.width || h != CLIENT.height) {
-            var ratio = 5 / 8; // width/height = 5/8
-            $container.style.width = h + 'px';
-            $container.style.height = h + 'px';
-            if (CLIENT.width > CLIENT.height) { //
-
-            }
-        }
-    }
 
     function afterLoadingRemoved() {
         $BODY.querySelector('.container').removeChild(document.querySelector('.loading'));
@@ -190,10 +187,6 @@
         drawCircle();
         Menu.init();
     }
-
-    var $circle = document.getElementById('circle-flowers');
-    var cw = $circle.clientWidth;
-    $circle.style.height = cw + 'px';
 
     var coordinate = {
         config: {
@@ -218,12 +211,12 @@
         }
     };
     var drawCircle = function () {
-        var children = $circle.children;
+        var cw = $CIRCLE.clientWidth;
+        var children = $CIRCLE.children;
         var len = children.length;
 
-        $circle.className += ' bloom';
-        var $weddingPhoto = $circle.previousElementSibling;
-        $weddingPhoto.style.height = CLIENT.width + 'px';
+        $CIRCLE.style.height = cw + 'px';
+        $CIRCLE.className += ' fade-in bloom';
 
         radius = 0.4 * cw;
         coordinate.config = {
@@ -241,6 +234,9 @@
             child.style.left = (c.x - child.clientWidth / 2) + 'px';
             child.style.top = (c.y - child.clientHeight / 2) + 'px';
         }
+
+        var $weddingPhoto = $CIRCLE.previousElementSibling;
+        $weddingPhoto.style.height = cw + 'px';
         setTimeout(function () {
             $weddingPhoto.className += ' fade-in';
         }, 6300);
@@ -479,6 +475,12 @@
         }
     };
 
+    function loadImg(img) {
+        if (typeof img == 'string') {
+            img = document.querySelector(img);
+        }
+        img.src = img.dataset.src;
+    }
     var page = new PageBase();
     /* Album */
     function BaseAlbum() {
@@ -493,6 +495,7 @@
                 this.timeout = 1000;
                 break;
             case 'mobile':
+                this.album = document.querySelector('#album');
         }
     }
 
@@ -508,7 +511,7 @@
                     this.album.className += ' photo-in';
                     break;
                 case 'mobile':
-                //Wechat.previewImage();
+                    loadImg(this.album.querySelector('img'));
             }
         },
         init: function () {
@@ -730,7 +733,6 @@
     };
     Loading.init();
 
-    const $TOUCH_US = document.querySelector('#touch-us');
     var initializer = {
         timeLine: function (elem) {
             $TOUCH_US.style.height = CLIENT.width + 'px';
@@ -759,7 +761,7 @@
                     timing[nodeType]();
                 }
                 if (next && next.offsetTop > CLIENT.height) {
-                    scroll.scrollToElement(next, 2000);
+                    scroll.scrollToElement(elem, 2000);
                 }
             }
             fadeIn(children[0]);
@@ -806,7 +808,6 @@
         },
         movie: function () {
             $VIDEO.src = $VIDEO.dataset.src;
-            console.log(Movie.startButton)
             addEvent(Movie.startButton, 'click', function () {
                 Movie.play();
             });

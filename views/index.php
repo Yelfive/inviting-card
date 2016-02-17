@@ -100,9 +100,7 @@ $marriage = 1458446400;
     <div id="wrapper-mask"></div>
     <div class="wrapper">
         <div class="welcome">
-            <div class="wedding-photo">
-                <div></div>
-            </div>
+            <div class="wedding-photo"><div></div></div>
             <div class="circle" id="circle-flowers">
                 <?php for($i = 0; $i < 22; $i ++): ?>
                     <div></div>
@@ -193,6 +191,7 @@ HTML
             <?php else: ?>
                 <div>
                     <div class="cover">
+                        <img data-src="<?= $this->imgHost; ?>/9.jpg" style="width: 100%;">
                         <div class="mask"></div>
                         <div class="start"></div>
                     </div>

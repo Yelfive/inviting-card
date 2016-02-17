@@ -86,7 +86,7 @@ if (fk::$app->request->terminal == 'pc') {
     }
 }
 
-Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)']);
+Css::style('.rotateY-90', ['transform' => 'rotateY(-90deg)', 'opacity' => 0]);
 
 Css::keyframes('flip-0-90', [
     '0%' => ['transform' => 'rotateY(0deg)'],
@@ -158,9 +158,8 @@ Css::style('.wrapper .album > div .cover', [
     'height' => '80%',
     'top' => '1rem',
     'margin' => '0 auto',
-    'background' => "url($this->imgHost/9.jpg) no-repeat center center",
-    'background-size' => '100%',
     'position' => 'relative',
+    'overflow' => 'hidden',
 ]);
 Css::style('#items > div', [
     'width' => '150px',
@@ -189,7 +188,8 @@ Css::style('.wrapper .welcome .circle', [
     'position' => 'relative',
     'background' => "url($this->imgHost/ring.png) no-repeat 2px 6px",
     'background-size' => '100%',
-    'z-index' => '2'
+    'z-index' => '2',
+    'opacity' => 0,
 ]);
 
 Css::style('.welcome>.wedding-photo', ['height' => '320px', 'position' => 'absolute', 'width' => '100%', 'opacity' => 0, 'z-index' => 0]);
