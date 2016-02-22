@@ -9,8 +9,13 @@ html, body {
     overflow: hidden;
 }
 
+@font-face {
+    font-family: 'w5';
+    src: url('./w5.ttf');
+}
+
 body {
-    font-family: "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+    font-family: "w5", "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
     text-align: center;
     background-color: #ffe;
 }
