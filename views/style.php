@@ -109,12 +109,8 @@ Css::keyframes('flip-m90-0', [ // minus 90 degree
     '100%' => ['transform' => 'rotateY(0deg)'],
 ]);
 
-Css::style('.wrapper .flip-90-0', [
-    'animation' => 'flip-90-0 0.6s linear',
-]);
-Css::style('.wrapper .flip-m90-0', [
-    'animation' => 'flip-m90-0 0.6s linear',
-]);
+Css::style('.wrapper .flip-90-0', ['animation' => 'flip-90-0 0.6s linear', 'opacity' => 1]);
+Css::style('.wrapper .flip-m90-0', ['animation' => 'flip-m90-0 0.6s linear', 'opacity' => 1]);
 Css::style('.wrapper .flip-0-90', [
     'animation' => 'flip-0-90 0.6s linear',
 ]);
@@ -299,6 +295,11 @@ Css::keyframes('videoPlay', [
     'to' => ['opacity' => 0, 'transform' => 'scale(0)'],
 ]);
 Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
+Css::style('#love-movie .description', ['position' => 'absolute', 'text-align' => 'center', 'width' => '100%', 'padding-top' => '2rem']);
+Css::style('#love-movie .description>div', ['opacity' => 0]);
+Css::style('#love-movie .description>div:nth-child(1)', ['position' => 'relative', 'left' => '-10%']);
+Css::style('#love-movie .description>div:nth-child(3)', ['position' => 'relative', 'left' => '10%']);
+
 Css::style('.scale-0', ['transform' => 'scale(0)']);
 
 Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);

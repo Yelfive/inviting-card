@@ -200,6 +200,11 @@ HTML
             <?php endif; ?>
         </div>
         <div class="movie rotateY-90" id="love-movie" data-init="movie">
+            <div class="description">
+                <div>他自制的视频</div>
+                <div>虽然只是半成品</div>
+                <div>但也充满爱哦~</div>
+            </div>
             <div class="box">
                 <div class="video">
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
@@ -213,7 +218,7 @@ HTML
                 <p>我们诚挚的邀请您参加我们的婚礼</p>
                 <p>
                     <b>电话:</b><a href="tel:13541013371">新郎</a>/<a href="tel:13541336629">新娘</a><br>
-                    <b>地址:</b>双流县其他航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222
+                    <b>地址:</b>双流县航空路西段2号近紫荆电影院,聚竹园酒楼双流示范店 (028)85736222
                 </p>
                 <div>
                     <div id="map"></div>
@@ -228,11 +233,11 @@ HTML
         <div id="cover"></div>
         <div id="bubble"></div>
         <div id="items" class="font-it">
-            <div class="item-1" data-class="welcome">我眼里的Ta</div>
-            <div class="item-2" data-class="love-story">我们de故事</div>
-            <div class="item-3" data-class="album">幸福de刻印</div>
-            <div class="item-4" data-class="movie">视频</div>
-            <div class="item-5" data-class="invitation">地址</div>
+            <div class="item-1" data-class="welcome">我们de婚礼</div>
+            <div class="item-2" data-class="love-story">幸福de时刻</div>
+            <div class="item-3" data-class="album">爱de定格</div>
+            <div class="item-4" data-class="movie">求婚de视频</div>
+            <div class="item-5" data-class="invitation">婚礼地址</div>
         </div>
     </div>
     <?php endif; ?>

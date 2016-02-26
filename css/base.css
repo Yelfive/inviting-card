@@ -97,6 +97,7 @@ body > .container {
 .wrapper .welcome .words {
     padding: 0 2rem;
     text-align: center;
+    line-height: 2rem;
 }
 
 .hide {
@@ -124,7 +125,7 @@ body > .container {
 }
 
 #timing-to-marriage .value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
 #timing-love-story {
@@ -226,6 +227,7 @@ body > .container {
 
 .wrapper .album > div .words {
     padding: 20px;
+    margin-top: 1rem;
 }
 
 .wrapper .album ul {
