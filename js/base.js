@@ -832,7 +832,7 @@
                 Movie.play();
             });
 
-            subtitlesIn(elem.querySelector('.description'));
+            //subtitlesIn(elem.querySelector('.description'));
         }
     };
 }());

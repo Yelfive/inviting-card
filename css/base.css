@@ -128,7 +128,7 @@ body > .container {
     font-size: 1.4rem;
 }
 
-#timing-love-story {
+.clr-red {
     color: #FF5555;
 }
 
@@ -181,9 +181,6 @@ body > .container {
     font-weight:bolder;
     text-align: center;
     font-size: 1.2rem;
-}
-.wrapper .love-story > div {
-    padding-top: 10px;
 }
 
 /*.wrapper .love-story > div,*/

@@ -215,7 +215,7 @@ if ($this->plan == 'A') {
         'z-index' => '100',
         'display' => 'block',
     ]);
-    Css::style('.love-story > div', ['width' => '90%', 'padding-bottom' => '3rem', 'margin' => '0 auto']);
+    Css::style('.love-story > div', ['width' => '90%', 'padding-bottom' => '3rem', 'margin' => '0 auto', 'padding-top' => '10px']);
     Css::style('.love-story .line', ['font-size' => '14px', 'margin-bottom' => '1rem']);
     Css::style('.love-story .line>.year', ['font-weight' => 'bolder']);
     Css::style('.love-story .line>.story:before', ['content' => '", "']);
@@ -295,8 +295,8 @@ Css::keyframes('videoPlay', [
     'to' => ['opacity' => 0, 'transform' => 'scale(0)'],
 ]);
 Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
-Css::style('#love-movie .description', ['position' => 'absolute', 'text-align' => 'center', 'width' => '100%', 'padding-top' => '2rem']);
-Css::style('#love-movie .description>div', ['opacity' => 0]);
+Css::style('#love-movie .description', ['position' => 'absolute', 'text-align' => 'center', 'width' => '100%', 'padding-top' => '2rem', 'line-height' => '1.5rem']);
+//Css::style('#love-movie .description>div', ['opacity' => 0]);
 Css::style('#love-movie .description>div:nth-child(1)', ['position' => 'relative', 'left' => '-10%']);
 Css::style('#love-movie .description>div:nth-child(3)', ['position' => 'relative', 'left' => '10%']);
 
