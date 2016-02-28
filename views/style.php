@@ -6,6 +6,17 @@
 use fk\helpers\Background;
 use fk\helpers\Css;
 
+/**
+ *
+@font-face {
+font-family: 'w5';
+src: url('./w5.ttf');
+}
+ */
+Css::style('@font-face', [
+    'font-family' => 'w5',
+    'src' => "url('./css/w5.ttf?v=$this->version')",
+]);
 Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
 
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
