@@ -620,6 +620,9 @@
         marriage: function () {
             var start = DATA.marriage, ts, self = this;
             var valElem = document.querySelector('#timing-to-marriage').querySelectorAll('.value');
+            if (!valElem) {
+                return ;
+            }
             var de = valElem[0], he = valElem[1], ie = valElem[2], se = valElem[3];
 
             this.register(function () {

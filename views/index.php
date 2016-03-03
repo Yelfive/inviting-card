@@ -9,13 +9,13 @@
  * @var string $signature
  * @var string $imgHost
  * @var \fk\web\Application $this
+ * @var array $story
+ *
  */
 
 include __DIR__ . '/story.php';
-/**
- * @var array $story
- */
 $marriage = 1458446400;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,14 +111,16 @@ $marriage = 1458446400;
                 <div class="clr-red">2016年3月20日</div>
                 <div class="fs-14 hotel">聚竹园酒楼（双流示范店）</div>
                 <div id="timing-to-marriage" class="fs-14 clr-red" data-timing-type="marriage">
-                    <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == '2016-03-20' ? '正在进行' : '已过') : '倒计时'; ?></span>
+                    <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == date('Y-m-d', $marriage) ? '婚礼正在进行' : '婚礼已过') : '倒计时'; ?></span>
+                    <?php if ($marriage > $_SERVER['REQUEST_TIME'] || (date('Y-m-d') != date('Y-m-d', $marriage))): ?>
                     <div class="font-0">
                         <?php $duration = $marriage - $_SERVER['REQUEST_TIME']; ?>
-                        <i class="value day"><?= sprintf('%02d', $duration / 86400); ?></i><i class="unit day"></i>
-                        <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
-                        <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
-                        <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
+                        <i class="value day"><?= sprintf('%02d', abs($duration / 86400)); ?></i><i class="unit day"></i>
+                        <i class="value hour"><?= sprintf('%02d', abs($duration / 3600 % 24)); ?></i><i class="unit hour"></i>
+                        <i class="value minute"><?= sprintf('%02d', abs($duration / 60 % 60)); ?></i><i class="unit minute"></i>
+                        <i class="value second"><?= sprintf('%02d', abs($duration % 60)); ?></i><i class="unit second"></i>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
