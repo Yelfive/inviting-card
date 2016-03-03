@@ -42,7 +42,11 @@ class Css
 
     protected static function is_webkit($property = null)
     {
-        $webkit = fk::$app->request->isAndroid;
+        /**
+         * $webkit = fk::$app->request->isAndroid;
+         * if only set webkit on android, some iOS will function badly
+         */
+        $webkit = true;
         if ($property !== null) {
             $webkit = $webkit && (in_array($property, ['transform', 'transition']) || strpos($property, 'animation') !== false);
         }
