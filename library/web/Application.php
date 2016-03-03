@@ -43,7 +43,7 @@ class Application extends Object
         $page = empty($_GET['p']) || !in_array($_GET['p'], ['index', 'video']) ? 'index' : $_GET['p'];
 
         $imgHost = $this->imgHost;
-        $title = '黄伍&谢凤-我们结婚啦';
+        $title = '黄伍&谢凤Wedding-我们结婚啦';
         include "$viewPath/$page.php";
     }
 

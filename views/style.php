@@ -6,6 +6,17 @@
 use fk\helpers\Background;
 use fk\helpers\Css;
 
+/**
+ *
+@font-face {
+font-family: 'w5';
+src: url('./w5.ttf');
+}
+ */
+Css::style('@font-face', [
+    'font-family' => 'w5',
+    'src' => "url('./css/w5.ttf?v=$this->version')",
+]);
 Css::style('#stage-in canvas', ['animation' => 'heartbeats 1s ease infinite']);
 
 Css::style('#circle-flowers > div', ['transform' => 'scale(0.5)']);
@@ -109,12 +120,8 @@ Css::keyframes('flip-m90-0', [ // minus 90 degree
     '100%' => ['transform' => 'rotateY(0deg)'],
 ]);
 
-Css::style('.wrapper .flip-90-0', [
-    'animation' => 'flip-90-0 0.6s linear',
-]);
-Css::style('.wrapper .flip-m90-0', [
-    'animation' => 'flip-m90-0 0.6s linear',
-]);
+Css::style('.wrapper .flip-90-0', ['animation' => 'flip-90-0 0.6s linear', 'opacity' => 1]);
+Css::style('.wrapper .flip-m90-0', ['animation' => 'flip-m90-0 0.6s linear', 'opacity' => 1]);
 Css::style('.wrapper .flip-0-90', [
     'animation' => 'flip-0-90 0.6s linear',
 ]);
@@ -219,7 +226,7 @@ if ($this->plan == 'A') {
         'z-index' => '100',
         'display' => 'block',
     ]);
-    Css::style('.love-story > div', ['width' => '90%', 'padding-bottom' => '3rem', 'margin' => '0 auto']);
+    Css::style('.love-story > div', ['width' => '90%', 'padding-bottom' => '3rem', 'margin' => '0 auto', 'padding-top' => '10px']);
     Css::style('.love-story .line', ['font-size' => '14px', 'margin-bottom' => '1rem']);
     Css::style('.love-story .line>.year', ['font-weight' => 'bolder']);
     Css::style('.love-story .line>.story:before', ['content' => '", "']);
@@ -299,6 +306,11 @@ Css::keyframes('videoPlay', [
     'to' => ['opacity' => 0, 'transform' => 'scale(0)'],
 ]);
 Css::style('.video.play .start', ['animation' => 'videoPlay 1s ease', 'animation-fill-mode' => 'both']);
+Css::style('#love-movie .description', ['position' => 'absolute', 'text-align' => 'center', 'width' => '100%', 'padding-top' => '2rem', 'line-height' => '1.5rem']);
+//Css::style('#love-movie .description>div', ['opacity' => 0]);
+Css::style('#love-movie .description>div:nth-child(1)', ['position' => 'relative', 'left' => '-10%']);
+Css::style('#love-movie .description>div:nth-child(3)', ['position' => 'relative', 'left' => '10%']);
+
 Css::style('.scale-0', ['transform' => 'scale(0)']);
 
 Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);

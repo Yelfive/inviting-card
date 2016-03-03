@@ -25,15 +25,18 @@
     const $INVITATION = $WRAPPER.querySelector('.invitation');
     const $TOUCH_US = document.querySelector('#touch-us');
     const $CIRCLE = document.getElementById('circle-flowers');
-
+    var CONTAINER = {};
 
     (function () {
         var $container = $BODY.querySelector('.container');
         if (CLIENT.width > CLIENT.height) {  //
             var h = $container.offsetHeight;
             var ratio = 5 / 8; // width/height = 5/8
-            $container.style.height = h + 'px';
-            $container.style.width = h * ratio + 'px';
+            CONTAINER = {width: h * ratio, height: h};
+            $container.style.height = CONTAINER.height + 'px';
+            $container.style.width = CONTAINER.width + 'px';
+        } else {
+            CONTAINER = {height: $container.offsetHeight, width: $container.offsetWidth};
         }
     }());
     function BaseMusic() {
@@ -178,14 +181,15 @@
         var $votes = document.getElementById('votes');
         $BODY.style.width = CLIENT.width + 'px';
         $BODY.style.height = CLIENT.height + 'px';
+
+        drawCircle();
+        Menu.init();
         typeIn($votes, function () {
             $votes.querySelector('.hotel').addEventListener('click', function () {
                 page.flipTo($INVITATION, 'forward');
             });
             timing.marriage();
         });
-        drawCircle();
-        Menu.init();
     }
 
     var coordinate = {
@@ -210,12 +214,17 @@
             }
         }
     };
+    function adjustWelcomePageSize(cw) {
+        $CIRCLE.style.height = cw + 'px';
+        var $words = $WRAPPER.querySelector('.welcome .words');
+        var heightLeft = CONTAINER.height - $CIRCLE.offsetHeight - $words.offsetHeight;
+        $words.style.marginTop = heightLeft / 2 + 'px';
+    }
     var drawCircle = function () {
         var cw = $CIRCLE.clientWidth;
         var children = $CIRCLE.children;
         var len = children.length;
-
-        $CIRCLE.style.height = cw + 'px';
+        adjustWelcomePageSize(cw);
         $CIRCLE.className += ' fade-in bloom';
 
         radius = 0.4 * cw;
@@ -733,6 +742,17 @@
     };
     Loading.init();
 
+    function subtitlesIn(elem) {
+        var children = elem.children, i = 0;
+        var tt = setInterval(function () {
+            if (children[i]) {
+                children[i].className += 'line-in';
+                i++;
+            } else {
+                clearInterval(tt);
+            }
+        }, 3000);
+    }
     var initializer = {
         timeLine: function (elem) {
             $TOUCH_US.style.height = CLIENT.width + 'px';
@@ -806,11 +826,13 @@
                 }, 50);
             });
         },
-        movie: function () {
+        movie: function (elem) {
             $VIDEO.src = $VIDEO.dataset.src;
             addEvent(Movie.startButton, 'click', function () {
                 Movie.play();
             });
+
+            //subtitlesIn(elem.querySelector('.description'));
         }
     };
 }());

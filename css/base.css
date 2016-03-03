@@ -9,11 +9,6 @@ html, body {
     overflow: hidden;
 }
 
-@font-face {
-    font-family: 'w5';
-    src: url('./w5.ttf');
-}
-
 body {
     font-family: "w5", "Consolas", "MicroSoft YaHei", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
     text-align: center;
@@ -97,6 +92,7 @@ body > .container {
 .wrapper .welcome .words {
     padding: 0 2rem;
     text-align: center;
+    line-height: 2rem;
 }
 
 .hide {
@@ -124,10 +120,10 @@ body > .container {
 }
 
 #timing-to-marriage .value {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
 }
 
-#timing-love-story {
+.clr-red {
     color: #FF5555;
 }
 
@@ -181,9 +177,6 @@ body > .container {
     text-align: center;
     font-size: 1.2rem;
 }
-.wrapper .love-story > div {
-    padding-top: 10px;
-}
 
 /*.wrapper .love-story > div,*/
 .wrapper .invitation > div {
@@ -226,6 +219,7 @@ body > .container {
 
 .wrapper .album > div .words {
     padding: 20px;
+    margin-top: 1rem;
 }
 
 .wrapper .album ul {
