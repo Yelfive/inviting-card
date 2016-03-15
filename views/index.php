@@ -225,7 +225,7 @@ HTML
                 </p>
                 <div>
                     <div id="map"></div>
-                    <div id="open-map"><?= fk::$app->request->terminal == 'pc' ? '' : '打开地图'; ?></div>
+                    <div id="open-map"><?= fk::$app->request->isWechat ? '打开地图' : '地图'; ?></div>
                 </div>
             </div>
         </div>
@@ -275,9 +275,12 @@ HTML
     };
     const TERMINAL = '<?= fk::$app->request->terminal; ?>';
     const OS = '<?= fk::$app->request->isAndroid ? 'Android' : 'iOS'; ?>';
+    const IS_WECHAT = <?= fk::$app->request->isWechat ? 'true' : 'false'; ?>;
 </script>
 <script src="http://api.map.baidu.com/api?v=2.0&ak=1b39783ca251e9ef02ffb2fab744cdd1"></script>
+<?php if(fk::$app->request->isWechat): ?>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<?php endif; ?>
 <script src="js/iscroll-lite.js"></script>
 <script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$this->version"; ?>"></script>
 </html>

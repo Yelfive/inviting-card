@@ -118,7 +118,7 @@
     var Wechat = {
         wechat: typeof wx === 'undefined' ? null : wx,
         init: function () {
-            if (!this.wechat) {
+            if (!IS_WECHAT || !this.wechat) {
                 return;
             }
             //DATA.config.debug = true;
@@ -140,6 +140,9 @@
             });
         },
         previewImage: function () {
+            if (!IS_WECHAT) {
+                return ;
+            }
             var config = {
                 current: DATA.images[0],
                 urls: DATA.images
@@ -150,6 +153,9 @@
             this.wechat.previewImage(config);
         },
         openLocation: function () {
+            if (!IS_WECHAT) {
+                return ;
+            }
             var config = {
                 fail: function (a) {
                     alert(a.errMsg);
@@ -167,7 +173,7 @@
             this.wechat.openLocation(config);
         }
     };
-    Wechat.init();
+    IS_WECHAT && Wechat.init();
 
     window.onload = function () {
         var $loading = document.querySelector('.loading');
@@ -534,7 +540,7 @@
             return this;
         },
         _initMobile: function () {
-            addEvent(document.querySelector('.wrapper .album .start'), 'click', function () {
+            IS_WECHAT && addEvent(document.querySelector('.wrapper .album .start'), 'click', function () {
                 Loading.show();
                 Wechat.previewImage(function () {
                     Loading.hide();
@@ -819,6 +825,9 @@
             map.centerAndZoom(point, 15);
             map.addOverlay(new BMap.Marker(point)); // add marker
 
+            if (!IS_WECHAT) {
+                return ;
+            }
             /* Wechat map*/
             var $button = elem.querySelector('#open-map');
             addEvent($button, 'click', function () {

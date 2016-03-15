@@ -19,7 +19,7 @@ class Application extends Object
      * @var string Plan A or B
      */
     public $plan = 'A';
-    public $version = '1.0.1';
+    public $version = '1.0.2';
     public $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
 //    public $imgHost = 'images';
 

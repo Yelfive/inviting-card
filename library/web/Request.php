@@ -9,7 +9,8 @@ use fk\base\Object;
 
 /**
  * @property string $terminal pc or mobile
- * @property string $isAndroid
+ * @property boolean $isAndroid
+ * @property boolean $isWechat
  */
 class Request extends Object
 {
@@ -32,4 +33,10 @@ class Request extends Object
     {
         return strpos($this->agent(), 'Android') !== false;
     }
+
+    public function getIsWechat()
+    {
+        return strpos($this->agent(), 'MicroMessenger') !== false;
+    }
+
 }
