@@ -649,7 +649,7 @@
             return this.zeroFill(parseInt(ts / 86400 % 365 / 30));
         },
         _day: function (ts) {
-            return this.zeroFill(parseInt(ts / 86400 % 365));
+            return this.zeroFill(parseInt(ts / 86400 % 365 % 30));
         },
         _hour: function (ts) {
             return this.zeroFill(parseInt(ts / 3600 % 24));

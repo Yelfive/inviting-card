@@ -136,7 +136,7 @@ $marriage = 1458446400;
                         $init = 'data-timing-type="story"';
                         $year = intval($duration / 86400 / 365);
                         $month = sprintf('%02d', $duration / 86400 % 365 / 30);
-                        $day = sprintf('%03d', $duration / 86400 % 365);
+                        $day = sprintf('%03d', $duration / 86400 % 365 % 30);
                         $hour = sprintf('%02d', $duration / 3600 % 24);
                         $minute = sprintf('%02d', $duration / 60 % 60);
                         $second = sprintf('%02d', $duration % 60);
@@ -162,7 +162,7 @@ HTML
                     <?php $duration = $_SERVER['REQUEST_TIME'] - 1030809600 + 8; ?>
                     <i class="value year"><?= intval($duration / 86400 / 365); ?></i><i class="unit year"></i>
                     <i class="value month"><?= sprintf('%02d', $duration / 86400 % 365 / 30); ?></i><i class="unit month"></i>
-                    <i class="value day"><?= sprintf('%03d', $duration / 86400 % 365); ?></i><i class="unit day"></i>
+                    <i class="value day"><?= sprintf('%03d', $duration / 86400 % 365 % 30); ?></i><i class="unit day"></i>
                     <i class="value hour"><?= sprintf('%02d', $duration / 3600 % 24); ?></i><i class="unit hour"></i>
                     <i class="value minute"><?= sprintf('%02d', $duration / 60 % 60); ?></i><i class="unit minute"></i>
                     <i class="value second"><?= sprintf('%02d', $duration % 60); ?></i><i class="unit second"></i>
