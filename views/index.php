@@ -111,7 +111,7 @@ $marriage = 1458446400;
                 <div class="clr-red">2016年3月20日</div>
                 <div class="fs-14 hotel">聚竹园酒楼（双流示范店）</div>
                 <div id="timing-to-marriage" class="fs-14 clr-red" data-timing-type="marriage">
-                    <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == date('Y-m-d', $marriage) ? '婚礼正在进行' : '婚礼已过') : '倒计时'; ?></span>
+                    <span class="fs-14"><?= $marriage < $_SERVER['REQUEST_TIME'] ? (date('Y-m-d') == date('Y-m-d', $marriage) ? '婚礼正在进行' : '圆满礼成') : '倒计时'; ?></span>
                     <?php if ($marriage > $_SERVER['REQUEST_TIME'] || (date('Y-m-d') != date('Y-m-d', $marriage))): ?>
                     <div class="font-0">
                         <?php $duration = $marriage - $_SERVER['REQUEST_TIME']; ?>
