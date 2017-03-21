@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "font": "font-spider spider.html"
+  },
+  "devDependencies": {
+    "font-spider": "^1.3.4"
+  }
+}
