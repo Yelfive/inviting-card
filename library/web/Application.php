@@ -20,7 +20,8 @@ class Application extends Object
      */
     public $plan = 'A';
     public $version = '1.0.3';
-    public $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
+    //public $imgHost = 'http://7xqb7r.com1.z0.glb.clouddn.com/images/inviting';
+    public $imgHost = '/images';
 //    public $imgHost = 'images';
 
     public static function run()

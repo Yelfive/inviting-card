@@ -95,7 +95,7 @@ $marriage = 1458446400;
     <div class="arrow right"></div>
     <div class="loading" id="stage-in"><div><canvas></canvas></div></div>
     <script>new Heart(document.querySelector('#stage-in canvas'), 2000);</script>
-    <div id="music" class="paused"><audio src="<?= $this->imgHost == 'images' ? 'images' : 'http://7xqb7r.com1.z0.glb.clouddn.com/videos/inviting'; ?>/morning.mp3" loop preload></audio></div>
+    <div id="music" class="paused"><audio src="<?= $this->imgHost; ?>/morning.mp3" loop preload></audio></div>
     <div id="heartbeats"></div>
     <div id="wrapper-mask"></div>
     <div class="wrapper">
@@ -211,7 +211,7 @@ HTML
                 <div class="video">
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
                     <div class="start"></div>
-                    <video class="hide" data-src="http://7xqb7r.com1.z0.glb.clouddn.com/video/final_1.mp4" controls></video>
+                    <video class="hide" data-src="<?= $this->imgHost; ?>final_1.mp4" controls></video>
                 </div>
             </div>
         </div>
@@ -282,5 +282,5 @@ HTML
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <?php endif; ?>
 <script src="js/iscroll-lite.js"></script>
-<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.min.js?v=$this->version"; ?>"></script>
+<script src="../js/<?= DEBUG ? "base.js?t=$_SERVER[REQUEST_TIME]" : "base.js?v=$this->version"; ?>"></script>
 </html>
