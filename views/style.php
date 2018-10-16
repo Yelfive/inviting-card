@@ -251,6 +251,7 @@ if ($this->plan == 'A') {
     Css::style('.anchor .heart-chart', []);
 }
 
+Css::style('#touch-us', ['border-radius' => /*fk::$app->request->isAndroid ? '10px' : */'50%']);
 
 Css::style('#touch-us.touch-in', ['animation' => 'touchIn 0.5s ease-in-out']);
 Css::style('#touch-us', ['animation-fill-mode' => 'forwards !important']);
@@ -313,8 +314,6 @@ Css::style('#love-movie .description>div:nth-child(1)', ['position' => 'relative
 Css::style('#love-movie .description>div:nth-child(3)', ['position' => 'relative', 'left' => '10%']);
 
 Css::style('.scale-0', ['transform' => 'scale(0)']);
-
-Css::style('#touch-us', ['border-radius' => fk::$app->request->isAndroid ? '10px' : '50%']);
 
 Css::keyframes('arrowLeft', [
     '0%' => ['transform' => 'rotateZ(135deg) translate(-1rem, -1rem)', 'opacity' => 0],

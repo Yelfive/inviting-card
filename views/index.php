@@ -187,7 +187,7 @@ HTML
             <?php if (fk::$app->request->terminal == 'pc'):?>
                 <ul class="bg-pink" id="album-ul">
                     <?php for ($i = 1; $i <= 17; $i++): ?>
-                    <li><img src="../images/photos/0.jpg"><p>One line description <?= $i; ?></p></li>
+                    <li><img src="<?= $this->imgHost; ?>/0.jpg"><p>One line description <?= $i; ?></p></li>
                     <?php endfor; ?>
                 </ul>
             <?php else: ?>

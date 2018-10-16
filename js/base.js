@@ -419,14 +419,14 @@
                 Movie.pause();
             }
             if (this.currentDom.id == 'album') {
-                var $pic = this.currentDom.querySelector('div');
+                var $pic = this.currentDom.children[0];
                 $pic.className = 'fade-out';
                 setTimeout(function () {
                     $pic.className = '';
                 }, 500);
             }
             if (to.id == 'album') {
-                var $pic = to.querySelector('div');
+                var $pic = to.children[0];
                 setTimeout(function () {
                     $pic.className = 'fade-in';
                 }, 1000);
