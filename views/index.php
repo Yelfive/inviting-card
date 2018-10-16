@@ -269,7 +269,7 @@ HTML
             title: '<?= $title; ?>',
             desc: '我们邀请您及家人为我们见证这一美妙的时刻',
             link: '<?= "http://$_SERVER[HTTP_HOST]/index.php"; ?>',
-            imgUrl: '<?= $imgHost; ?>/share.jpg'
+            imgUrl: 'http://<?= $_SERVER[HTTP_HOST] . '/' . $imgHost; ?>/share.jpg'
         },
         marriage: <?= $marriage; ?>
     };
