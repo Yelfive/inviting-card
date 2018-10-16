@@ -211,7 +211,7 @@ HTML
                 <div class="video">
                     <img src="<?= $imgHost; ?>/poster_1.jpg?v=1.0">
                     <div class="start"></div>
-                    <video class="hide" data-src="<?= $this->imgHost; ?>final_1.mp4" controls></video>
+                    <video class="hide" data-src="<?= $this->imgHost; ?>/final_1.mp4" controls></video>
                 </div>
             </div>
         </div>
