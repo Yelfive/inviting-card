@@ -6,7 +6,7 @@
 
 namespace fk\base;
 
-class Object
+class Obj
 {
     public function __get($name)
     {

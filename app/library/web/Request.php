@@ -5,14 +5,14 @@
  */
 namespace fk\web;
 
-use fk\base\Object;
+use fk\base\Obj;
 
 /**
  * @property string $terminal pc or mobile
  * @property boolean $isAndroid
  * @property boolean $isWechat
  */
-class Request extends Object
+class Request extends Obj
 {
     public function getTerminal()
     {

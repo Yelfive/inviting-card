@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+    nginx:
+        image: nginx
+        volumes: 
+            - ./app:/var/www/html
+            - /etc/localtime:/etc/localtime
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        ports: 
+            - 1119:80
+        links: 
+            - phpfpm
+    phpfpm:
+        image: yelfive/phpfpm:lv2-1.0
+        volumes: 
+            - ./app:/var/www/html
+            - /etc/localtime:/etc/localtime

@@ -14,6 +14,7 @@
  */
 
 include __DIR__ . '/story.php';
+// Time of wedding
 $marriage = 1458446400;
 
 ?>

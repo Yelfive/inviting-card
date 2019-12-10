@@ -8,7 +8,7 @@ namespace fk\wechat;
 
 use Exception;
 use fk;
-use fk\base\Object;
+use fk\base\Obj;
 
 /**
  *
@@ -17,7 +17,7 @@ use fk\base\Object;
  * @property string $accessToken
  *
  */
-class Base extends Object
+class Base extends Obj
 {
 
     public function getAccessToken()
